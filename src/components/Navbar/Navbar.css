@@ -40,7 +40,7 @@ ul{
     align-items: center;
     width: 300px;
     margin: 0 auto;
-    background-color: white;
+    background-color: transparent;
     transition: 0.6s ease;
 }
 
@@ -65,7 +65,7 @@ ul{
 }
 
 .searchBar__input{
-    background-color: rgba(211, 211, 211, 0.456);
+    background-color: rgba(211, 211, 211, 0.944);
     outline-color: rgb(20, 180, 233);
     border-radius: 10px;
     border: 1px solid rgba(122, 212, 242, 0.485);
@@ -91,7 +91,7 @@ ul{
 
 .searchBar__input:active,
 .searchBar__input:focus{
-    background-color: rgba(122, 212, 242, 0.485);
+    background-color: rgba(122, 212, 242, 0.937);
 }
 
     /*Button*/

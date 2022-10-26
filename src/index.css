@@ -8,6 +8,12 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /*-Fonts: Ubuntu -> font-family: 'Ubuntu', sans-serif;*/
 /*-Colors: Blue/Light-blue - White - purple*/
 /*Light Blue: rgba(122, 212, 242, 0.485)*/

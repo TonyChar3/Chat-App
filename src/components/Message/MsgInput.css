@@ -1,0 +1,68 @@
+    /*Layout*/
+.msgInput__container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: .5em;
+    border-bottom: 1px solid rgb(20, 180, 233);
+}
+
+.sendBtn__container{
+    padding: .5em;
+    border-radius: 10px;
+    border: 1px solid rgba(122, 212, 242, 0.485);
+}
+
+    /*Typography*/
+.bi-send{
+    font-size: 1.3rem;
+    color:rgb(20, 180, 233);
+}
+
+.sendBtn__container:active,
+.sendBtn__container:focus{
+    background-color: rgba(122, 212, 242, 0.485);
+    transform: scale(0.93);
+    transition: all 0.2s;
+}
+
+#send__message{
+    background-color: rgba(211, 211, 211, 0.944);
+    outline-color: rgb(20, 180, 233);
+    border-radius: 10px;
+    border: 1px solid rgba(122, 212, 242, 0.485);
+    padding: .3em;
+}
+
+#send__message:active,
+#send__message:focus{
+    background-color: rgba(122, 212, 242, 0.937);
+}
+
+@media (min-width: 765px){
+    .msgInput__container{
+        justify-content: center;
+        height: 12vh;
+    }
+
+    .sendBtn__container{
+        margin-left: 3em;
+    }
+    #send__message{
+        width: 60%;
+        padding: 1em;
+    }
+
+
+        /*Typography*/
+    .bi-send{
+        font-size: 1.5rem;
+    }
+}
+@media (min-width: 1024px){
+        /*Layout*/
+
+
+
+}
+@media (min-width: 1281px){}
