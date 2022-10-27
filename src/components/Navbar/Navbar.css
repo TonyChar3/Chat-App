@@ -33,6 +33,14 @@ ul{
     cursor: pointer;
 }
 
+.show{
+    display: none;
+}
+
+.signin{
+    display: none;
+}
+
     /*Typography*/
 .nav__title > a{
     color:rgb(20, 180, 233);

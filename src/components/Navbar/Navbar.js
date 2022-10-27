@@ -1,18 +1,22 @@
-
+import { Link, Outlet } from 'react-router-dom';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+
 
 const NavChatApp = () => {
-    return(  
-    <nav className="nav__container">
-      <div className="nav__TitleNtabs">
-        <h1 className="nav__title"><Link to="/">Chat App</Link></h1>
-        <ul className="nav__tabs">
-            <Link><i className="bi bi-box-arrow-right">Sign-out</i></Link>
-            <Link to="/contacts">Contacts</Link>
-        </ul>
-      </div>
-    </nav>);
+   return(
+    <>
+      <nav className="nav__container">
+        <div className="nav__TitleNtabs">
+          <h1 className="nav__title"><Link to="chatpage">Chat App</Link></h1>
+          <ul className="nav__tabs">
+              <Link to="/"><i className='bi bi-box-arrow-right'>Sign-out</i></Link>
+              <Link to="contacts" >Contacts</Link>
+          </ul>
+        </div>
+      </nav>
+      <Outlet/>
+    </>
+   );
 };
 
 export default NavChatApp;

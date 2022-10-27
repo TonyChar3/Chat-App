@@ -1,5 +1,6 @@
 import './chat.css';
 import Scroll from '../Scroll/Scroll';
+import { Link } from 'react-router-dom';
 
 const ChatSect = () => {
     return(
@@ -11,7 +12,7 @@ const ChatSect = () => {
                         <span className="profileName">Jane Doe</span>
                     </div>
                     <div className="exitConvo__container">
-                    <i className="bi bi-x-circle"></i>
+                       <Link to="/navbar/contacts"><i className="bi bi-x-circle"></i></Link> 
                     </div>
                 </div>
                 <Scroll>
@@ -35,7 +36,6 @@ const ChatSect = () => {
                 </Scroll>
             </div>
         </div>
-
     );
 }
 
