@@ -1,0 +1,71 @@
+    /*Layout*/
+.searchContcts__container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em;
+    margin: 0 auto;
+    background-color: transparent;
+    border-top: 1px solid rgba(122, 212, 242, 0.485);
+    transition: 0.6s ease;
+}
+
+    /*Typography*/
+.searchContcts__input{
+    background-color: rgba(211, 211, 211, 1);
+    outline-color: rgb(20, 180, 233);
+    border-radius: 10px;
+    border: 1px solid rgba(122, 212, 242, 0.485);
+    padding: .3em;
+}
+
+.searchContcts__input:active,
+.searchContcts__input:focus{
+    background-color: rgba(122, 212, 242, 0.937);
+}
+
+    /*Buttons*/
+.searchBar__button{
+    padding: .3em .5em;
+    font-weight: 300;
+    border: none;
+    border-radius: 15px;
+    background-color:rgba(122, 212, 242, 1);
+    letter-spacing: 1px;
+}
+
+.searchBar__button:active{
+    transform: scale(0.95);
+    transition: all 0.3s;
+}
+
+@media (min-width: 765px){
+    .searchContcts__container{
+        align-items: center;
+        justify-content: center;
+    }
+
+    .searchContcts__input{
+        width: 40%;
+        padding: 1em;
+    }
+
+    .searchBar__button{
+        margin: 0 2em;
+    }
+}
+
+@media (min-width: 1024px){
+    .searchContcts__container{
+        justify-content: center;
+    }
+
+    .searchContcts__input{
+        width: 40%;
+        padding: 1em;
+    }
+
+    .searchBar__button{
+        margin: 0 1em;
+    }
+}

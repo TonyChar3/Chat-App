@@ -1,0 +1,53 @@
+    /*Layout*/
+.contcts__secndContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contctsCard__container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em auto;
+    width: 80%;
+    padding: .5em;
+    border-radius: 15px;
+    border: 2px solid rgb(20, 180, 233);
+}
+
+.Profl__pic{
+    width: 11%;
+    height: 43px;
+    border-radius: 50%;
+} 
+
+    /*Typography*/
+.bi-trash{
+    color: rgb(245, 72, 72);
+    font-size: 1.2rem;
+}
+
+.deleteIcon__container:active{
+    transform:scale(0.93);
+    transition: all 0.3s;
+}
+
+@media (min-width: 765px){}
+@media (min-width: 1024px){
+    .contcts__firstContainer{
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        background-color: rgb(20, 180, 233);
+    }
+
+    .contcts__secndContainer{
+        width: 45%;
+        align-items: center;
+        margin: 1em;
+        border-radius: 15px;
+        background-color: white;
+    }
+}
+@media (min-width: 1281px){}

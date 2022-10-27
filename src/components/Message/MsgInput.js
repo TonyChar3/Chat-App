@@ -6,7 +6,7 @@ const MsgInput = () => {
         <div className="msgInput__container">
             <input type="text" id="send__message" placeholder="send a message..." />
             <div className="sendBtn__container">
-                <i class="bi bi-send"></i>
+                <i className="bi bi-send"></i>
             </div>
         </div>
     );

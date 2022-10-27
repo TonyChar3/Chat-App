@@ -1,7 +1,6 @@
 import NavChatApp from '../components/Navbar/Navbar';
-import Contacts from '../components/contacts/contacts';
-import ChatSect from '../components/convo/Chat';
-import MsgInput from '../components/Message/MsgInput';
+import ContctsSect from '../components/ContctsSect/ContctsSect';
+import ChatPage from '../components/ChatRoom/ChatPage';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
@@ -9,13 +8,10 @@ function App() {
   return (
     <>
       <NavChatApp />
-      <div>
         <Routes>
-          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/" element={<ChatPage />} />
+          <Route path="/contacts" element={<ContctsSect />} />
         </Routes>
-        <ChatSect />
-        <MsgInput />
-      </div>
     </>
   );
 }

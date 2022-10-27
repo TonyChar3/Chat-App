@@ -1,6 +1,5 @@
 import './chat.css';
 import Scroll from '../Scroll/Scroll';
-import Profile from '../../img/pexels-pixabay-220453.jpg';
 
 const ChatSect = () => {
     return(
@@ -8,11 +7,11 @@ const ChatSect = () => {
             <div className="chatRoom__container">
                 <div className="userProfile__container">
                     <div className="img-name__container">
-                        <img src={Profile} alt="*profile card" className="profileImg" />
+                        <i className="bi bi-chat"></i>
                         <span className="profileName">Jane Doe</span>
                     </div>
                     <div className="exitConvo__container">
-                    <i class="bi bi-box-arrow-right"></i>
+                    <i className="bi bi-x-circle"></i>
                     </div>
                 </div>
                 <Scroll>

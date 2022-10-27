@@ -8,6 +8,14 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
+a{
+  text-decoration: none;
+}
+
+i{
+  cursor: pointer;
+}
+
 #root{
   display: flex;
   flex-direction: column;

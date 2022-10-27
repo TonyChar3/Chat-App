@@ -4,7 +4,6 @@
     justify-content: space-around;
     align-items: center;
     padding: .5em;
-    border-bottom: 1px solid rgb(20, 180, 233);
 }
 
 .sendBtn__container{
@@ -42,12 +41,13 @@
 @media (min-width: 765px){
     .msgInput__container{
         justify-content: center;
-        height: 12vh;
+        padding: 1.5em;
     }
 
     .sendBtn__container{
         margin-left: 3em;
     }
+
     #send__message{
         width: 60%;
         padding: 1em;

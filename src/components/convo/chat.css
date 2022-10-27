@@ -9,15 +9,15 @@
 }
 
 .chatRoom__container{
-    height: 80vh;
+    height: 75vh;
     border-bottom: 1px solid rgb(20, 180, 233);
 }
 
 .userProfile__container{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    margin: .5em .5em;
+    margin: .5em 0;
     padding: .5em;
     border-radius: 15px;
     background-color: rgba(122, 212, 242, 0.485);
@@ -35,16 +35,15 @@
     width: 20%;
 }
 
-.profileImg{
-    width: 25%;
-    height: 80px;
-    border-radius: 50%;
-}
-
 .profileName{
     margin-left: 3.2em;
 }
     /*Typography*/
+.bi-chat{
+    font-size: 1.5rem;
+    color: rgb(20, 180, 233);
+}
+
 .bi-box-arrow-right{
     border-radius: 50%;
     font-size: 1.5rem;
@@ -83,6 +82,7 @@
         justify-content: center;
         background-color: rgb(20, 180, 233);
     }
+
     .chatRoom__container{
         display: flex;
         flex-direction: column;
@@ -106,6 +106,7 @@
         justify-content: center;
         background-color: rgb(20, 180, 233);
     }
+
     .chatRoom__container{
         display: flex;
         flex-direction: column;
