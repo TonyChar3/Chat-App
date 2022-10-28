@@ -1,0 +1,45 @@
+    /*Layout*/
+.registr__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5em;
+    margin: 2em 1em;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(211, 211, 211, 0.281);
+    border: 2px solid rgb(20, 180, 233);
+}
+
+.fullname__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+#fullnameInput{
+    background-color: rgba(211, 211, 211, 1);
+    outline-color: rgb(20, 180, 233);
+    border-radius: 10px;
+    border: 1px solid rgba(122, 212, 242, 0.485);
+    padding: .3em;  
+}
+
+#fullnameInput:active,
+#fullnameInput:focus{
+    background-color: rgba(122, 212, 242, 0.937);
+}
+
+    /*Typography*/
+
+@media (min-width: 765px){
+    .registr__container{
+        width: 50%;
+        align-self: center;
+    }
+}
+
+@media (min-width: 1024px){
+    .registr__container{
+        width: 30%;
+    }
+}

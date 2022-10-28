@@ -1,0 +1,86 @@
+    /*Layout*/
+.signIn__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5em;
+    margin: 2em 1em;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(211, 211, 211, 0.281);
+    border: 2px solid rgb(20, 180, 233);
+}
+
+.userName__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.password__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttons__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons__wrapper > input,
+.registr__btn{
+    margin-top: .5em;
+}
+
+.userName__wrapper, 
+.password__wrapper, 
+.buttons__wrapper{
+    margin-top: 1em;
+}
+
+.showPasswrd{
+    width: 20px;
+    text-align: center;
+    font-size: 0.99rem;
+}
+
+    /*Typography*/
+#userNameInput,
+#passWrdInput{
+    background-color: rgba(211, 211, 211, 1);
+    outline-color: rgb(20, 180, 233);
+    border-radius: 10px;
+    border: 1px solid rgba(122, 212, 242, 0.485);
+    padding: .3em;
+}
+    
+#userNameInput:active,#userNameInput:focus,
+#passWrdInput:active, #passWrdInput:focus{
+    background-color: rgba(122, 212, 242, 0.937);
+}
+
+    /*Buttons*/
+#signIn__btn{
+    padding: .5em;
+    background-color: rgba(122, 212, 242, 0.485);
+    border: 1px solid rgb(20, 180, 233);
+    border-radius: 20px;
+}
+
+.registr__btn > a{
+    color: rgb(20, 180, 233);
+    cursor: pointer;
+}
+
+@media (min-width: 765px){
+    .signIn__container{
+        width: 50%;
+        align-self: center;
+    }
+}
+
+@media (min-width: 1024px){
+    .signIn__container{
+        width: 30%;
+    }
+}
