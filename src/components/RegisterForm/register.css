@@ -1,5 +1,5 @@
     /*Layout*/
-.registr__container{
+.registr__container > form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,19 @@
     backdrop-filter: blur(5px);
     background-color: rgba(211, 211, 211, 0.281);
     border: 2px solid rgb(20, 180, 233);
+    
+}
+
+.register__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    width: 25%;
+}
+
+.register__wrapper > a{
+    color:rgb(20, 180, 233);
 }
 
 .fullname__wrapper{
@@ -16,7 +29,7 @@
     flex-direction: column;
 }
 
-#fullnameInput{
+#EmailInput{
     background-color: rgba(211, 211, 211, 1);
     outline-color: rgb(20, 180, 233);
     border-radius: 10px;
@@ -24,12 +37,21 @@
     padding: .3em;  
 }
 
-#fullnameInput:active,
-#fullnameInput:focus{
+#EmailInput:active,
+#EmailInput:focus{
     background-color: rgba(122, 212, 242, 0.937);
 }
 
     /*Typography*/
+
+.error__div{
+    padding: .5em;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-decoration: underline rgba(122, 212, 242, 0.937);
+    color: red;
+}
 
 @media (min-width: 765px){
     .registr__container{
@@ -41,5 +63,9 @@
 @media (min-width: 1024px){
     .registr__container{
         width: 30%;
+    }
+
+    .register__wrapper{
+        width: 20%;
     }
 }

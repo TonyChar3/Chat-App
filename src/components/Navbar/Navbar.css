@@ -25,7 +25,8 @@ ul{
     margin-left: 1em;
 }
 
-.nav__tabs > a {
+.nav__tabs > a,
+.nav__tabs > i {
     padding: .3em 1em;
     list-style: none;
     border-radius: 10px;
@@ -46,11 +47,11 @@ ul{
     color:rgb(20, 180, 233);
 }
 
-.nav__tabs > a:first-child{
+.nav__tabs > i{
     font-size: 0.98rem;
 }
 
-.nav__tabs > a:first-child > i{
+.nav__tabs > i{
     margin-left: .5em;
     font-size: 0.98rem;
 }
@@ -75,12 +76,12 @@ ul{
         /*Typography*/
     .nav__tabs > li,
     .nav__tabs > li:first-child,
-    .nav__tabs > a:first-child > i{
+    .nav__tabs > i{
         font-size: 1.2rem;
     }
 
     .nav__tabs > a:first-child:hover,
-    .nav__tabs > a:first-child > i:hover{
+    .nav__tabs > i:hover{
         color: rgb(235, 63, 63);
     }
 
