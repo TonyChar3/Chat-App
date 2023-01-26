@@ -1,8 +1,32 @@
 import './chat.css';
+import Messgs from "../Message/messg";
 import Scroll from '../Scroll/Scroll';
 import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from "react";
+import { query, collection, orderBy, onSnapshot, limit } from "firebase/firestore";
+import { db } from "../../firebase_setup/firebase";
 
 const ChatSect = () => {
+
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        const q = query(
+            collection(db, "messages"),
+            orderBy("createdAt"),
+            limit(50)
+        );
+        const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+            let messagez = [];
+            QuerySnapshot.forEach((doc) => {
+                messagez.push({ ...doc.data(), id: doc.id });
+            });
+            setMessages(messagez);
+           console.log(messagez) 
+        });
+        return () => unsubscribe;
+    }, []);
+
     return(
         <div className="main-content">
             <div className="chatRoom__container">
@@ -17,21 +41,9 @@ const ChatSect = () => {
                 </div>
                 <Scroll>
                     <div className="chatSent__container">
-                        <div></div>
-                        <div className="message__container">
-                            <span>A sent message</span>
-                        </div>
-                        <div className="message__container_Received">
-                            <span>A received message</span>
-                        </div>
-                        <div></div>
-                        <div></div>
-                        <div className="message__container">
-                            <span>A sent message</span>
-                        </div>
-                        <div className="message__container_Received">
-                            <span>A received message</span>
-                        </div>
+                        {messages?.map((message) => (
+                            <Messgs key={message.id} mess={message} />
+                        ))}
                     </div>
                 </Scroll>
             </div>

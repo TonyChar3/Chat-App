@@ -1,0 +1,41 @@
+.messg__container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    border-radius: 20px;
+    padding: .5em;
+    margin: 1em 1em;
+    background-color: rgb(20, 180, 233);
+    color: white;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.right{
+    justify-self: center;
+    align-self: flex-end;
+}
+
+.left{
+    justify-self: center;
+    align-self: flex-start; 
+}
+
+/*Typography*/
+.sentby__container{
+    display: flex;
+    width: 50%;
+    padding: .2em;
+    margin-left: .2em;
+    align-self: flex-start;
+    font-weight: bold;
+    color: black;
+}
+
+.sentText__container{
+    max-width: 100%;
+    overflow-wrap: break-word;
+}

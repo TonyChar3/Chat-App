@@ -57,7 +57,7 @@ const Register = () => {
         <div className="registr__container">
           <form onSubmit={signUp}>
               <div className="register__wrapper">
-                <Link to="/"><i class="bi bi-arrow-left">Go back</i></Link>
+                <Link to="/"><i className="bi bi-arrow-left">Go back</i></Link>
               </div>
               <h2>Register</h2>
               <div className="fullname__wrapper">

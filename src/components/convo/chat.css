@@ -2,10 +2,8 @@
 .chatSent__container{
     height: auto;
     margin-top: .5em;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: flex-end;
-    align-items: flex-end;     
+    display: flex;
+    flex-direction: column; 
 }
 
 .chatRoom__container{
