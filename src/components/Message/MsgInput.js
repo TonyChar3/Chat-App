@@ -1,10 +1,10 @@
 import './MsgInput.css';
 import { useState } from "react";
 import { auth, db } from "../../firebase_setup/firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, Timestamp, } from "firebase/firestore";
 
 
-const MsgInput = () => {
+const MsgInput = ({ chat_name }) => {
 
     const [ message, setMessage ] = useState("");
 
@@ -16,13 +16,25 @@ const MsgInput = () => {
             return;
         }
         const { uid, displayName } = auth.currentUser;
-        await addDoc(collection(db, "messages"), {
+
+        const docRef = doc(db, "chatrooms", chat_name);
+
+        const created_at = Timestamp.now()
+
+        const sent_message ={
+            id: Math.floor(Math.random()*1000),
             text: message,
             name: displayName,
-            createdAt: serverTimestamp(),
+            createdAt: created_at,
             uid,
+        };
+
+        await updateDoc(docRef, {
+            messages: arrayUnion(sent_message)
         });
+
         setMessage("")
+        console.log(chat_name)
     }
 
     return(

@@ -1,7 +1,7 @@
 import './SearchContcts.css';
 import {useState} from 'react';
 import { auth, db } from "../../firebase_setup/firebase";
-import { doc, arrayUnion, updateDoc } from "firebase/firestore";
+import { doc, arrayUnion, updateDoc, setDoc } from "firebase/firestore";
 
 
 const SearchContcts = () => {
@@ -31,6 +31,7 @@ const SearchContcts = () => {
                 alert("Please enter the info of your new contact")
             }else{
                 const contct_user ={
+
                     id: Math.floor(Math.random()*1000),
                     name: name,
                     email: email
@@ -40,6 +41,12 @@ const SearchContcts = () => {
                 
                 await updateDoc(docRef, {
                     contact: arrayUnion(contct_user)
+                })
+
+                await setDoc(doc(db, "chatrooms", contct_user.name),{
+                    user_uid: auth.currentUser.uid,
+                    contact_id: contct_user.id,
+                    messages: []
                 })
 
                 setName("")

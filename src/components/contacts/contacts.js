@@ -26,6 +26,7 @@ const Contacts = () => {
                         doc.data().contact.forEach(con => {
                             contacte.push(con);
                         })
+                        
                         setContact(contacte)
                     })
                 })
@@ -41,7 +42,7 @@ const Contacts = () => {
             <div className="contcts__secndContainer">
                 <ContctsScroll>
                     {contact?.map((contctz) => (
-                            <ContctsCard key={contctz.id} contct_name={contctz.name} />
+                            <ContctsCard key={contctz.id} contct_name={contctz.name} contct_id={contctz.id} />
                         ))}
                 </ContctsScroll>
             </div>
