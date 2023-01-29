@@ -55,22 +55,6 @@
     transition: all 0.4s ease;
 }
 
-.message__container{
-    text-align: center;
-    padding: .5em;
-    margin-right: .5em;
-    border-radius: 15px;
-    background-color: rgb(20, 180, 233);
-}
-
-.message__container_Received{
-    text-align: center;
-    padding: .5em;
-    margin-left: .5em;
-    border-radius: 15px;
-    background-color: lightgrey;
-}
-
 
 
 @media (min-width: 765px){

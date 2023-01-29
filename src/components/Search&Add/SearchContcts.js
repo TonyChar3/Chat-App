@@ -1,12 +1,85 @@
 import './SearchContcts.css';
+import {useState} from 'react';
+import { auth, db } from "../../firebase_setup/firebase";
+import { doc, arrayUnion, updateDoc } from "firebase/firestore";
 
 
 const SearchContcts = () => {
+
+    const [Active, setActive] = useState(false);
+    const [name, setName ] = useState("");
+    const [email, setEmail ] = useState("");
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        setActive(active => !active);
+    }
+
+    const handleName = (e) => {
+        setName(e)
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e)
+    }
+
+    const handleAddon = async(e) => {
+        e.preventDefault();
+        try{
+
+            if(name === "" || email === ""){
+                alert("Please enter the info of your new contact")
+            }else{
+                const contct_user ={
+                    id: Math.floor(Math.random()*1000),
+                    name: name,
+                    email: email
+                }
+    
+                const docRef = doc(db, "users", auth.currentUser.displayName)
+                
+                await updateDoc(docRef, {
+                    contact: arrayUnion(contct_user)
+                })
+
+                setName("")
+                setEmail("")
+            }
+
+        }catch(error){
+            console.log(error.code)
+        }
+    }
+
+    let toggleActive = Active ? 'form_active' : '';
+
     return(
-        <div className='searchContcts__container'>
-            <input type="text" className="searchContcts__input" placeholder="Find your friends" />
-            <button className="searchBar__button">search</button>
-        </div>
+        <>
+            <div className='searchContcts__container'>
+                <div className="plus__container">
+                    <i className="bi bi-plus-circle" onClick={handleClick}></i>
+                </div>
+                <input type="text" className="searchContcts__input" placeholder="Find your friends" />
+                <button className="searchBar__button" >search</button>
+            </div>
+            <div className="addContcts__container">
+                <div className={`addContcts__form ${toggleActive}`}>
+                    <form id="addForm" onSubmit={handleAddon}>
+                        <h2>Add a contact</h2>
+                        <div className="addContcts__Name">
+                            <input type="text" id="addContctsName_input" placeholder="Name" onChange={(e) => handleName(e.target.value)} />
+                        </div>
+                        <div className="addContcts__Email">
+                            <input type="email" id="addContctsEmail_input" placeholder="Email" onChange={(e) => handleEmail(e.target.value)} />
+                        </div>
+                        <div className="addContctsBtn__container">
+                            <button type="submit" id="addContctsBtn">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </>
+
     );
 }
 

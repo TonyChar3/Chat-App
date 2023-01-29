@@ -2,7 +2,7 @@ import './chat.css';
 import Messgs from "../Message/messg";
 import Scroll from '../Scroll/Scroll';
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { query, collection, orderBy, onSnapshot, limit } from "firebase/firestore";
 import { db } from "../../firebase_setup/firebase";
 
@@ -11,20 +11,26 @@ const ChatSect = () => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
+
         const q = query(
             collection(db, "messages"),
             orderBy("createdAt"),
             limit(50)
         );
+
         const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+
             let messagez = [];
+
             QuerySnapshot.forEach((doc) => {
                 messagez.push({ ...doc.data(), id: doc.id });
             });
-            setMessages(messagez);
-           console.log(messagez) 
+            
+            setMessages(messagez); 
         });
+
         return () => unsubscribe;
+
     }, []);
 
     return(
@@ -44,6 +50,7 @@ const ChatSect = () => {
                         {messages?.map((message) => (
                             <Messgs key={message.id} mess={message} />
                         ))}
+                        
                     </div>
                 </Scroll>
             </div>

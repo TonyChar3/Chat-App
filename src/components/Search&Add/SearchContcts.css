@@ -9,8 +9,40 @@
     transition: 0.6s ease;
 }
 
+.plus__container{
+    margin: 0 1em;
+}
+
+.addContcts__form > form{
+    position: absolute;
+    display: none;
+    left: 20%;
+    bottom: 10%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    padding: .5em;
+    border-radius: 15px;
+    border: 2px solid rgba(122, 212, 242, 0.937);
+    background-color: rgb(20, 180, 233);
+}
+
+.form_active > form{
+    display: flex;
+}
+
+.addContcts__Name{
+    margin: 1em 0;
+}
+
+.addContctsBtn__container{
+    margin: .5em 0;
+}
     /*Typography*/
-.searchContcts__input{
+.searchContcts__input,
+#addContctsName_input,
+#addContctsEmail_input{
     background-color: rgba(211, 211, 211, 1);
     outline-color: rgb(20, 180, 233);
     border-radius: 10px;
@@ -19,8 +51,22 @@
 }
 
 .searchContcts__input:active,
-.searchContcts__input:focus{
+.searchContcts__input:focus,
+#addContctsName_input:active,
+#addContctsName_input:focus,
+#addContctsEmail_input:active,
+#addContctsEmail_input:focus{
     background-color: rgba(122, 212, 242, 0.937);
+}
+
+.plus__container > i{
+    font-size: 1.5rem;
+    color:rgb(20, 180, 233);
+}
+
+.addContcts__form > form > h2{
+    color: white;
+    font-size: 2.3rem;
 }
 
     /*Buttons*/
@@ -33,7 +79,17 @@
     letter-spacing: 1px;
 }
 
-.searchBar__button:active{
+#addContctsBtn{
+    padding: .3em .5em;
+    font-weight: 300;
+    border: none;
+    border-radius: 15px;
+    background-color:white;
+    letter-spacing: 1px;
+}
+
+.searchBar__button:active,
+.plus__container:active{
     transform: scale(0.95);
     transition: all 0.3s;
 }

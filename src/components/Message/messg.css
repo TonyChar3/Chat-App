@@ -4,11 +4,11 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    max-width: 50%;
+    max-width: 30%;
     border-radius: 20px;
     padding: .5em;
     margin: 1em 1em;
-    background-color: rgb(20, 180, 233);
+    
     color: white;
     font-weight: 400;
     letter-spacing: 1px;
@@ -17,11 +17,14 @@
 .right{
     justify-self: center;
     align-self: flex-end;
+    background-color: rgb(20, 180, 233);
 }
 
 .left{
     justify-self: center;
-    align-self: flex-start; 
+    align-self: flex-start;
+    background-color: rgb(176, 176, 176); 
+    border: 2px solid rgb(20, 180, 233);
 }
 
 /*Typography*/

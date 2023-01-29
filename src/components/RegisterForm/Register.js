@@ -3,7 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import './register.css';
 import {useState} from 'react';
 import { createUserWithEmailAndPassword, updateProfile, setPersistence, browserSessionPersistence } from "firebase/auth";
-import { auth } from "../../firebase_setup/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase_setup/firebase";
 
 
 const Register = () => {
@@ -34,6 +35,13 @@ const Register = () => {
       await createUserWithEmailAndPassword(auth, email, passwrd)
 
       await updateProfile(auth.currentUser, { displayName: nom})
+
+      await setDoc(doc(db, "users", auth.currentUser.displayName), {
+        user_uid: auth.currentUser.uid,
+        name: auth.currentUser.displayName,
+        email: auth.currentUser.email,
+        contact: []
+      });
 
     }catch(error){
       console.log(error.code)
