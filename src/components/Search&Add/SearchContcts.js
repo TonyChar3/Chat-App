@@ -1,4 +1,5 @@
 import './SearchContcts.css';
+
 import {useState} from 'react';
 import { auth, db } from "../../firebase_setup/firebase";
 import { doc, arrayUnion, updateDoc, setDoc } from "firebase/firestore";
@@ -49,35 +50,36 @@ const SearchContcts = () => {
                     messages: []
                 })
 
-                setName("")
-                setEmail("")
             }
 
         }catch(error){
             console.log(error.code)
         }
+
+        setName("")
+        setEmail("")
     }
+
 
     let toggleActive = Active ? 'form_active' : '';
 
     return(
         <>
+
             <div className='searchContcts__container'>
                 <div className="plus__container">
-                    <i className="bi bi-plus-circle" onClick={handleClick}></i>
+                    <i className="bi bi-plus-circle" onClick={handleClick}>Add contact</i>
                 </div>
-                <input type="text" className="searchContcts__input" placeholder="Find your friends" />
-                <button className="searchBar__button" >search</button>
             </div>
             <div className="addContcts__container">
                 <div className={`addContcts__form ${toggleActive}`}>
                     <form id="addForm" onSubmit={handleAddon}>
                         <h2>Add a contact</h2>
                         <div className="addContcts__Name">
-                            <input type="text" id="addContctsName_input" placeholder="Name" onChange={(e) => handleName(e.target.value)} />
+                            <input type="text" id="addContctsName_input" placeholder="Name" value={name} onChange={(e) => handleName(e.target.value)} />
                         </div>
                         <div className="addContcts__Email">
-                            <input type="email" id="addContctsEmail_input" placeholder="Email" onChange={(e) => handleEmail(e.target.value)} />
+                            <input type="email" id="addContctsEmail_input" placeholder="Email" value={email} onChange={(e) => handleEmail(e.target.value)} />
                         </div>
                         <div className="addContctsBtn__container">
                             <button type="submit" id="addContctsBtn">Add</button>
