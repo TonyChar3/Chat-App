@@ -1,17 +1,45 @@
 .ContctsScroll__container{
-    overflow-y: scroll ; 
+    overflow-y: auto ; 
     height: 80vh; 
     width:95%;
 }
 
+.Scroll__container{
+    overflow-y: auto;
+    height: 78vh;
+    width: 100%;
+}
+
+@media (min-width: 390px){
+    .Scroll__container{
+        height: 83vh;
+    }
+}
+
+/*Tablets*/
 @media (min-width: 765px){
     .ContctsScroll__container{
         width: 70%;
     }
+
+    .Scroll__container{
+        width: 100%;
+    }
 }
 
+@media (min-width: 820px){
+    .Scroll__container{
+        height: 84vh;
+    }
+}
+
+/*Low resolution desktop*/
 @media (min-width: 1024px){
     .ContctsScroll__container{
         width:60%;
+    }
+
+    .Scroll__container{
+        width: 97%;
     }
 }

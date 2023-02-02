@@ -21,11 +21,13 @@ const Messgs = ({ mess }) => {
     }, [])
 
     return(
+    <div className="messg__wrapper">
         <div className={`messg__container ${mess.uid === Uid ? "right" : "left"}`}>
             <div className="sentby__container">{mess.name}</div>
             <p className="sentText__container">{mess.text}</p>
             <div ref={messagesEndRef}></div>
         </div>
+    </div>
     );
 };
 

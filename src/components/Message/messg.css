@@ -1,22 +1,21 @@
 .messg__container{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     max-width: 30%;
     border-radius: 20px;
     padding: .5em;
     margin: 1em 1em;
-    
     color: white;
     font-weight: 400;
     letter-spacing: 1px;
 }
 
+.messg__wrapper{
+    display: grid;
+}
+
 .right{
-    justify-self: center;
-    align-self: flex-end;
+    justify-self: flex-end;
     background-color: rgb(20, 180, 233);
 }
 

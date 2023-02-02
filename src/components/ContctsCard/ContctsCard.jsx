@@ -29,14 +29,19 @@ const ContctsCard = ({ contct_name, contct_id, contct_email }) => {
     return(
         <>
             <div className="contctsCard__container">
-                <span className="contcts__name">{contct_name}</span>
-                <div className="chatIcon__container">
-                    <Link to="/navbar/chatpage" state={{ room_name: contct_name, cntct_id: contct_id }}><i className="bi bi-chat"></i></Link>
-                </div>
+                
+                    <div className="name__container">
+                        <span className="contcts__name">{contct_name}</span>
+                    </div>
+                    <div className="chatIcon__container">
+                    <Link to="/navbar/chatpage" state={{ room_name: contct_name, cntct_id: contct_id }}><i className="bi bi-chat-square-fill"></i></Link>
+                    </div>
+                
                 <div className="deleteIcon__container">
                     <i className="bi bi-trash" onClick={() => handleDelete(contct_id, contct_name, contct_email)}></i>
                 </div>
             </div>
+        
         </>
 
     );

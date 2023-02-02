@@ -43,20 +43,16 @@ const ChatSect = ({ convo_name, contct_id }) => {
             <div className="chatRoom__container">
                 <div className="userProfile__container">
                     <div className="img-name__container">
-                        <i className="bi bi-chat"></i>
                         <span className="profileName">{convo_name}</span>
                     </div>
                     <div className="exitConvo__container">
                        <Link to="/navbar/contacts"><i className="bi bi-x-circle"></i></Link> 
                     </div>
-                </div>
+                </div> 
                 <Scroll>
-                    <div className="chatSent__container">
-                        {messages?.map((message) => (
-                            <Messgs key={message.id} mess={message} />
-                        ))}
-                        
-                    </div>
+                    {messages?.map((message) => (
+                        <Messgs key={message.id} mess={message} />
+                    ))}
                 </Scroll>
             </div>
         </div>

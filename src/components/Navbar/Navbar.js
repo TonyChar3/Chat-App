@@ -23,10 +23,10 @@ const NavChatApp = () => {
     <>
       <nav className="nav__container">
         <div className="nav__TitleNtabs">
-          <h1 className="nav__title"><Link to="welcome">Chat App</Link></h1>
+          <h1 className="nav__title"><Link to="welcome">Chatt <i className="bi bi-chat-square"></i> </Link></h1>
           <ul className="nav__tabs">
-              <i className='bi bi-box-arrow-right'onClick={SignOut}>Sign-out</i>
               <Link to="contacts" >Contacts</Link>
+              <i className='bi bi-box-arrow-right'onClick={SignOut}></i>
           </ul>
         </div>
       </nav>

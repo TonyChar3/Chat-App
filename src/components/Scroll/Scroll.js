@@ -1,7 +1,8 @@
+import './ContctsScroll.css';
 
 const Scroll = (props) => {
     return (
-        <div style={{ overflowY: 'scroll', height: '80vh', width: '100%' }}>
+        <div className="Scroll__container">
             {props.children}
         </div>
     );

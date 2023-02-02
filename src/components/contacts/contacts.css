@@ -3,43 +3,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
 }
 
-.contctsCard__container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 1em auto;
-    width: 80%;
-    padding: .5em;
-    border-radius: 15px;
-    border: 2px solid rgb(20, 180, 233);
+.contcts__firstContainer{
+    background-color: #c72b83;
+    background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
 
-.Profl__pic{
-    width: 11%;
-    height: 43px;
-    border-radius: 50%;
-} 
-
-    /*Typography*/
-.bi-trash{
-    color: rgb(245, 72, 72);
-    font-size: 1.2rem;
+/*Large mobile screens*/
+@media (min-width: 360px){
+    /*Layout*/
+    .contcts__firstContainer,
+    .contcts__secndContainer{
+        height: 85vh;
+    }
 }
 
-.deleteIcon__container:active{
-    transform:scale(0.93);
-    transition: all 0.3s;
+/*Tablets*/
+@media (min-width: 765px){
+    /*Layout*/
+    .contcts__firstContainer,
+    .contcts__secndContainer{
+        height: 87vh;
+    }
 }
 
-@media (min-width: 765px){}
+/*Low-resolution desktops*/
 @media (min-width: 1024px){
     .contcts__firstContainer{
-        height: 80vh;
         display: flex;
         justify-content: center;
-        background-color: rgb(20, 180, 233);
+        background-color: #c72b83;
+        background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
     }
 
     .contcts__secndContainer{
@@ -47,7 +44,15 @@
         align-items: center;
         margin: 1em;
         border-radius: 15px;
-        background-color: white;
+        -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+        box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+        animation: shadow-drop-2-center;
     }
 }
-@media (min-width: 1281px){}
+
+/*High resolution*/
+@media (min-width: 1281px){
+    .contcts__secndContainer{
+        height: 77vh;
+    }
+}

@@ -1,113 +1,123 @@
     /*Layout*/
-.chatSent__container{
-    height: auto;
-    margin-top: .5em;
-    display: flex;
-    flex-direction: column; 
+.main-content{
+    height: 84vh;
+    background-color: #c72b83;
+    background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
 
 .chatRoom__container{
-    height: 75vh;
-    border-bottom: 1px solid rgb(20, 180, 233);
+    height: 85vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
 }
 
 .userProfile__container{
+    position: absolute;
+    top: 0%; 
+    width: 80%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: .5em 0;
+    justify-content: center;
     padding: .5em;
+    margin: .5em;
     border-radius: 15px;
-    background-color: rgba(122, 212, 242, 0.485);
-    border: 1px solid rgb(20, 180, 233);
+    background-color: #c72b83;
+    background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+    border: 1px solid white;
 }
 
-.img-name__container{
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.exitConvo__container{
-    width: 20%;
-}
-
-.profileName{
-    margin-left: 3.2em;
-}
     /*Typography*/
-.bi-chat{
-    font-size: 1.5rem;
-    color: rgb(20, 180, 233);
+.profileName{
+    font-size: 1.4rem;
+    color: white;
+    margin: .2em 1em;
 }
 
-.bi-box-arrow-right{
-    border-radius: 50%;
-    font-size: 1.5rem;
-    color: rgb(20, 180, 233);
+.bi-x-circle{
+    font-size: 1.1rem;
+    color: white;
 }
 
-.bi-box-arrow-right:active,
-.bi-box-arrow-right:focus{
-    
-    background-color: rgba(83, 147, 168, 0.485);
-    transition: all 0.4s ease;
-}
-
-
-
-@media (min-width: 765px){
+/*Large mobile screens*/
+@media (min-width: 410px){
     .main-content{
-        display: flex;
-        align-items:center;
-        justify-content: center;
-        background-color: rgb(20, 180, 233);
+        height: 90vh;
     }
 
     .chatRoom__container{
-        display: flex;
-        flex-direction: column;
-        margin: 1em 0;
-        width: 80%;
-        border-radius: 20px;
-        background-color: white;
-    }
-
-    .userProfile__container{
-        align-self: center;
-        width: 50%;
+        height: 85vh;
     }
 }
 
+/*Tablets*/
+@media (min-width: 765px){
+    .main-content{
+        height: 84vh;
+    }
+
+    .main-content{
+        display: flex;
+        justify-content: center;
+    }
+
+    .chatRoom__container{
+        height: 82vh;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+        box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.229);
+        animation: shadow-drop-2-center;
+    }
+
+    .userProfile__container{
+        width: 70%;
+        border-radius: 15px;
+        border: 2px solid white;
+    }
+
+    .profileName{
+        font-size: 1.7rem;
+    }
+    
+    .bi-x-circle{
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 820px){
+    .chatRoom__container{
+        height: 84vh;
+    }
+}
+
+/*Low resolution desktop*/
 @media (min-width: 1024px){
         /*Layout*/
     .main-content{
-        display: flex;
-        align-items:center;
-        justify-content: center;
-        background-color: rgb(20, 180, 233);
+        background-color: #c72b83;
+        background-image: linear-gradient(245deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
     }
 
     .chatRoom__container{
-        display: flex;
-        flex-direction: column;
+        height: 78vh;
         justify-content: center;
-        align-items: center;
-        margin: 1em 0;
-        width: 40%;
+        width: 50%;
+        margin-top: .5em;
         border-radius: 20px;
-        background-color: white;
     }
 
-    .chatSent__container{
-        width: 100%;
-        background-color: white;
+    .profileName{
+        font-size: 1.8rem;
     }
-
-    .userProfile__container{
-        width: 60%;
+    
+    .bi-x-circle{
+        font-size: 1.4rem;
     }
 }
 
+/*High resolution*/
 @media (min-width: 1281px){}

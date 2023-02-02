@@ -68,12 +68,15 @@ const SearchContcts = () => {
 
             <div className='searchContcts__container'>
                 <div className="plus__container">
-                    <i className="bi bi-plus-circle" onClick={handleClick}>Add contact</i>
+                    <i className="bi bi-plus-circle" onClick={handleClick}></i>
                 </div>
             </div>
             <div className="addContcts__container">
                 <div className={`addContcts__form ${toggleActive}`}>
                     <form id="addForm" onSubmit={handleAddon}>
+                        <div className="closeBtn__container">
+                            <i className="bi bi-x-circle" onClick={handleClick}></i>
+                        </div>
                         <h2>Add a contact</h2>
                         <div className="addContcts__Name">
                             <input type="text" id="addContctsName_input" placeholder="Name" value={name} onChange={(e) => handleName(e.target.value)} />

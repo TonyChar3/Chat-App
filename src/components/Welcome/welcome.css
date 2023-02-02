@@ -3,32 +3,184 @@
     text-align: center;
     padding: 1em;
 }
+
+.welcomePage__background{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #c72b83;
+    background-image: linear-gradient(20deg, #c72b83 0%, #784BA0 10%, #2B86C5 100%);
+}
+
+.welcomeProfile__container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    margin: 2em auto;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+    animation: shadow-drop-2-center;
+}
+
+.shadow-drop-2-center {
+	-webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.madeWith__container{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    margin: 6em auto;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+    animation: shadow-drop-2-center;
+}
+
+.welcomeProfile_Name_container,
+.welcomeProfile_Email_container{
+    display: flex;
+    width: 80%;
+    padding: .2em;
+    margin: .5em 0;
+    border-radius: 15px;
+    background-color: rgba(228, 228, 228, 0.316);
+}
     /*Typography*/
 .welcomePage__title{
     font-size: 2rem;
-    color: rgb(20, 180, 233);
+    color: white;
 }
 
 .welcomePage__text{
     margin-top: 1em;
     font-size: 1.2rem;
-    color: rgba(122, 212, 242, 1);
+    color: white;
 }
 
-.particles{
-    position: static;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    color:rgb(20, 180, 233);
+.welcomeProfile_Name_container > h4,
+.welcomeProfile_Email_container > h4{
+    font-size: 1.2rem;
+    margin: 0 1em;
+    color: white;
 }
 
-@media(min-width: 765px){}
-@media(min-width: 1024px){
+.welcomeProfile__container > h2{
+    color: white;
+    font-size: 2rem;
+}
+
+.madeWith__container > span{
+    color: white;
+}
+
+@media(min-width: 765px){
+    /*Layout*/
     .welcomePage__container{
-        width: 100%;
+        margin: 2em 0;
+    }
+    .welcomeProfile__container{
+        width: 60%;
+    }
+
+    .madeWith__container{
+        width: 50%;
+    }
+
+    /*Typography*/
+    .welcomePage__title{
+        font-size: 2.4rem;
+    }
+
+    .welcomePage__text{
+        font-size: 1.5rem;
+    }
+
+    .welcomeProfile_Name_container > h4,
+    .welcomeProfile_Email_container > h4{
+        font-size: 1.5rem;
+    }
+
+    .welcomeProfile__container > h2{
+        font-size: 2.2rem;
     }
 }
+
+@media(min-width: 1024px){
+    /*Layout*/
+    .welcomeProfile__container{
+        width: 30%;
+    }
+
+    .madeWith__container{
+        width: 20%;
+    }
+
+    .welcomePage__background{
+        background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+    }
+
+    /*Typography*/
+    .welcomePage__title{
+        font-size: 3.2rem;
+    }
+
+    .welcomePage__text{
+        font-size: 2rem;
+    }
+
+    .welcomeProfile_Name_container > h4,
+    .welcomeProfile_Email_container > h4{
+        font-size: 1.7rem;
+    }
+
+    .welcomeProfile__container > h2{
+        font-size: 2.6rem;
+    }
+}
+
 @media(min-width: 1281px){}
+
+/*Animation*/
+@-webkit-keyframes shadow-drop-2-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+              box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+    100% {
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-box-shadow: 0 0 20px 0px rgba(255, 255, 255, 0.35);
+              box-shadow: 0 0 20px 0px rgba(255, 255, 255, 0.35);
+    }
+  }
+  @keyframes shadow-drop-2-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+              box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+    100% {
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-box-shadow: 0 0 20px 0px rgba(255, 255, 255, 0.35);
+              box-shadow: 0 0 20px 0px rgba(255, 255, 255, 0.35);
+    }
+  }

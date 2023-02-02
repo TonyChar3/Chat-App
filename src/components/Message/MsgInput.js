@@ -34,7 +34,6 @@ const MsgInput = ({ chat_name }) => {
         });
 
         setMessage("")
-        console.log(chat_name)
     }
 
     return(
