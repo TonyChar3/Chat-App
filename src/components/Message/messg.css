@@ -47,6 +47,20 @@
 
 }
 
+.Tcan__right{
+    justify-self: flex-end;
+}
+
+.Tcan__left{
+    justify-self: flex-start;
+}
+
+.messDel__container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
 /*Typography*/
 .sentBy__right{
     align-self: flex-start;
@@ -71,6 +85,12 @@
     word-break: normal;
 }
 
+.bi-x{
+    margin-top: .2em;
+    margin-right: .3em;
+    color: rgba(255, 255, 255, 0.926);
+}
+
 /*Tablets*/
 @media (min-width: 765px){
     /*Typography*/
@@ -83,6 +103,10 @@
 
     .messDateTime__container{
         font-size: 0.78rem;
+    }
+
+    .bi-x{
+        font-size: 1.4rem;
     }
 }
 
@@ -99,5 +123,9 @@
     
     .messDateTime__container{
         font-size: 0.80rem;
+    }
+
+    .bi-x{
+        font-size: 1.2rem;
     }
 }

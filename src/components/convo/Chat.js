@@ -51,7 +51,7 @@ const ChatSect = ({ convo_name, contct_id }) => {
                 </div> 
                 <Scroll>
                     {messages?.map((message) => (
-                        <Messgs key={message.id} mess={message} />
+                        <Messgs key={message.id} mess={message} naming={convo_name} />
                     ))}
                 </Scroll>
             </div>

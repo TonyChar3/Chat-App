@@ -153,7 +153,11 @@
     }
 }
 
-@media(min-width: 1281px){}
+@media(min-width: 1281px){
+    .madeWith__container{
+        margin: 3.5em auto;
+    }
+}
 
 /*Animation*/
 @-webkit-keyframes shadow-drop-2-center {

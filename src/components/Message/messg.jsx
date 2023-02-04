@@ -1,14 +1,30 @@
 import './messg.css';
-import { auth } from "../../firebase_setup/firebase";
+import { auth, db } from "../../firebase_setup/firebase";
+import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
 import {useEffect, useState, useRef} from 'react';
 
 
-const Messgs = ({ mess }) => {
+const Messgs = ({ mess, naming }) => {
 
     const [Uid, setUid] = useState("")
     const [date, setDate] = useState()
     const [messDate, setMessDate] = useState()
     const messagesEndRef = useRef(null)
+
+    const handleDelMess = async(message) => {
+
+        try{
+            const contactRef = doc(db, 'chatrooms', naming)
+            
+            await updateDoc(contactRef, {
+                messages:arrayRemove(message)      
+            })
+
+        }catch(error){
+            console.log(error)
+        }
+
+    }
 
     useEffect(() => {
 
@@ -37,6 +53,9 @@ const Messgs = ({ mess }) => {
             <div className={`sentby__container ${mess.uid === Uid ? "sentBy__right" : "sentBy__left"}`}>{mess.name}</div>
             <div className="sentText__container">{mess.text}</div>
             <div ref={messagesEndRef}></div>
+        </div>
+        <div className={`messDel__container `}>
+            <i className={`bi bi-x ${mess.uid === Uid ? "Tcan__right" : "Tcan__left"}`} onClick={() => handleDelMess(mess)}></i>
         </div>
     </div>
     );

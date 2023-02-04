@@ -40,6 +40,7 @@
     }
 
     .contcts__secndContainer{
+        height: 85%;
         width: 45%;
         align-items: center;
         margin: 1em;
@@ -53,6 +54,6 @@
 /*High resolution*/
 @media (min-width: 1281px){
     .contcts__secndContainer{
-        height: 77vh;
+        height: 81%;
     }
 }
