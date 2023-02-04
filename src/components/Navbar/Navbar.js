@@ -25,7 +25,8 @@ const NavChatApp = () => {
         <div className="nav__TitleNtabs">
           <h1 className="nav__title"><Link to="welcome">Chatt <i className="bi bi-chat-square"></i> </Link></h1>
           <ul className="nav__tabs">
-              <Link to="contacts" >Contacts</Link>
+              <Link to="contacts">Contacts</Link>
+              <Link to="invitations"><i className="bi bi-people-fill"></i></Link>
               <i className='bi bi-box-arrow-right'onClick={SignOut}></i>
           </ul>
         </div>

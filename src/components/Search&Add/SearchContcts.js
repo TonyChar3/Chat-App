@@ -2,7 +2,7 @@ import './SearchContcts.css';
 
 import {useState} from 'react';
 import { auth, db } from "../../firebase_setup/firebase";
-import { doc, arrayUnion, updateDoc, setDoc } from "firebase/firestore";
+import { doc, arrayUnion, updateDoc, setDoc, getDoc } from "firebase/firestore";
 
 
 const SearchContcts = () => {
@@ -31,24 +31,58 @@ const SearchContcts = () => {
             if(name === "" || email === ""){
                 alert("Please enter the info of your new contact")
             }else{
-                const contct_user ={
 
-                    id: Math.floor(Math.random()*1000),
-                    name: name,
-                    email: email
-                }
     
                 const docRef = doc(db, "users", auth.currentUser.displayName)
-                
-                await updateDoc(docRef, {
-                    contact: arrayUnion(contct_user)
-                })
+                const contctRef = doc(db, 'users', name)
 
-                await setDoc(doc(db, "chatrooms", contct_user.name),{
-                    user_uid: auth.currentUser.uid,
-                    contact_id: contct_user.id,
-                    messages: []
-                })
+                const contct_snap = await getDoc(contctRef)
+
+                // The user exist in the DB
+                if(contct_snap.exists()){
+                    console.log(contct_snap.data())
+
+                    // Doc ref for the invitation
+                    const invitRef = doc(db, 'users', contct_snap.data().name)
+
+                    // Create the contact object 
+                    const contct_user ={
+
+                        id: contct_snap.data().user_uid,
+                        name: contct_snap.data().name,
+                        email: contct_snap.data().email,
+                        confirmed: ""
+                    }
+
+                    // Add it to the contact list of the current User
+                    await updateDoc(docRef, {
+                        contact: arrayUnion(contct_user)
+                    })
+                    
+                    // Create the invite object
+                    const invite = {
+                        id: Math.floor(Math.random()*100),
+                        sent_from: auth.currentUser.displayName,
+                        sender_email: auth.currentUser.email
+                    }
+
+                    // Send an Invite to the Added user
+                    await updateDoc(invitRef, {
+                        invitations: arrayUnion(invite)
+                    })
+
+
+                } else{
+                    console.log('User not found in our database')
+                }
+                
+
+
+                // await setDoc(doc(db, "chatrooms", contct_user.name),{
+                //     user_uid: auth.currentUser.uid,
+                //     contact_id: contct_user.id,
+                //     messages: []
+                // })
 
             }
 

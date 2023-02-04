@@ -13,8 +13,6 @@ const Contacts = () => {
 
     useEffect(() => {
 
-        
-    
         auth.onAuthStateChanged(function(user) {
             
             if(user){
@@ -46,7 +44,7 @@ const Contacts = () => {
             <div className="contcts__secndContainer">
                 <ContctsScroll>
                     {contact?.map((contctz) => (
-                        <ContctsCard key={contctz.id} contct_name={contctz.name} contct_id={contctz.id} contct_email={contctz.email} />
+                        <ContctsCard key={contctz.id} contct_name={contctz.name} contct_id={contctz.id} contct_email={contctz.email} confirmed={contctz.confirmed} />
                     ))}
                 </ContctsScroll>
             </div>

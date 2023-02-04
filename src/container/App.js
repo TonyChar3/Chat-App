@@ -6,6 +6,7 @@ import ContctsSect from '../components/ContctsSect/ContctsSect';
 import ChatPage from '../components/ChatRoom/ChatPage';
 import Welcome from '../components/Welcome/Welcome';
 import Register from '../components/RegisterForm/Register';
+import InviteSect from '../components/Invites/invitation';
 
 function App(){
   return(
@@ -16,6 +17,7 @@ function App(){
         <Route path="welcome" element={<Welcome />} />
         <Route path="contacts" element={<ContctsSect />}  />
         <Route path="chatpage" element={<ChatPage />} />
+        <Route path="invitations" element={<InviteSect />} />
       </Route>
     </Routes>
   )
