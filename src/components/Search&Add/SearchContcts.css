@@ -24,15 +24,16 @@
 .addContcts__form > form{
     position: absolute;
     display: none;
-    bottom: 10%;
+    right: 10%;
+    bottom: 12%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 80%;
     padding: .5em;
     border-radius: 15px;
     border: 3px solid white;
-    background-color: rgba(121, 121, 121, 0.512);
+    background-color: #dddadc66;
 }
 
 .form_active > form{
@@ -61,7 +62,7 @@
     background-color: rgba(211, 211, 211, 1);
     outline-color: #c72b83;
     border-radius: 10px;
-    border: 1px solid #c72b83;
+    border: 2px solid #c72b83;
     padding: .3em;
 }
 
@@ -83,16 +84,17 @@
 
 .addContcts__form > form > h2{
     color: white;
-    font-size: 2.3rem;
+    font-size: 2.4rem;
 }
 
     /*Buttons*/
 
 #addContctsBtn{
-    font-weight: 300;
+    font-weight: 450;
     border: none;
     border-radius: 15px;
     background-color:white;
+    color:rgba(5, 5, 5, 0.512);
     letter-spacing: 1px;
 }
 
@@ -104,7 +106,7 @@
 .closeBtn__container > i{
     margin-left: .5em;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 @media (min-width: 765px){

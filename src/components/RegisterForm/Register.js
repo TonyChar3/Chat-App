@@ -1,4 +1,4 @@
-import ParticlesBg from 'particles-bg';
+
 import { useNavigate, Link } from 'react-router-dom';
 import './register.css';
 import {useState} from 'react';
@@ -60,37 +60,34 @@ const Register = () => {
   }
 
     return(
-        <>
-        <ParticlesBg className="particles" color="#14b4e9" type='cobweb' bg={true}/>
-        <div className="registr__container">
-          <form onSubmit={signUp}>
-              <div className="register__wrapper">
-                <Link to="/"><i className="bi bi-arrow-left">Go back</i></Link>
-              </div>
-              <h2>Register</h2>
-              <div className="fullname__wrapper">
-                  <label htmlFor="fullname">Email:</label>
-                  <input type="email" name="email" id="EmailInput" onChange={(e) => handleEmailChange(e.target.value)}  placeholder="Ex:email@random.com" />
-              </div>
-              <div className="userName__wrapper">
-                <label htmlFor="username">Enter a UserName:</label>
-                <input type="text" name="username" id="userNameInput" onChange={(e) => handleNameChange(e.target.value)} />
-              </div>
-              <div className="password__wrapper">
-                <label htmlFor="password">Enter a Password:</label>
-                <input type="text" id="passWrdInput" onChange={(e) => handlePasswrdChange(e.target.value)} />
-              </div>
-              <div className="buttons__wrapper">
-                <button id="signIn__btn" type="submit">Register</button>
-              </div>
-          </form>
-          <div className="goback__wrapper">
-            
+        <div className="Registr__background">
+          <div className="registr__container">
+            <form onSubmit={signUp}>
+                <div className="register__wrapper">
+                  <Link to="/"><i className="bi bi-arrow-left">Go back</i></Link>
+                </div>
+                <h2>Register</h2>
+                <div className="fullname__wrapper">
+                    <input type="email" name="email" id="EmailInput" onChange={(e) => handleEmailChange(e.target.value)}  placeholder="Ex:email@random.com" />
+                </div>
+                <div className="userName__wrapper">
+                  
+                  <input type="text" name="username" id="userNameInput" onChange={(e) => handleNameChange(e.target.value)} placeholder="User name" />
+                </div>
+                <div className="password__wrapper">
+                  <input type="text" id="passWrdInput" onChange={(e) => handlePasswrdChange(e.target.value)} placeholder="Password" />
+                </div>
+                <div className="buttons__wrapper">
+                  <button id="signIn__btn" type="submit">Register</button>
+                </div>
+            </form>
+            <div className="goback__wrapper">
+              
+            </div>
           </div>
-        </div>
 
-        <div className='error__div'>{erreur}</div>
-        </>
+          <div className='error__div'>{erreur}</div>
+        </div>
     );
 }
 

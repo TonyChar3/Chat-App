@@ -19,7 +19,7 @@ const MsgInput = ({ chat_name }) => {
 
         const docRef = doc(db, "chatrooms", chat_name);
 
-        const created_at = Timestamp.now()
+        const created_at = Timestamp.fromDate(new Date())
 
         const sent_message ={
             id: Math.floor(Math.random()*1000),

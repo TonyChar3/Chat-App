@@ -1,43 +1,103 @@
 .messg__container{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    max-width: 30%;
-    border-radius: 20px;
+    max-width: 38%;
     padding: .5em;
-    margin: 1em 1em;
+    margin: 0;
     color: white;
-    font-weight: 400;
-    letter-spacing: 1px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .messg__wrapper{
     display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 .5em .5em 0;
+    margin-bottom: .5em;
+}
+
+.messDateTime__container{
+    justify-self: center;
+    padding: .5em;
+    margin-bottom: .5em;
+    font-size: 0.70rem;
+    font-weight: 600;
+    color: white;
+}
+
+.Date__right{
+    justify-self: flex-end;
+}
+
+.Date__left{
+    justify-self: flex-start;
 }
 
 .right{
     justify-self: flex-end;
-    background-color: rgb(20, 180, 233);
+    background-color: #784BA0;
+    border-bottom-left-radius: 15px;
 }
 
 .left{
     justify-self: center;
     align-self: flex-start;
     background-color: rgb(176, 176, 176); 
-    border: 2px solid rgb(20, 180, 233);
+    border-bottom-right-radius: 15px;
+
 }
 
 /*Typography*/
+.sentBy__right{
+    align-self: flex-start;
+}
+
+.sentBy__left{
+    align-self: flex-end;
+}
+
 .sentby__container{
     display: flex;
     width: 50%;
     padding: .2em;
-    margin-left: .2em;
-    align-self: flex-start;
+    font-size: 1.0rem;
     font-weight: bold;
     color: black;
 }
 
 .sentText__container{
+    display: inline-block;
     max-width: 100%;
-    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+/*Tablets*/
+@media (min-width: 765px){
+    /*Typography*/
+    .sentby__container{
+        font-size: 1.4rem;
+    }
+    .messg__container{
+        font-size: 1.3rem;
+    }
+
+    .messDateTime__container{
+        font-size: 0.78rem;
+    }
+}
+
+/*Low resolution desktop*/
+@media (min-width: 1024px){
+    /*Typography*/
+    .sentby__container{
+        font-size: 1.3rem;
+    }
+
+    .messg__container{
+        font-size: 1.2rem;
+    }
+    
+    .messDateTime__container{
+        font-size: 0.80rem;
+    }
 }

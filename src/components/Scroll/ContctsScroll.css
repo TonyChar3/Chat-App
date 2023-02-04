@@ -1,18 +1,19 @@
 .ContctsScroll__container{
     overflow-y: auto ; 
-    height: 80vh; 
+    height: 80%; 
     width:95%;
 }
 
 .Scroll__container{
+    margin-top: 4em;
     overflow-y: auto;
-    height: 78vh;
+    height: 68%;
     width: 100%;
 }
 
 @media (min-width: 390px){
     .Scroll__container{
-        height: 83vh;
+        height: 75%;
     }
 }
 
@@ -23,13 +24,15 @@
     }
 
     .Scroll__container{
+        margin-top: 5em;
         width: 100%;
+        height: 79%;
     }
 }
 
 @media (min-width: 820px){
     .Scroll__container{
-        height: 84vh;
+        height: 85%;
     }
 }
 

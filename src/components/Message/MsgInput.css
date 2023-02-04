@@ -15,7 +15,7 @@
 
     /*Typography*/
 .bi-send{
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: white;
 }
 
@@ -28,9 +28,9 @@
 
 #send__message{
     background-color: rgba(255, 255, 255, 0.536);
-    outline-color: #c72b83;
+    outline: none;
     border-radius: 10px;
-    border: 3px solid #c72b83;
+    border: 2px solid white;
     color: white;
     padding: .5em;
 }
@@ -42,10 +42,21 @@
     color: white;
 }
 
+    /*Buttons*/
+.sendBtn__container > button{
+    border: none;
+    background-color: transparent;
+}
+
+@media (min-width: 410px){
+    #send__message{
+        width: 75%;
+    }
+}
+
 @media (min-width: 765px){
-    .msgInput__container{
+    .msgInput__container > form{
         justify-content: center;
-        padding: 1.5em;
     }
 
     .sendBtn__container{
@@ -53,20 +64,26 @@
     }
 
     #send__message{
-        width: 60%;
+        width: 65%;
         padding: 1em;
     }
 
 
         /*Typography*/
     .bi-send{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 }
+
 @media (min-width: 1024px){
-        /*Layout*/
+    #send__message{
+        width: 50%;
+        padding: 1.1em;
+    }
 
-
-
+    /*Typography*/
+    .bi-send{
+        font-size: 2rem;
+    }
 }
 @media (min-width: 1281px){}
