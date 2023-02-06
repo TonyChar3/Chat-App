@@ -1,8 +1,7 @@
 import './SearchContcts.css';
-
 import {useState} from 'react';
 import { auth, db } from "../../firebase_setup/firebase";
-import { doc, arrayUnion, updateDoc, setDoc, getDoc } from "firebase/firestore";
+import { doc, arrayUnion, updateDoc, getDoc } from "firebase/firestore";
 
 
 const SearchContcts = () => {
@@ -30,16 +29,38 @@ const SearchContcts = () => {
 
             if(name === "" || email === ""){
                 alert("Please enter the info of your new contact")
-            }else{
+            } else{
 
+                let al_added = false;
     
                 const docRef = doc(db, "users", auth.currentUser.displayName)
                 const contctRef = doc(db, 'users', name)
 
                 const contct_snap = await getDoc(contctRef)
+                const currentU_snap = await getDoc(docRef)
 
-                // The user exist in the DB
-                if(contct_snap.exists()){
+                console.log(currentU_snap.data().contact)
+
+                // Check the contact if the user is already added to the list
+                currentU_snap.data().contact.forEach(cont => {
+                    console.log(cont.name)
+                    if(cont.name === name || cont.email === email){
+                        console.log('User was already added')
+                        al_added = true;
+                        
+                    }
+                })
+
+                if(al_added === true){
+
+                    console.log('User was already added')
+                    al_added = false;
+                    
+                } else if(name === auth.currentUser.displayName || email === auth.currentUser.email){
+
+                    console.log('You cant add yourself dumbass')
+
+                } else if (contct_snap.exists()){
                     console.log(contct_snap.data())
 
                     // Doc ref for the invitation
@@ -47,7 +68,6 @@ const SearchContcts = () => {
 
                     // Create the contact object 
                     const contct_user ={
-
                         id: contct_snap.data().user_uid,
                         name: contct_snap.data().name,
                         email: contct_snap.data().email,
@@ -61,7 +81,7 @@ const SearchContcts = () => {
                     
                     // Create the invite object
                     const invite = {
-                        id: Math.floor(Math.random()*100),
+                        id: auth.currentUser.uid,
                         sent_from: auth.currentUser.displayName,
                         sender_email: auth.currentUser.email
                     }
@@ -70,7 +90,6 @@ const SearchContcts = () => {
                     await updateDoc(invitRef, {
                         invitations: arrayUnion(invite)
                     })
-
 
                 } else{
                     console.log('User not found in our database')

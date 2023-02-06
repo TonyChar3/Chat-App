@@ -1,0 +1,12 @@
+.invitationCard__container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 1em 0;
+    padding: .5em;
+    border: 2px solid white;
+}
+
+.requestBtn__container{
+    align-self: center;
+    justify-self: center;
+}

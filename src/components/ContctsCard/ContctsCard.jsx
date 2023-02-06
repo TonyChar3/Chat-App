@@ -12,8 +12,11 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed }) => {
     const handleDelete = async(idx, nom, email, confirm) => {
 
         try{
+            // auth. user remove the contact from his list
+            // Ref for the query
             const contactRef = doc(db, 'users', auth.currentUser.displayName)
 
+            // remove the contact from his contact list
             await updateDoc(contactRef, {
                 contact:arrayRemove({
                     "confirmed": confirm,
@@ -21,6 +24,19 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed }) => {
                     "id": idx,
                     "name": nom
                 })      
+            })
+
+            // remove the resquest to the other contacts invitations list
+            //Ref for the query
+            const InviteRef = doc(db, 'users', nom)
+
+            //remove the resquest form the invite list
+            await updateDoc(InviteRef, {
+                invitations: arrayRemove({
+                    "id": auth.currentUser.uid,
+                    "sender_email": auth.currentUser.email,
+                    "sent_from": auth.currentUser.displayName
+                })
             })
             
             // await deleteDoc(doc(db, 'chatrooms', nom));

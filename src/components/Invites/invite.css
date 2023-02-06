@@ -1,5 +1,5 @@
 /*Layout*/
-.contcts__secndContainer{
+.invites__secndContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,16 +8,18 @@
 }
 
 .invites__firstContainer{
+
     background-color: #c72b83;
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
+
 
 /*Large mobile screens*/
 @media (min-width: 360px){
     /*Layout*/
     .invites__firstContainer,
-    .contcts__secndContainer{
-        height: 85%;
+    .invites__secndContainer{
+        height: 89%;
     }
 }
 
