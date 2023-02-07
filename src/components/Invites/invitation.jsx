@@ -44,7 +44,7 @@ const InviteSect = () => {
             <div className="invites__secndContainer">
                 <ContctsScroll>
                     {invite?.map((invitez) => (
-                            <InviteCard key={invitez.id} sender_name={invitez.sent_from} sender_email={invitez.sender_email} />
+                            <InviteCard key={invitez.id} sender_name={invitez.sent_from} sender_email={invitez.sender_email} sender_uid={invitez.id} />
                         ))}
                 </ContctsScroll>
             </div>

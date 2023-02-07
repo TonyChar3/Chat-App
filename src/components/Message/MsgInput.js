@@ -19,6 +19,10 @@ const MsgInput = ({ chat_name }) => {
 
         const docRef = doc(db, "chatrooms", chat_name);
 
+        // query where both confirmed uid are in
+        // get the id of the room
+        // add the message to the room
+
         const created_at = Timestamp.fromDate(new Date())
 
         const sent_message ={

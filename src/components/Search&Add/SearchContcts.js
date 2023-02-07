@@ -47,7 +47,6 @@ const SearchContcts = () => {
                     if(cont.name === name || cont.email === email){
                         console.log('User was already added')
                         al_added = true;
-                        
                     }
                 })
 

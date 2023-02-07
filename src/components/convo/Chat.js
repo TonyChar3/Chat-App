@@ -15,7 +15,7 @@ const ChatSect = ({ convo_name, contct_id }) => {
 
             if(user){
 
-                const q = query(collection(db, "chatrooms"), where("contact_id", "==", contct_id));
+                const q = query(collection(db, "chatrooms"), where("confirmed_user", "array-contains-any", [contct_id, auth.currentUser.uid]));
 
                 const unsubscribe = onSnapshot(q, (querySnapshot) => {
 
