@@ -45,7 +45,7 @@ const SearchContcts = () => {
                 currentU_snap.data().contact.forEach(cont => {
                     console.log(cont.name)
                     if(cont.name === name || cont.email === email){
-                        console.log('User was already added')
+                        
                         al_added = true;
                     }
                 })
@@ -70,7 +70,8 @@ const SearchContcts = () => {
                         id: contct_snap.data().user_uid,
                         name: contct_snap.data().name,
                         email: contct_snap.data().email,
-                        confirmed: ""
+                        confirmed: "",
+                        chatroom_id: 0
                     }
 
                     // Add it to the contact list of the current User
@@ -93,18 +94,10 @@ const SearchContcts = () => {
                 } else{
                     console.log('User not found in our database')
                 }
-                
-
-
-                // await setDoc(doc(db, "chatrooms", contct_user.name),{
-                //     user_uid: auth.currentUser.uid,
-                //     contact_id: contct_user.id,
-                //     messages: []
-                // })
 
             }
 
-        }catch(error){
+        } catch(error){
             console.log(error.code)
         }
 

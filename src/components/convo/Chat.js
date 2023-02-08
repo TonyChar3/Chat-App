@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { query, collection, onSnapshot, where } from "firebase/firestore";
 import { auth, db } from "../../firebase_setup/firebase";
 
-const ChatSect = ({ convo_name, contct_id }) => {
+const ChatSect = ({ convo_name, room_id }) => {
 
     const [messages, setMessages] = useState([]);
 
@@ -15,7 +15,7 @@ const ChatSect = ({ convo_name, contct_id }) => {
 
             if(user){
 
-                const q = query(collection(db, "chatrooms"), where("confirmed_user", "array-contains-any", [contct_id, auth.currentUser.uid]));
+                const q = query(collection(db, "chatrooms"), where("room_id", "==", room_id));
 
                 const unsubscribe = onSnapshot(q, (querySnapshot) => {
 
@@ -32,7 +32,6 @@ const ChatSect = ({ convo_name, contct_id }) => {
                 })
 
                 return () => unsubscribe
-                
             }
 
         })
@@ -51,7 +50,7 @@ const ChatSect = ({ convo_name, contct_id }) => {
                 </div> 
                 <Scroll>
                     {messages?.map((message) => (
-                        <Messgs key={message.id} mess={message} naming={convo_name} />
+                        <Messgs key={message.id} mess={message} chatroomID={room_id} />
                     ))}
                 </Scroll>
             </div>

@@ -1,68 +1,127 @@
 import './contctsCard.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
+import { doc, updateDoc, arrayRemove, arrayUnion, deleteDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
 import { auth, db } from "../../firebase_setup/firebase";
 
-const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed }) => {
+const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom_ID }) => {
 
+    const [deleteRoom, setDeleteRoom] = useState();
     const [confirmit, setConfirm] = useState();
+    const [deletecont, setDelete] = useState();
     const [chat, setChat] = useState("");
     
-    const handleDelete = async(idx, nom, email, confirm) => {
+    useEffect(() => {
+        // to delete the user 
+        const handleDelete = async(idx, nom, email, confirm, roomID) => {
+            try{
+                // Ref for the query
+                const contactRef = doc(db, 'users', auth.currentUser.displayName)
 
-        try{
-            // auth. user remove the contact from his list
-            // Ref for the query
-            const contactRef = doc(db, 'users', auth.currentUser.displayName)
+                //Ref for the query
+                const InviteRef = doc(db, 'users', nom)
 
-            // remove the contact from his contact list
-            await updateDoc(contactRef, {
-                contact:arrayRemove({
-                    "confirmed": confirm,
-                    "email": email,
-                    "id": idx,
-                    "name": nom
-                })      
-            })
-
-            // remove the resquest to the other contacts invitations list
-            //Ref for the query
-            const InviteRef = doc(db, 'users', nom)
-
-            //remove the resquest form the invite list
-            await updateDoc(InviteRef, {
-                invitations: arrayRemove({
-                    "id": auth.currentUser.uid,
-                    "sender_email": auth.currentUser.email,
-                    "sent_from": auth.currentUser.displayName
+                // remove the contact from his contact list
+                await updateDoc(contactRef, {
+                    contact:arrayRemove({
+                        "chatroom_id": roomID,
+                        "confirmed": confirm,
+                        "email": email,
+                        "id": idx,
+                        "name": nom
+                    })      
                 })
-            })
-            
-            // await deleteDoc(doc(db, 'chatrooms', nom));
-        } catch(error){
-            console.log(error)
+                //remove the out-dated component
+                await updateDoc(InviteRef,{
+                    contact: arrayRemove({
+                        'chatroom_id': roomID,
+                        'confirmed': confirm,
+                        "email": auth.currentUser.email,
+                        "id": auth.currentUser.uid,
+                        "name": auth.currentUser.displayName
+                    })
+                })
+                //add the up-to-date component
+                await updateDoc(InviteRef,{
+                    contact: arrayUnion({
+                        'chatroom_id': 0,
+                        'confirmed': 'deleted',
+                        "email": auth.currentUser.email,
+                        "id": auth.currentUser.uid,
+                        "name": auth.currentUser.displayName
+                    })
+                })
+                // delete the chatroom
+                await deleteDoc(doc(db, 'chatrooms', deleteRoom));
+
+            } catch(error){
+                console.log(error)
+            }
         }
 
-    }
+        // to clean up anyone who refused or deleted you from their contact list
+        const handleCleanUp = async(idx, nom, email) => {
+            try{
+                // Ref for the query
+                const contactRef = doc(db, 'users', auth.currentUser.displayName)
 
-    useEffect(() => {
+                //remove the contact from the list
+                await updateDoc(contactRef, {
+                    contact: arrayRemove({
+                        "chatroom_id": 0,
+                        "confirmed": confirmed,
+                        "email": email,
+                        "id": idx,
+                        "name": nom
+                    })
+                })
 
+            } catch(error){
+                console.log(error)
+            }
+        }
+
+        // get the id of the chatroom document
+        auth.onAuthStateChanged(function(user){
+            if(user){
+
+                const q = query(collection(db, "chatrooms"), where("room_id", "==", chatroom_ID));
+
+                
+                const unsubscribe = onSnapshot(q , (querySnapshot) => {
+
+                    querySnapshot.forEach((doc) => {
+
+                        setDeleteRoom(doc.id)
+                    })
+                })
+                return () => unsubscribe
+            }
+        })
+
+        // set the state of the contact card
         switch(confirmed){
             case 'true':
                 setConfirm(<i className="bi bi-chat-square-fill"></i>)
+                setDelete(<i className="bi bi-trash" onClick={() => handleDelete(contct_id, contct_name, contct_email, confirmed, chatroom_ID)}></i>)
                 setChat("/navbar/chatpage")
                 break;
             case 'false':
                 setConfirm('rejected')
+                setDelete(<i className="bi bi-trash" onClick={() => handleCleanUp(contct_id, contct_name, contct_email, confirmed)}></i>)
+                setChat("")
+                break;
+            case 'deleted':
+                setConfirm('removed')
+                setDelete(<i className="bi bi-trash" onClick={() => handleCleanUp(contct_id, contct_name, contct_email, confirmed)}></i>)
                 setChat("")
                 break;
             default:
                 setConfirm("waiting...")
+                setDelete("")
                 setChat("")
         }
-
-    },[confirmed])
+    },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, deleteRoom])
 
     
     return(
@@ -71,11 +130,11 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed }) => {
                 <span className="contcts__name">{contct_name}</span>
             </div>
             <div className="chatIcon__container">
-                <Link to={chat} state={{ room_name: contct_name, cntct_id: contct_id }}>{confirmit}</Link>
+                <Link to={chat} state={{ room_name: contct_name, cntct_id: contct_id, chatroomID: chatroom_ID }}>{confirmit}</Link>
             </div>
                 
             <div className="deleteIcon__container">
-                <i className="bi bi-trash" onClick={() => handleDelete(contct_id, contct_name, contct_email, confirmed)}></i>
+                {deletecont}
             </div>
         </div>
     );

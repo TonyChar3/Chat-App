@@ -1,11 +1,12 @@
 import './messg.css';
 import { auth, db } from "../../firebase_setup/firebase";
-import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
+import { doc, updateDoc, arrayRemove, query, collection, onSnapshot, where } from 'firebase/firestore';
 import {useEffect, useState, useRef} from 'react';
 
 
-const Messgs = ({ mess, naming }) => {
+const Messgs = ({ mess, chatroomID }) => {
 
+    const [roomID, setRoomID] = useState()
     const [Uid, setUid] = useState("")
     const [date, setDate] = useState()
     const [messDate, setMessDate] = useState()
@@ -14,7 +15,7 @@ const Messgs = ({ mess, naming }) => {
     const handleDelMess = async(message) => {
 
         try{
-            const contactRef = doc(db, 'chatrooms', naming)
+            const contactRef = doc(db, 'chatrooms', roomID)
             
             await updateDoc(contactRef, {
                 messages:arrayRemove(message)      
@@ -33,13 +34,23 @@ const Messgs = ({ mess, naming }) => {
         auth.onAuthStateChanged(function(user) {
             if(user){
                 setUid(auth.currentUser.uid)
+
+                const q = query(collection(db, "chatrooms"), where("room_id", "==", chatroomID));
+
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        setRoomID(doc.id)
+                        console.log(doc.id)
+                    })
+                })
+                return () => unsubscribe
             }
         })
 
         setDate(new Date().toDateString())
         setMessDate(new Date(mess.createdAt.seconds * 1000).toDateString())
         
-    },[mess.createdAt.seconds])
+    },[mess.createdAt.seconds, mess.uid, chatroomID])
 
     
 

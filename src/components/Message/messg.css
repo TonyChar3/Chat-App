@@ -40,11 +40,10 @@
 }
 
 .left{
-    justify-self: center;
+    justify-self: flex-start;
     align-self: flex-start;
     background-color: rgb(176, 176, 176); 
     border-bottom-right-radius: 15px;
-
 }
 
 .Tcan__right{
@@ -52,7 +51,7 @@
 }
 
 .Tcan__left{
-    justify-self: flex-start;
+    display: none;
 }
 
 .messDel__container{

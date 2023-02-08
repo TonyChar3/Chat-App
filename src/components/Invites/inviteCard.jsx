@@ -25,8 +25,6 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
         
         try{
 
-
-
             //remove the received invitation
             await updateDoc(invitRef, {
                 invitations:arrayRemove({
@@ -36,15 +34,14 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                 })
             })
 
-
-
             // remove the out-dated object from the array
             await updateDoc(senderRef, {
                 contact: arrayRemove({
                     "confirmed": "",
                     "email": auth.currentUser.email,
                     "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName
+                    "name": auth.currentUser.displayName,
+                    "chatroom_id": 0
                 })
             })
 
@@ -54,13 +51,11 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                     "confirmed": "false",
                     "email": auth.currentUser.email,
                     "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName
+                    "name": auth.currentUser.displayName,
+                    "chatroom_id": 0
                 })
             })
-
-
-
-            
+   
         } catch(error){
             console.log(error)
         }
@@ -71,6 +66,9 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
     // class to handle the acceptation of the request
     const handleAccept = async() => {
 
+        //variable for the random chatroom ID
+        let chatR_id = Math.floor(Math.random()*1000)
+
         try{
 
             // add the invite to the contact list
@@ -79,7 +77,8 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                     "confirmed": "true",
                     "email": sender_email,
                     "id": sender_uid,
-                    "name": sender_name
+                    "name": sender_name,
+                    "chatroom_id": chatR_id
                 })
             })
 
@@ -102,7 +101,8 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                     "confirmed": "",
                     "email": auth.currentUser.email,
                     "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName
+                    "name": auth.currentUser.displayName,
+                    "chatroom_id": 0
                 })
             })
 
@@ -112,7 +112,8 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                     "confirmed": "true",
                     "email": auth.currentUser.email,
                     "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName
+                    "name": auth.currentUser.displayName,
+                    "chatroom_id": chatR_id
                 })
             })
 
@@ -122,12 +123,18 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
 
             // create the document with auto ID in the chatroom DB
             await addDoc(collection(db,'chatrooms'), {
-                room_id: Math.floor(Math.random()*1000),
+                room_id: chatR_id,
                 messages: [],
-                confirmed_user: [
-                    auth.currentUser.uid,
-                    sender_uid
-                ]
+                confirmed_user: {
+                    u1:{
+                        name: auth.currentUser.displayName,
+                        u_uid: auth.currentUser.uid
+                    },
+                    u2:{
+                        name: sender_name,
+                        u_uid: sender_uid
+                    }
+                }
             })
 
         } catch(error){
