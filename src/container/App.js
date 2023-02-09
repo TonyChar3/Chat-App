@@ -1,12 +1,12 @@
 import './App.css';
 import {Route, Routes } from 'react-router-dom';
-import SignIn from '../components/SignInForm/SignInForm';
+import SignIn from '../components/Log_In_Form/SignInForm';
 import Navbar from '../components/Navbar/Navbar';
-import ContctsSect from '../components/ContctsSect/ContctsSect';
-import ChatPage from '../components/ChatRoom/ChatPage';
-import Welcome from '../components/Welcome/Welcome';
-import Register from '../components/RegisterForm/Register';
-import InviteSect from '../components/Invites/invitation';
+import ContctsSect from '../components/Contact_Section/ContctsSect';
+import ChatPage from '../components/Chat_Section/ChatPage';
+import Welcome from '../components/Welcome_Section/Welcome';
+import Register from '../components/Register_Form/Register';
+import InviteSect from '../components/Invitation_Section/Invitation_Containers/invitation';
 
 function App(){
   return(

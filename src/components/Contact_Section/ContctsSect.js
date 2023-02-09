@@ -1,5 +1,5 @@
-import Contacts from "../contacts/contacts";
-import SearchContcts from "../Search&Add/SearchContcts";
+import Contacts from "./contacts_container/contacts";
+import SearchContcts from "./Contact_add_form/SearchContcts";
 
 const ContctsSect = () => {
     return(

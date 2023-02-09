@@ -1,5 +1,5 @@
-import ChatSect from '../convo/Chat';
-import MsgInput from '../Message/MsgInput';
+import ChatSect from './chat_room/Chat';
+import MsgInput from './chat_input/MsgInput';
 import { useLocation } from 'react-router-dom';
 
 const ChatPage = () => {

@@ -1,9 +1,9 @@
 import './invite.css';
-import ContctsScroll from '../Scroll/ContctsScroll';
-import SearchContcts from '../Search&Add/SearchContcts';
-import InviteCard from './inviteCard';
+import ContctsScroll from '../../Contact_Section/Contact_scroll/ContctsScroll';
+import SearchContcts from '../../Contact_Section/Contact_add_form/SearchContcts';
+import InviteCard from '../Invitation_Cards/inviteCard';
 import {useState, useEffect} from 'react';
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 
 

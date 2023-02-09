@@ -2,7 +2,7 @@ import './contctsCard.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { doc, updateDoc, arrayRemove, arrayUnion, deleteDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 
 const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom_ID }) => {
 
@@ -103,17 +103,17 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
         switch(confirmed){
             case 'true':
                 setConfirm(<i className="bi bi-chat-square-fill"></i>)
-                setDelete(<i className="bi bi-trash" onClick={() => handleDelete(contct_id, contct_name, contct_email, confirmed, chatroom_ID)}></i>)
+                setDelete(<i className="bi bi-person-x-fill" onClick={() => handleDelete(contct_id, contct_name, contct_email, confirmed, chatroom_ID)}></i>)
                 setChat("/navbar/chatpage")
                 break;
             case 'false':
                 setConfirm('rejected')
-                setDelete(<i className="bi bi-trash" onClick={() => handleCleanUp(contct_id, contct_name, contct_email, confirmed)}></i>)
+                setDelete(<i className="bi bi-x-circle" onClick={() => handleCleanUp(contct_id, contct_name, contct_email, confirmed)}></i>)
                 setChat("")
                 break;
             case 'deleted':
                 setConfirm('removed')
-                setDelete(<i className="bi bi-trash" onClick={() => handleCleanUp(contct_id, contct_name, contct_email, confirmed)}></i>)
+                setDelete(<i className="bi bi-x-circle" onClick={() => handleCleanUp(contct_id, contct_name, contct_email, confirmed)}></i>)
                 setChat("")
                 break;
             default:

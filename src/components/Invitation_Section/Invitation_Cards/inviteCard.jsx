@@ -1,7 +1,7 @@
 import './invitCard.css';
 import {useState} from 'react';
 import { doc, updateDoc, arrayRemove, arrayUnion, addDoc, collection } from 'firebase/firestore';
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 
 
 const InviteCard = ({ sender_name, sender_email, sender_uid }) => {

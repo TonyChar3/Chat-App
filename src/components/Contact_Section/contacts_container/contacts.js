@@ -1,8 +1,8 @@
 import './contacts.css';
-import ContctsScroll from '../Scroll/ContctsScroll';
-import ContctsCard from '../ContctsCard/ContctsCard';
+import ContctsScroll from '../Contact_scroll/ContctsScroll';
+import ContctsCard from '../contact_cards/ContctsCard';
 import {useState, useEffect} from 'react';
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 
 

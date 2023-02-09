@@ -1,6 +1,6 @@
 import './SearchContcts.css';
 import {useState} from 'react';
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 import { doc, arrayUnion, updateDoc, getDoc } from "firebase/firestore";
 
 

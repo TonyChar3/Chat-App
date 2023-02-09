@@ -1,10 +1,10 @@
 import './chat.css';
-import Messgs from "../Message/messg";
-import Scroll from '../Scroll/Scroll';
+import Messgs from "../chat_bubbles/messg";
+import Scroll from '../chat_scroll/Scroll';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { query, collection, onSnapshot, where } from "firebase/firestore";
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 
 const ChatSect = ({ convo_name, room_id }) => {
 

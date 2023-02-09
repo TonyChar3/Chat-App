@@ -17,7 +17,7 @@
     /*Layout*/
     .contcts__firstContainer,
     .contcts__secndContainer{
-        height: 85vh;
+        height: 100%;
     }
 }
 
@@ -26,13 +26,14 @@
     /*Layout*/
     .contcts__firstContainer,
     .contcts__secndContainer{
-        height: 87vh;
+        height: 100%;
     }
 }
 
 /*Low-resolution desktops*/
 @media (min-width: 1024px){
     .contcts__firstContainer{
+        height: 100%;
         display: flex;
         justify-content: center;
         background-color: #c72b83;
@@ -48,12 +49,5 @@
         -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
         box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
         animation: shadow-drop-2-center;
-    }
-}
-
-/*High resolution*/
-@media (min-width: 1281px){
-    .contcts__secndContainer{
-        height: 81%;
     }
 }

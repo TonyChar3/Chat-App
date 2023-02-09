@@ -1,6 +1,6 @@
 import './MsgInput.css';
 import { useState, useEffect } from "react";
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 import {query, collection, where, onSnapshot, Timestamp, updateDoc, arrayUnion, doc} from "firebase/firestore";
 
 

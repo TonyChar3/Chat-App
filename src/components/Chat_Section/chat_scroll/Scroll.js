@@ -1,4 +1,4 @@
-import './ContctsScroll.css';
+import '../../Contact_Section/Contact_scroll/ContctsScroll.css';
 
 const Scroll = (props) => {
     return (

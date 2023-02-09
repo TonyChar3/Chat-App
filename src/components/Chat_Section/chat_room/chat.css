@@ -114,7 +114,6 @@
     }
 
     .chatRoom__container{
-        height: 78%;
         justify-content: center;
         width: 50%;
         margin-top: .5em;
@@ -137,6 +136,6 @@
 /*High resolution*/
 @media (min-width: 1281px){
     .chatRoom__container{
-        height: 71%;
+        height: 87%;
     }
 }

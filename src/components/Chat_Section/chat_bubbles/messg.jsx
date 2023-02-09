@@ -1,5 +1,5 @@
 import './messg.css';
-import { auth, db } from "../../firebase_setup/firebase";
+import { auth, db } from "../../../firebase_setup/firebase";
 import { doc, updateDoc, arrayRemove, query, collection, onSnapshot, where } from 'firebase/firestore';
 import {useEffect, useState, useRef} from 'react';
 
