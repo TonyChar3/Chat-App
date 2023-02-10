@@ -9,10 +9,12 @@ const SearchContcts = () => {
     const [Active, setActive] = useState(false);
     const [name, setName ] = useState("");
     const [email, setEmail ] = useState("");
+    const [errAlert, setErrAlert] = useState("");
 
     const handleClick = (e) => {
         e.preventDefault();
         setActive(active => !active);
+        setErrAlert("");
     }
 
     const handleName = (e) => {
@@ -39,11 +41,11 @@ const SearchContcts = () => {
                 const contct_snap = await getDoc(contctRef)
                 const currentU_snap = await getDoc(docRef)
 
-                console.log(currentU_snap.data().contact)
+                
 
                 // Check the contact if the user is already added to the list
                 currentU_snap.data().contact.forEach(cont => {
-                    console.log(cont.name)
+                    
                     if(cont.name === name || cont.email === email){
                         
                         al_added = true;
@@ -51,16 +53,16 @@ const SearchContcts = () => {
                 })
 
                 if(al_added === true){
-
-                    console.log('User was already added')
+                    setErrAlert('User was already added')
                     al_added = false;
                     
                 } else if(name === auth.currentUser.displayName || email === auth.currentUser.email){
 
-                    console.log('You cant add yourself dumbass')
+                    
+                    setErrAlert('Do not add yourself')
 
                 } else if (contct_snap.exists()){
-                    console.log(contct_snap.data())
+                    
 
                     // Doc ref for the invitation
                     const invitRef = doc(db, 'users', contct_snap.data().name)
@@ -92,7 +94,7 @@ const SearchContcts = () => {
                     })
 
                 } else{
-                    console.log('User not found in our database')
+                    setErrAlert('User not found')
                 }
 
             }
@@ -110,10 +112,9 @@ const SearchContcts = () => {
 
     return(
         <>
-
             <div className='searchContcts__container'>
                 <div className="plus__container">
-                    <i className="bi bi-plus-circle" onClick={handleClick}></i>
+                    <i className="bi bi-person-plus-fill" onClick={handleClick}></i>
                 </div>
             </div>
             <div className="addContcts__container">
@@ -122,7 +123,7 @@ const SearchContcts = () => {
                         <div className="closeBtn__container">
                             <i className="bi bi-x-circle" onClick={handleClick}></i>
                         </div>
-                        <h2>Add a contact</h2>
+                        <h2>{errAlert}</h2>
                         <div className="addContcts__Name">
                             <input type="text" id="addContctsName_input" placeholder="Name" value={name} onChange={(e) => handleName(e.target.value)} />
                         </div>
@@ -130,7 +131,7 @@ const SearchContcts = () => {
                             <input type="email" id="addContctsEmail_input" placeholder="Email" value={email} onChange={(e) => handleEmail(e.target.value)} />
                         </div>
                         <div className="addContctsBtn__container">
-                            <button type="submit" id="addContctsBtn">Add</button>
+                            <button type="submit" id="addContctsBtn">Send</button>
                         </div>
                     </form>
                 </div>

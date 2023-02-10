@@ -44,6 +44,7 @@
     align-self: flex-start;
     background-color: rgb(176, 176, 176); 
     border-bottom-right-radius: 15px;
+    margin-left: .5em;
 }
 
 .Tcan__right{

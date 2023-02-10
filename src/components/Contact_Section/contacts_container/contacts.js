@@ -26,7 +26,7 @@ const Contacts = () => {
                     querySnapshot.forEach((doc) => {
     
                         doc.data().contact.forEach(con => {
-                            console.log(con)
+                            
                             contacte.push(con); 
                         })
                         
@@ -43,7 +43,12 @@ const Contacts = () => {
         <div className="contcts__firstContainer">
             <div className="contcts__secndContainer">
                 <ContctsScroll>
-                    {contact?.map((contctz) => (
+                    {!contact.length ? 
+                    <div className="emptyMessage__container">
+                        <h2 id="empty__message">Add a contact to chatt :)</h2>
+                    </div>
+                     : 
+                     contact?.map((contctz) => (
                         <ContctsCard key={contctz.id} contct_name={contctz.name} contct_id={contctz.id} contct_email={contctz.email} confirmed={contctz.confirmed} chatroom_ID={contctz.chatroom_id} />
                     ))}
                 </ContctsScroll>

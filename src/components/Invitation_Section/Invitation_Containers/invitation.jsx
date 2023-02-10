@@ -1,6 +1,6 @@
 import './invite.css';
 import ContctsScroll from '../../Contact_Section/Contact_scroll/ContctsScroll';
-import SearchContcts from '../../Contact_Section/Contact_add_form/SearchContcts';
+import InviteFooter from '../Invitation_Footer/InviteFooter';
 import InviteCard from '../Invitation_Cards/inviteCard';
 import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
@@ -26,7 +26,7 @@ const InviteSect = () => {
                     querySnapshot.forEach((doc) => {
 
                         doc.data().invitations.forEach(inv => {
-                            console.log(inv)
+                            
                             invitation.push(inv); 
                         })
                         
@@ -43,13 +43,18 @@ const InviteSect = () => {
         <div className="invites__firstContainer">
             <div className="invites__secndContainer">
                 <ContctsScroll>
-                    {invite?.map((invitez) => (
+                    {!invite.length ? 
+                    <div className="emptyMessage__container">
+                        <h2 id="empty__message">You have no invitation :(</h2> 
+                    </div>
+                    : 
+                    invite?.map((invitez) => (
                             <InviteCard key={invitez.id} sender_name={invitez.sent_from} sender_email={invitez.sender_email} sender_uid={invitez.id} />
                         ))}
                 </ContctsScroll>
             </div>
         </div>
-        <SearchContcts />
+        <InviteFooter />
     </>
     );
 }

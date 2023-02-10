@@ -21,7 +21,6 @@
 
 .sendBtn__container:active,
 .sendBtn__container:focus{
-    background-color: rgba(122, 212, 242, 0.485);
     transform: scale(0.93);
     transition: all 0.2s;
 }

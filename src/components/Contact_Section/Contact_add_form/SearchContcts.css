@@ -1,10 +1,12 @@
     /*Layout*/
 .searchContcts__container{
+    z-index: 1;
     position: absolute;
     bottom: 0%;
     left: 0%;
     right: 0%;
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 1em;
     border-top: 3px solid white;
@@ -17,27 +19,32 @@
     width: 90%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     padding: .3em .5em;
 }
 
 .addContcts__form > form{
     position: absolute;
-    display: none;
-    right: 10%;
-    bottom: 12%;
+    z-index: 0;
+    display: flex;
+    right: 0%;
+    left: 10%;
+    bottom: -40%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 80%;
     padding: .5em;
+    border: 2px solid white;
     border-radius: 15px;
-    border: 3px solid white;
-    background-color: #dddadc66;
+    background-color: #58575798;
+    transition: all 0.2s;
 }
 
 .form_active > form{
-    display: flex;
+    bottom: 12%;
+    transition: all 0.4s;
 }
 
 .addContcts__Name{
@@ -45,7 +52,8 @@
 }
 
 .addContctsBtn__container{
-    margin: .5em 0;
+    width: 40%;
+    margin: .6em 0;
 }
 
 .closeBtn__container{
@@ -74,23 +82,24 @@
 }
 
 .plus__container > i{
-    font-size: 1.5rem;
+    font-size: 2rem;
     color:white;
 }
 
-.bi-plus-circle{
+.bi-person-plus-fill{
     justify-self: flex-start;
 }
 
 .addContcts__form > form > h2{
-    color: white;
-    font-size: 2.4rem;
+    color: rgb(240, 41, 41);
 }
 
     /*Buttons*/
 
 #addContctsBtn{
+    width: 100%;
     font-weight: 450;
+    padding: .3em;
     border: none;
     border-radius: 15px;
     background-color:white;
@@ -98,7 +107,7 @@
     letter-spacing: 1px;
 }
 
-.bi-plus-circle:active{
+.bi-person-plus-fill:active{
     transform: scale(0.95);
     transition: all 0.3s;
 }

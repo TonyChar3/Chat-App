@@ -35,7 +35,6 @@ const MsgInput = ({ chat_id }) => {
 
         try{
             if(message.trim() === ""){
-                alert("Enter a valid message");
                 return;
             } else {
                 const docRef = doc(db, "chatrooms", chatroom_id);
