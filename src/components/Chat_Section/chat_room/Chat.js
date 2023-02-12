@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { query, collection, onSnapshot, where } from "firebase/firestore";
 import { auth, db } from "../../../firebase_setup/firebase";
+import { motion } from 'framer-motion';
 
 const ChatSect = ({ convo_name, room_id }) => {
 
@@ -38,7 +39,13 @@ const ChatSect = ({ convo_name, room_id }) => {
     });
 
     return(
-        <div className="main-content">
+        <motion.div 
+            className="main-content"
+
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.1 } }}
+        >
             <div className="chatRoom__container">
                 <div className="userProfile__container">
                     <div className="img-name__container">
@@ -54,7 +61,7 @@ const ChatSect = ({ convo_name, room_id }) => {
                     ))}
                 </Scroll>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { doc, updateDoc, arrayRemove, arrayUnion, deleteDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
 import { auth, db } from "../../../firebase_setup/firebase";
+import { motion } from 'framer-motion';
 
 const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom_ID }) => {
 
@@ -129,13 +130,13 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
             <div className="name__container">
                 <span className="contcts__name">{contct_name}</span>
             </div>
-            <div className="chatIcon__container">
+            <motion.div whileHover={{ scale: 1.1 }} className="chatIcon__container">
                 <Link to={chat} state={{ room_name: contct_name, cntct_id: contct_id, chatroomID: chatroom_ID }}>{confirmit}</Link>
-            </div>
+            </motion.div>
                 
-            <div className="deleteIcon__container">
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="deleteIcon__container">
                 {deletecont}
-            </div>
+            </motion.div>
         </div>
     );
 }

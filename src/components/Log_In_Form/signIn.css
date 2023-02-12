@@ -13,6 +13,32 @@
     animation: shadow-drop-2-center;
 }
 
+.loader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c72b83;
+    background-image: linear-gradient(230deg, #c72b83 5%, #784BA0 25%, #2B86C5 70%);
+    height: 100%;
+}
+
+.square-loader{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.688);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.229);
+    animation: shadow-drop-2-center;
+}
+
+.square-loader > i{
+    font-size: 3.5rem;
+}
+
 .signIn__container{
     width: 100%;
 }
@@ -111,5 +137,9 @@
 @media (min-width: 1024px){
     .signIn__container{
         width: 30%;
+    }
+
+    .square-loader{
+        width: 8%;
     }
 }

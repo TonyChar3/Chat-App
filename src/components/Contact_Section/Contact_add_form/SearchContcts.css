@@ -38,8 +38,11 @@
     padding: .5em;
     border: 2px solid white;
     border-radius: 15px;
-    background-color: #58575798;
-    transition: all 0.2s;
+    background-color: rgba(123, 123, 123, 0.49);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.229);
+    animation: shadow-drop-2-center;
+    transition: all 0.3s ease;
 }
 
 .form_active > form{
@@ -91,7 +94,8 @@
 }
 
 .addContcts__form > form > h2{
-    color: rgb(240, 41, 41);
+    color: rgb(239, 101, 101);
+    text-align: center;
 }
 
     /*Buttons*/
@@ -175,6 +179,6 @@
     }
     
     .addContcts__form > form > h2{
-        font-size: 2.8rem;
+        font-size: 2rem;
     }
 }

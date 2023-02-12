@@ -2,6 +2,7 @@ import './SearchContcts.css';
 import {useState} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import { doc, arrayUnion, updateDoc, getDoc } from "firebase/firestore";
+import { motion } from 'framer-motion';
 
 
 const SearchContcts = () => {
@@ -30,7 +31,7 @@ const SearchContcts = () => {
         try{
 
             if(name === "" || email === ""){
-                alert("Please enter the info of your new contact")
+                setErrAlert("Please enter the info of your new contact")
             } else{
 
                 let al_added = false;
@@ -113,9 +114,15 @@ const SearchContcts = () => {
     return(
         <>
             <div className='searchContcts__container'>
-                <div className="plus__container">
-                    <i className="bi bi-person-plus-fill" onClick={handleClick}></i>
-                </div>
+                <motion.div 
+                    className="plus__container"
+
+                    initial={ { opacity: 0, scale: 1.3 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 }}}
+                >
+                    <motion.i whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.96 }} className="bi bi-person-plus-fill" onClick={handleClick}></motion.i>
+                </motion.div>
             </div>
             <div className="addContcts__container">
                 <div className={`addContcts__form ${toggleActive}`}>
@@ -125,13 +132,13 @@ const SearchContcts = () => {
                         </div>
                         <h2>{errAlert}</h2>
                         <div className="addContcts__Name">
-                            <input type="text" id="addContctsName_input" placeholder="Name" value={name} onChange={(e) => handleName(e.target.value)} />
+                            <motion.input whileFocus={{ scale: 1.01 }} type="text" id="addContctsName_input" placeholder="Name" value={name} onChange={(e) => handleName(e.target.value)} />
                         </div>
                         <div className="addContcts__Email">
-                            <input type="email" id="addContctsEmail_input" placeholder="Email" value={email} onChange={(e) => handleEmail(e.target.value)} />
+                            <motion.input whileFocus={{ scale: 1.01 }} type="email" id="addContctsEmail_input" placeholder="Email" value={email} onChange={(e) => handleEmail(e.target.value)} />
                         </div>
                         <div className="addContctsBtn__container">
-                            <button type="submit" id="addContctsBtn">Send</button>
+                            <motion.button whileTap={{ scale: 0.95 }} type="submit" id="addContctsBtn">Send</motion.button>
                         </div>
                     </form>
                 </div>

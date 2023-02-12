@@ -2,6 +2,7 @@ import './MsgInput.css';
 import { useState, useEffect } from "react";
 import { auth, db } from "../../../firebase_setup/firebase";
 import {query, collection, where, onSnapshot, Timestamp, updateDoc, arrayUnion, doc} from "firebase/firestore";
+import { motion } from 'framer-motion';
 
 
 const MsgInput = ({ chat_id }) => {
@@ -66,12 +67,12 @@ const MsgInput = ({ chat_id }) => {
 
     return(
         <div className="msgInput__container">
-            <form onSubmit={(event) => sendMessage(event)}>
-                <input type="text" id="send__message" placeholder="send a message..." value={message} onChange={(e) => setMessage(e.target.value)} />
+            <motion.form inital={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onSubmit={(event) => sendMessage(event)}>
+                <motion.input whileFocus={{ scale: 1.01 }}  type="text" id="send__message" placeholder="send a message..." value={message} onChange={(e) => setMessage(e.target.value)} />
                 <div className="sendBtn__container">
-                    <button type="submit"><i className="bi bi-send"></i></button>
+                    <motion.button whileTap={{ scale: 0.95 }} whileHover={{ scale: 1.1 }} type="submit"><i className="bi bi-send"></i></motion.button>
                 </div>
-            </form>
+            </motion.form>
         </div>
     );
 }

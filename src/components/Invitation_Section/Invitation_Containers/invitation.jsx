@@ -5,6 +5,7 @@ import InviteCard from '../Invitation_Cards/inviteCard';
 import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
+import { motion } from 'framer-motion';
 
 
 
@@ -40,7 +41,13 @@ const InviteSect = () => {
     },[])
     return(
     <>
-        <div className="invites__firstContainer">
+        <motion.div 
+            className="invites__firstContainer"
+
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: "100%" }}
+            exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
+        >
             <div className="invites__secndContainer">
                 <ContctsScroll>
                     {!invite.length ? 
@@ -53,7 +60,7 @@ const InviteSect = () => {
                         ))}
                 </ContctsScroll>
             </div>
-        </div>
+        </motion.div>
         <InviteFooter />
     </>
     );

@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 import { signOut } from "firebase/auth";
@@ -13,7 +13,6 @@ const NavChatApp = () => {
 
   const SignOut = () => {
     signOut(auth).then(() => {
-      console.log("Sign-out successful")
       navigate("/");
     }).catch((err) => {
       console.log(err)
@@ -21,7 +20,7 @@ const NavChatApp = () => {
   }
 
   useEffect(() => {
-    
+
     auth.onAuthStateChanged(function(user) {
             
       if(user){
@@ -38,22 +37,26 @@ const NavChatApp = () => {
           return () => unsubscribe
       }
   })
-  })
+  },[])
 
    return(
-    <>
-      <nav className="nav__container">
-        <div className="nav__TitleNtabs">
-          <h1 className="nav__title"><Link to="welcome">Chatt <i className="bi bi-chat-square"></i> </Link></h1>
-          <ul className="nav__tabs">
-              <Link to="contacts">Contacts</Link>
-              <Link to="invitations"><i className="bi bi-people-fill">{inviteNum}</i></Link>
-              <i className='bi bi-box-arrow-right'onClick={SignOut}></i>
-          </ul>
-        </div>
-      </nav>
-      <Outlet/>
-    </>
+      auth.currentUser ? 
+        <>
+          <nav className="nav__container">
+            <div className="nav__TitleNtabs">
+              <h1 className="nav__title"><Link to="welcome">Chatt <i className="bi bi-chat-square"></i> </Link></h1>
+              <ul className="nav__tabs">
+                  <Link to="contacts">Contacts</Link>
+                  <Link to="invitations"><i className="bi bi-people-fill">{inviteNum}</i></Link>
+                  <i className='bi bi-box-arrow-right' onClick={SignOut}></i>
+              </ul>
+            </div>
+          </nav>
+          <Outlet />
+        </>
+      : 
+      <Navigate to="/" /> 
+
    );
 };
 

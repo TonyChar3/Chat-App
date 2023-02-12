@@ -4,6 +4,7 @@ import ContctsCard from '../contact_cards/ContctsCard';
 import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
+import { motion } from 'framer-motion';
 
 
 
@@ -40,7 +41,13 @@ const Contacts = () => {
     },[])
 
     return(
-        <div className="contcts__firstContainer">
+        <motion.div 
+            className="contcts__firstContainer"
+
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: "100%" }}
+            exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
+        >
             <div className="contcts__secndContainer">
                 <ContctsScroll>
                     {!contact.length ? 
@@ -53,7 +60,7 @@ const Contacts = () => {
                     ))}
                 </ContctsScroll>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

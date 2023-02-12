@@ -2,7 +2,10 @@ import './welcome.css';
 import { auth } from "../../firebase_setup/firebase";
 import { useState, useEffect } from "react";
 import ReactImg from "../../img/1174949_js_react js_logo_react_react native_icon.png";
-import FirebaseImg from "../../img/logo-built_white.png"
+import FirebaseImg from "../../img/logo-built_white.png";
+import { motion } from 'framer-motion';
+
+
 function Welcome(){
 
     const [nom, setNom ] = useState("");
@@ -19,7 +22,12 @@ function Welcome(){
     }, [])
 
     return(
-            <div className="welcomePage__background">
+            <motion.div 
+                className="welcomePage__background"
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "100%" }}
+                exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
+            >
                 <div className="welcomePage__container">
                     <h2 className="welcomePage__title">Welcome to the Chat App {nom}!</h2>
                     <p className="welcomePage__text">This Chat App is only a mock-up to show case my Front-end Skills!</p>
@@ -38,7 +46,7 @@ function Welcome(){
                     <span>X</span>
                     <img src={FirebaseImg} alt="firebase logo" width="160" height="60" />
                 </div>
-            </div>
+            </motion.div>
     )
 }
 

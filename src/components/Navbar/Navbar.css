@@ -61,6 +61,18 @@ ul{
     margin-left: .7em;
 }
 
+.nav__tabs > a:active,
+.nav__title >a:active{
+    transform: scale(0.90);
+    transition: all 0.2s;
+}
+
+
+
+.current__page{
+    border-bottom: 1px solid white;
+}
+
 @media (min-width: 765px){
         /*Layout*/
     .nav__TitleNtabs{
