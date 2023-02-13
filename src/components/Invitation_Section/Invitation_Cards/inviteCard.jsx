@@ -9,10 +9,10 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
     const [arrow, setArrow] = useState(false);
 
     // ref to access the current user document
-    const invitRef = doc(db, 'users', auth.currentUser.displayName)
+    const invitRef = doc(db, 'users', auth.currentUser.uid)
 
     // ref to access the request sender document
-    const senderRef = doc(db, 'users', sender_name)
+    const senderRef = doc(db, 'users', sender_uid)
 
 
     const handleArrowClick = (e) =>{

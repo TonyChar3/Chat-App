@@ -5,6 +5,10 @@
 }
 
 .settingProfile__container{
+    margin: 2em auto;
+}
+
+.settingProfile__container > form{
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -69,6 +73,13 @@
     cursor: pointer;
 }
 
+.saveOrLeave__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 /*Typography*/
 
 .bi-person-circle{
@@ -96,12 +107,16 @@
 .welcomeProfile_Email_container > input,
 .welcomeProfile_Name_container > input{
     border: none;
+    color: white;
+    font-weight: 700;
 }
 
 .welcomeProfile_Email_container > input::placeholder,
 .welcomeProfile_Name_container > input::placeholder{
     color: white;
     font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .input__disabled{
@@ -109,7 +124,22 @@
 }
 
 .input__active{
-    background-color: #c72b83;
+    padding: .2em 0 0 .5em;
+    border-radius: 15px;
+    outline: none;
+    background-color: rgba(235, 235, 235, 0.399);
+}
+
+.input__active:focus{
+    border: 2px solid white;
+}
+
+/*Buttons*/
+#save__btn{
+    margin-right: 1.2em;
+    border: none;
+    background-color: transparent;
+    color: white;
 }
 
 @media(min-width: 765px){

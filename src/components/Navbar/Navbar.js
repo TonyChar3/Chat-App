@@ -44,7 +44,6 @@ const NavChatApp = () => {
       </nav>
       <Outlet />
     </>
-
     );
 };
 

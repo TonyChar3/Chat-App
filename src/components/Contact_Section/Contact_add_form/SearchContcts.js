@@ -1,7 +1,7 @@
 import './SearchContcts.css';
 import {useState} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
-import { doc, arrayUnion, updateDoc, getDoc } from "firebase/firestore";
+import { doc, arrayUnion, updateDoc, getDoc, collection, query, where, onSnapshot } from "firebase/firestore";
 import { motion } from 'framer-motion';
 
 
@@ -10,6 +10,7 @@ const SearchContcts = () => {
     const [Active, setActive] = useState(false);
     const [name, setName ] = useState("");
     const [email, setEmail ] = useState("");
+    const [u_uid, setU_uid] = useState("");
     const [errAlert, setErrAlert] = useState("");
 
     const handleClick = (e) => {
@@ -34,10 +35,20 @@ const SearchContcts = () => {
                 setErrAlert("Please enter the info of your new contact")
             } else{
 
+                // query to get the soon to be added contact uid
+                const q = query(collection(db, 'users'), where("name", "==", name))
+                
+                // get the uid 
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        setU_uid(doc.data().user_uid)
+                    })
+                })
+
                 let al_added = false;
-    
-                const docRef = doc(db, "users", auth.currentUser.displayName)
-                const contctRef = doc(db, 'users', name)
+                
+                const docRef = doc(db, "users", auth.currentUser.uid)
+                const contctRef = doc(db, 'users', u_uid)
 
                 const contct_snap = await getDoc(contctRef)
                 const currentU_snap = await getDoc(docRef)
@@ -98,6 +109,7 @@ const SearchContcts = () => {
                     setErrAlert('User not found')
                 }
 
+                return () => unsubscribe
             }
 
         } catch(error){

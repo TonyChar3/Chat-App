@@ -40,7 +40,7 @@ const Register = () => {
 
       await updateProfile(auth.currentUser, { displayName: nom})
 
-      await setDoc(doc(db, "users", auth.currentUser.displayName), {
+      await setDoc(doc(db, "users", auth.currentUser.uid), {
         user_uid: auth.currentUser.uid,
         name: auth.currentUser.displayName,
         email: auth.currentUser.email,
