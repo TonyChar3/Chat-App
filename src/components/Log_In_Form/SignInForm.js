@@ -1,12 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './signIn.css';
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase_setup/firebase";
 import { motion } from 'framer-motion';
+import { UserAuth } from '../../context/AuthContext';
 
 function SignIn(){
-
+  const { SignIn } = UserAuth();
   const navigate = useNavigate();
 
   const [showPasswrd, setShow ] = useState(false);
@@ -21,20 +21,19 @@ function SignIn(){
   }
 
   const handlePasswordChange = (event) => {
-    setPasswrd(event)
+    setPasswrd(event.trim())
   }
 
   const handlEmailChange = (event) => {
-    setEmail(event)
+    setEmail(event.trim())
   }
 
   const logIn = async(e) => {
     e.preventDefault();
     try{
-      await signInWithEmailAndPassword(auth, email, passwrd)
+      await SignIn(email, passwrd)
 
-    }catch(err){
-      
+    } catch(err){
       setErreur(err.code)
     }
 
@@ -69,20 +68,19 @@ function SignIn(){
           </motion.div>
         :
           <div className="SignIn__background">
-              <div className="signIn__container">
+            <div className="signIn__container">
               <form onSubmit={logIn}>
-                  
-                <h2>Sign-In</h2>
+                <h2>Connect<i className="bi bi-chat-square-heart"></i></h2>
                   <div className="userName__wrapper">
-                    <input type="email" name="username" id="userNameInput" onChange={(e) => handlEmailChange(e.target.value)} placeholder="E-mail" />
+                    <motion.input whileFocus={{ scale: 1.03 }} type="email" name="username" id="userNameInput" onChange={(e) => handlEmailChange(e.target.value)} placeholder="E-mail" />
                   </div>
                   <div className="password__wrapper">
-                    <input type={showPasswrd? "text" : "password"} id="passWrdInput" onChange={(e) => handlePasswordChange(e.target.value)} placeholder="Password" />
+                    <motion.input whileFocus={{ scale: 1.03 }} type={showPasswrd? "text" : "password"} id="passWrdInput" onChange={(e) => handlePasswordChange(e.target.value)} placeholder="Password" />
                     <span className="showPasswrd" onClick={handleClick} ><i className={showPasswrd? "bi bi-eye" : "bi bi-eye-slash" }></i></span>
                   </div>
                   <div className="buttons__wrapper">
-                    <button type="submit" value="Sign-in" id="signIn__btn">Sign-In</button>
-                    <p className="registr__btn"><Link to="/register">Register</Link></p>
+                    <motion.button whileTap={{ scale: 0.90 }} type="submit" value="Sign-in" id="signIn__btn">Sign-In</motion.button>
+                    <motion.p className="registr__btn"><Link to="/register">No account ?</Link></motion.p>
                   </div>
               </form>
             </div>

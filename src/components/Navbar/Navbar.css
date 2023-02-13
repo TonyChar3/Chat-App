@@ -57,20 +57,33 @@ ul{
     font-size: 1.3rem;
 }
 
-.nav__tabs > i:nth-child(3){
-    margin-left: .7em;
-}
-
 .nav__tabs > a:active,
 .nav__title >a:active{
     transform: scale(0.90);
     transition: all 0.2s;
 }
 
-
-
 .current__page{
     border-bottom: 1px solid white;
+}
+
+.nav__tabs > a:hover,
+.nav__tabs > a:active,
+.nav__tabs > a:focus{
+    transform: scale(1.1);
+    transition: all 0.3s  ease;
+}
+
+.nav__tabs > a:active{
+    transform: scale(0.90);
+    transition: all 0.3s ease;
+}
+
+.nav__tabs > a:nth-child(3):hover,
+.nav__tabs > a:nth-child(3):active{
+    transform: scale(1.1);
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
 }
 
 @media (min-width: 765px){
@@ -101,15 +114,8 @@ ul{
     }
         /*Typography*/
     .nav__tabs > li,
-    .nav__tabs > li:nth-child(2),
     .nav__tabs > i{
         font-size: 1.3rem;
-    }
-
-    .nav__tabs > i:nth-child(3):hover{
-        color: rgb(238, 19, 19);
-        transform: scale(1.1);
-        transition: all 0.3s;
     }
 
     .nav__title > a{

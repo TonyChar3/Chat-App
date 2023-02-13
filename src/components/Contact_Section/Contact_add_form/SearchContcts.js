@@ -19,11 +19,11 @@ const SearchContcts = () => {
     }
 
     const handleName = (e) => {
-        setName(e)
+        setName(e.trim())
     }
 
     const handleEmail = (e) => {
-        setEmail(e)
+        setEmail(e.trim())
     }
 
     const handleAddon = async(e) => {

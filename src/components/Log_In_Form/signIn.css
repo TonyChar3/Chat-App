@@ -1,15 +1,17 @@
     /*Layout*/
 .signIn__container > form{
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: .5em;
-    margin: 2em .5em;
+    margin: 2em auto;
+    border-radius: 15px;
     backdrop-filter: blur(5px);
-    background-color: rgba(222, 222, 222, 0.452);
-    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
-    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.229);
+    background-color: rgba(255, 255, 255, 0.335);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.819); 
+    box-shadow: 5px 1px 29px 1px rgba(255, 255, 255, 0.52);
     animation: shadow-drop-2-center;
 }
 
@@ -31,7 +33,7 @@
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.688);
     -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
-    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.229);
+    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.295);
     animation: shadow-drop-2-center;
 }
 
@@ -91,46 +93,67 @@
     /*Typography*/
 #userNameInput,
 #passWrdInput{
-    background-color: rgb(216, 216, 216);
+    background-color: rgba(255, 255, 255, 0);
     outline: none;
-    border: 2px solid #2B86C5;
+    border-radius: 15px;
+    border: 3px solid #8ecbf7;
     padding: .5em;
     margin-bottom: .3em;
 }
+
+#userNameInput::placeholder,
+#passWrdInput::placeholder{
+    color: white;
+}
+
     
 #userNameInput:active,#userNameInput:focus,
 #passWrdInput:active, #passWrdInput:focus{
-    background-color: #c72b83a5;
+    background-color: #ef23977a;
+    border: 3px solid white;
 }
 
 .signIn__container> form > h2{
     font-size: 2.8rem;
-    color: rgba(255, 255, 255, 0.876);
+    color: #8ecbf7;
+}
+
+.signIn__container > form > h2 > i{
+    margin-left: .2em;
+    color: white;
 }
 
     /*Buttons*/
 #signIn__btn{
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     padding: .5em;
-    background-color: rgba(255, 255, 255, 0.908);
-    color: #c72b83;
-    border: none;
+    background-color: rgba(255, 255, 255, 0.073);
+    color: white;
+    border: 3px solid #8ecbf7;
+    border-radius: 20px;
 }
 
 .registr__btn > a{
     font-size: 1.1rem;
-    color: #c72b83;
+    color: white;
+    
     cursor: pointer;
 }
 
 .registr__btn{
     padding: .5em;
+    text-decoration: underline;
 }
 
 @media (min-width: 765px){
     .signIn__container{
         width: 50%;
         align-self: center;
+    }
+
+    .square-loader{
+        width: 15%;
     }
 }
 

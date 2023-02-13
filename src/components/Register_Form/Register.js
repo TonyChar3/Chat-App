@@ -1,10 +1,11 @@
 import './register.css';
 import { useNavigate, Link } from 'react-router-dom';
 import {useState, useEffect} from 'react';
-import { createUserWithEmailAndPassword, updateProfile, setPersistence, browserSessionPersistence } from "firebase/auth";
+import { updateProfile, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase_setup/firebase";
 import { motion } from 'framer-motion';
+import { UserAuth } from '../../context/AuthContext';
 
 
 const Register = () => {
@@ -17,23 +18,25 @@ const Register = () => {
   const [erreur, setErreur ] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const {registerUser} = UserAuth();
+
   const handleEmailChange = (e) => {
-    setEmail(e)
+    setEmail(e.trim())
   }
 
   const handlePasswrdChange = (e) => {
-    setPasswrd(e)
+    setPasswrd(e.trim())
   }
 
   const handleNameChange = (e) => {
-    setNom(e)
+    setNom(e.trim())
   }
 
   const signUp = async(e) => {
     e.preventDefault();
     try{
 
-      await createUserWithEmailAndPassword(auth, email, passwrd)
+      await registerUser(email, passwrd) 
 
       await updateProfile(auth.currentUser, { displayName: nom})
 
@@ -41,11 +44,11 @@ const Register = () => {
         user_uid: auth.currentUser.uid,
         name: auth.currentUser.displayName,
         email: auth.currentUser.email,
-        contact: []
+        contact: [],
+        invitations: []
       });
 
     }catch(error){
-      console.log(error.code)
       setErreur(error.code)
     }
 
@@ -55,8 +58,6 @@ const Register = () => {
       .then(() => {
         navigate("/navbar/welcome");
       })
-      
-      console.log(auth.currentUser.displayName)
     }
   }
 
@@ -87,25 +88,21 @@ const Register = () => {
         <div className="Registr__background">
           <div className="registr__container">
             <form onSubmit={signUp}>
-                <div className="register__wrapper">
-                  <Link to="/"><i className="bi bi-arrow-left">Go back</i></Link>
-                </div>
-                <h2>Register</h2>
+                <h2>Register<i className="bi bi-person-square"></i></h2>
                 <div className="fullname__wrapper">
-                    <input type="email" name="email" id="EmailInput" onChange={(e) => handleEmailChange(e.target.value)}  placeholder="Ex:email@random.com" />
+                    <motion.input whileFocus={{ scale: 1.03 }} type="email" name="email" id="EmailInput" onChange={(e) => handleEmailChange(e.target.value)}  placeholder="email@random.com" />
                 </div>
                 <div className="userName__wrapper">
-                  
-                  <input type="text" name="username" id="userNameInput" onChange={(e) => handleNameChange(e.target.value)} placeholder="User name" />
+                  <motion.input whileFocus={{ scale: 1.03 }} type="text" name="username" id="userNameInput" onChange={(e) => handleNameChange(e.target.value)} placeholder="User name" />
                 </div>
                 <div className="password__wrapper">
-                  <input type="text" id="passWrdInput" onChange={(e) => handlePasswrdChange(e.target.value)} placeholder="Password" />
+                  <motion.input whileFocus={{ scale: 1.03 }} type="text" id="passWrdInput" onChange={(e) => handlePasswrdChange(e.target.value)} placeholder="Password" />
                 </div>
                 <div className="buttons__wrapper">
-                  <button id="signIn__btn" type="submit">Register</button>
+                  <motion.button whileTap={{ scale: 0.90 }} type="submit" id="signIn__btn">Register</motion.button>
+                  <Link to="/">Log In</Link>
                 </div>
             </form>
-            <div className="goback__wrapper"></div>
           </div>
           <div className='error__div'>{erreur}</div>
         </div>

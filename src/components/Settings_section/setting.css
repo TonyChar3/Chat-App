@@ -1,0 +1,147 @@
+.settings__background{
+    height: 89%;
+    background-color: #c72b83;
+    background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+}
+
+.settingProfile__container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    margin: 2em auto;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+    animation: shadow-drop-2-center;
+}
+
+.madeWith__container{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    margin: 2em auto;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+    animation: shadow-drop-2-center;
+}
+
+.welcomeProfile_Name_container,
+.welcomeProfile_Email_container{
+    display: flex;
+    width: 80%;
+    padding: .3em;
+    margin: .5em 0;
+    border-radius: 15px;
+    background-color: rgba(228, 228, 228, 0.316);
+    
+}
+
+.logout__container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+    margin-top: .3em;
+    border-top: 1px solid white;
+}
+
+.settingEdit__container{
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    align-self: flex-start;
+    color: white;
+    cursor: pointer;
+}
+
+/*Typography*/
+
+.bi-person-circle{
+    color: white;
+    font-size: 2rem;
+}
+
+.madeWith__container > span{
+    color: white;
+}
+
+.logout__container > h2{
+    font-size: 1.3rem;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.logout__container> h2:hover{
+    cursor: pointer;
+    color: rgb(243, 148, 148);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.welcomeProfile_Email_container > input,
+.welcomeProfile_Name_container > input{
+    border: none;
+}
+
+.welcomeProfile_Email_container > input::placeholder,
+.welcomeProfile_Name_container > input::placeholder{
+    color: white;
+    font-size: 1.1rem;
+}
+
+.input__disabled{
+    background-color: transparent;
+}
+
+.input__active{
+    background-color: #c72b83;
+}
+
+@media(min-width: 765px){
+    .settingProfile__container{
+        width: 60%;
+    }
+
+    .madeWith__container{
+        width: 50%;
+    }
+
+    .settingProfile__container > h2{
+        font-size: 2.2rem;
+    }
+}
+
+@media(min-width: 1024px){
+    .settingProfile__container{
+        width: 30%;
+    }
+
+    .madeWith__container{
+        width: 20%;
+    }
+
+    .settingProfile__container > h2{
+        font-size: 2.6rem;
+    }
+}
+
+@media(min-width: 1281px){
+    .madeWith__container{
+        margin: 3.5em auto;
+    }
+}
