@@ -17,10 +17,10 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
         const handleDelete = async(idx, nom, email, confirm, roomID) => {
             try{
                 // Ref for the query
-                const contactRef = doc(db, 'users', auth.currentUser.displayName)
+                const contactRef = doc(db, 'users', auth.currentUser.uid)
 
                 //Ref for the query
-                const InviteRef = doc(db, 'users', nom)
+                const InviteRef = doc(db, 'users', idx)
 
                 // remove the contact from his contact list
                 await updateDoc(contactRef, {
@@ -64,7 +64,7 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
         const handleCleanUp = async(idx, nom, email) => {
             try{
                 // Ref for the query
-                const contactRef = doc(db, 'users', auth.currentUser.displayName)
+                const contactRef = doc(db, 'users', auth.currentUser.uid)
 
                 //remove the contact from the list
                 await updateDoc(contactRef, {

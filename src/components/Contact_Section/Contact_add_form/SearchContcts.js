@@ -1,7 +1,7 @@
 import './SearchContcts.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
-import { doc, arrayUnion, updateDoc, getDoc, collection, query, where, onSnapshot } from "firebase/firestore";
+import { doc, arrayUnion, updateDoc, getDoc, getDocs, collection, query, where, onSnapshot } from "firebase/firestore";
 import { motion } from 'framer-motion';
 
 
@@ -12,6 +12,8 @@ const SearchContcts = () => {
     const [email, setEmail ] = useState("");
     const [u_uid, setU_uid] = useState("");
     const [errAlert, setErrAlert] = useState("");
+
+
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -33,17 +35,8 @@ const SearchContcts = () => {
 
             if(name === "" || email === ""){
                 setErrAlert("Please enter the info of your new contact")
-            } else{
 
-                // query to get the soon to be added contact uid
-                const q = query(collection(db, 'users'), where("name", "==", name))
-                
-                // get the uid 
-                const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        setU_uid(doc.data().user_uid)
-                    })
-                })
+            } else if(u_uid){
 
                 let al_added = false;
                 
@@ -53,13 +46,9 @@ const SearchContcts = () => {
                 const contct_snap = await getDoc(contctRef)
                 const currentU_snap = await getDoc(docRef)
 
-                
-
                 // Check the contact if the user is already added to the list
                 currentU_snap.data().contact.forEach(cont => {
-                    
                     if(cont.name === name || cont.email === email){
-                        
                         al_added = true;
                     }
                 })
@@ -69,15 +58,12 @@ const SearchContcts = () => {
                     al_added = false;
                     
                 } else if(name === auth.currentUser.displayName || email === auth.currentUser.email){
-
-                    
                     setErrAlert('Do not add yourself')
 
                 } else if (contct_snap.exists()){
                     
-
                     // Doc ref for the invitation
-                    const invitRef = doc(db, 'users', contct_snap.data().name)
+                    const invitRef = doc(db, 'users', contct_snap.data().user_uid)
 
                     // Create the contact object 
                     const contct_user ={
@@ -104,21 +90,40 @@ const SearchContcts = () => {
                     await updateDoc(invitRef, {
                         invitations: arrayUnion(invite)
                     })
-
-                } else{
-                    setErrAlert('User not found')
                 }
-
-                return () => unsubscribe
-            }
-
+            } else{
+                setErrAlert('User not found')
+            } 
         } catch(error){
-            console.log(error.code)
+            console.log(error)
         }
 
         setName("")
         setEmail("")
+        setU_uid("")
     }
+
+    useEffect(() => {
+        // query to get the soon to be added contact uid
+        const q = query(collection(db, 'users'), where("name", "==", name))
+                        
+        // get the uid 
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+
+            if(querySnapshot){
+                querySnapshot.forEach((doc) => {
+                    setU_uid(doc.data().user_uid)
+                })
+            } else{
+                console.log('User not found')
+            }
+
+        })
+
+        return () => unsubscribe
+
+
+    },[name])
 
 
     let toggleActive = Active ? 'form_active' : '';

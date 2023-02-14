@@ -137,13 +137,13 @@
 .registr__btn > a{
     font-size: 1.1rem;
     color: white;
-    
     cursor: pointer;
 }
 
 .registr__btn{
     padding: .5em;
     text-decoration: underline;
+    color: white;
 }
 
 @media (min-width: 765px){

@@ -56,14 +56,14 @@ const Settings = () => {
     const handleSaving = async(e) => {
         e.preventDefault();
 
-        const userRef = doc(db, 'users', user.displayName)
+        //const userRef = doc(db, 'users', user.displayName)
 
         try{
             // update the firebase profile name
-            await updateProfile(user, {displayName: name})
+            //await updateProfile(user, {displayName: name})
 
             // update the firebase profile email
-            await updateProfile(user, {email: email})
+            //await updateProfile(user, {email: email})
 
             //update the db
             
