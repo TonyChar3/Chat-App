@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './signIn.css';
-import { EmailAuthProvider } from 'firebase/auth';
 import { auth } from "../../firebase_setup/firebase";
 import { motion } from 'framer-motion';
 import { UserAuth } from '../../context/AuthContext';

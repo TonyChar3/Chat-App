@@ -14,9 +14,8 @@ export const AuthContextProvider = ({children}) => {
     }
 
     const SignIn = (email, password) => {
-        console.log(password)
 
-                setCredentials(password)
+        setCredentials(password)
 
         return signInWithEmailAndPassword(auth, email, password)
     }

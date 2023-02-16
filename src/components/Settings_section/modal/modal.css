@@ -1,21 +1,101 @@
+/*Layout*/
 .Modal__wrapper{
     position: absolute;
     z-index: 1;
-    display: flex;
+    display: none;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    border: 2px solid magenta;
+    background-color: rgba(0, 0, 0, 0.35);
 }
 
 .Modal__wrapper > form{
+    position: absolute;
+    top: 100%;
+    z-index: 2;
     width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1em;
-    border: 2px solid magenta;
+    margin: 1em auto;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.382);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.819); 
+    box-shadow: 5px 1px 29px 1px rgba(255, 255, 255, 0.523);
+    animation: shadow-drop-2-center;
+    transition: all 0.4s ease;
+}
+
+.passwordInput__container{
+    display: flex;
+    flex-direction: column;
+}
+
+.modalBtn__container{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal_Active{
+    display: flex;
+}
+
+.modal_Active > form{
+    top: 0;
+    transition: all 0.4s ease;
+}
+
+.error__container{
+    position: absolute;
+    z-index: 3;
+    top: 25%;
+}
+
+/*Typography*/
+.Modal__wrapper > form > h3{
+    font-size: 1.8rem;
+    color: #8ecbf7;
+}
+
+.passwordInput__container > input{
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border-radius: 15px;
+    padding: 0 0 0 .5em;
+    border: 3px solid #8ecbf7;
+}
+
+.passwordInput__container > input:active,
+.passwordInput__container > input:focus{
+    background-color: #ef23977a;
+    border: 3px solid white;
+}
+
+#eye__password{
+    color: white;
+    margin-left: .7em;
+}
+
+#error__messg{
+    color: rgb(249, 247, 247);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: .5em;
+    text-decoration: underline rgb(244, 84, 84);
+}
+
+/*Buttons*/
+.modalBtn__container > button{
+    font-size: 0.90rem;
+    font-weight: 700;
+    padding: .5em;
+    background-color: rgba(255, 255, 255, 0.073);
+    color: white;
+    border: 3px solid #8ecbf7;
+    border-radius: 20px;
 }

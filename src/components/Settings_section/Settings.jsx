@@ -5,7 +5,7 @@ import ReactImg from "../../img/1174949_js_react js_logo_react_react native_icon
 import FirebaseImg from "../../img/logo-built_white.png";
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { UserAuth } from '../../context/AuthContext';
 import { updateProfile, updateEmail, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import { doc, updateDoc, getDocs, collection, query, where } from "firebase/firestore";
@@ -15,12 +15,13 @@ const Settings = () => {
 
     const { logOut, user, credential } = UserAuth();
 
-    console.log(credential)
+    console.log(credential.length)
     
     const [door, setDoor] = useState(false);
     const [edit, setEdit] = useState(false);
     const [newName, setName] = useState('');
     const [newEmail, setEmail] = useState('');
+    const [modal, setModal] = useState(false);
 
     const navigate = useNavigate();
 
@@ -48,7 +49,14 @@ const Settings = () => {
     }
 
     const handleEdit = () => {
-        setEdit(true);
+
+        if( credential.length === 0){
+            setTimeout(() => {
+                setModal(modal => !modal)
+            },10)
+        } else {
+            setEdit(true);
+        }
     }
 
     const handleSaving = async(e) => {
@@ -63,8 +71,8 @@ const Settings = () => {
 
             if(newName === "" && newEmail === ""){
                 setEdit(false);
-                setName('')
-                setEmail('')
+                setName('');
+                setEmail('');
                 console.log('Nothing was changed (save)')
 
             } else if(newName === "") {
@@ -88,9 +96,9 @@ const Settings = () => {
                         await updateDoc(userRef, {
                             email: newEmail
                         })
-
+    
                         await updateEmail(auth.currentUser, newEmail)
-
+    
                         setEdit(false);
                         setName('');
                         setEmail('');
@@ -170,6 +178,20 @@ const Settings = () => {
         setDoor(door => !door);
     }
 
+    useEffect(() => {
+
+        const update = () => {
+            setName(newName)
+            setEmail(newEmail)
+        }
+
+        return () => update
+
+ 
+    },[newName, newEmail])
+
+    let toggleModal = modal? true : false;
+
     return(
         <>
         <motion.div 
@@ -179,7 +201,7 @@ const Settings = () => {
             animate={{ opacity: 1, width: "100%" }}
             exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
         >
-        <SignupModal />
+        <SignupModal active={toggleModal} />
             <div className="setting__container">
                 <div className="settingProfile__container ">
                     <form onSubmit={handleSaving} className="shadow-drop-2-center">
