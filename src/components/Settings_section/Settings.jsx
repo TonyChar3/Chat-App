@@ -1,4 +1,5 @@
 import './setting.css';
+import SignupModal from './modal/Modal';
 import InviteFooter from '../Invitation_Section/Invitation_Footer/InviteFooter';
 import ReactImg from "../../img/1174949_js_react js_logo_react_react native_icon.png";
 import FirebaseImg from "../../img/logo-built_white.png";
@@ -6,21 +7,20 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { UserAuth } from '../../context/AuthContext';
-import { updateProfile } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from '../../firebase_setup/firebase';
+import { updateProfile, updateEmail, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
+import { doc, updateDoc, getDocs, collection, query, where } from "firebase/firestore";
+import { auth, db } from '../../firebase_setup/firebase';
 
 const Settings = () => {
 
-    const { logOut, user } = UserAuth();
+    const { logOut, user, credential } = UserAuth();
 
-    console.log(user.displayName)
+    console.log(credential)
     
-
     const [door, setDoor] = useState(false);
     const [edit, setEdit] = useState(false);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [newName, setName] = useState('');
+    const [newEmail, setEmail] = useState('');
 
     const navigate = useNavigate();
 
@@ -49,26 +49,120 @@ const Settings = () => {
 
     const handleEdit = () => {
         setEdit(true);
-        // when edit profile is clicked:
-        //      -> Unlock the inputs
     }
 
     const handleSaving = async(e) => {
         e.preventDefault();
 
-        //const userRef = doc(db, 'users', user.displayName)
+        const userRef = doc(db, 'users', user.uid)
+        const checkNewName = query(collection(db,'users'), where('name',"==", newName))
+        const checkNewEmail = query(collection(db,'users'), where('email',"==", newEmail))
+        const checkBothInfo = query(collection(db,'users'), where('email','==', newEmail), where('name', '==', newName))
 
         try{
-            // update the firebase profile name
-            //await updateProfile(user, {displayName: name})
 
-            // update the firebase profile email
-            //await updateProfile(user, {email: email})
+            if(newName === "" && newEmail === ""){
+                setEdit(false);
+                setName('')
+                setEmail('')
+                console.log('Nothing was changed (save)')
 
-            //update the db
-            
+            } else if(newName === "") {
+
+                let verif= [];
+
+                const querySnapshot = await getDocs(checkNewEmail)
+
+                querySnapshot.docs.map((doc) => {
+                    return verif.push(doc.data().email)
+                });
+
+                if(verif.length > 0){
+                    console.log('Email is taken')
+                } else{
+                    console.log('Email is not taken')
+                    const crednts = EmailAuthProvider.credential(auth.currentUser.email, credential)
+                    let reauth = await reauthenticateWithCredential(user, crednts)
+                    // update the users DB
+                    if(reauth){
+                        await updateDoc(userRef, {
+                            email: newEmail
+                        })
+
+                        await updateEmail(auth.currentUser, newEmail)
+
+                        setEdit(false);
+                        setName('');
+                        setEmail('');
+                    }
+                }
+
+            } else if(newEmail === ""){
+                let verif = [];
+
+                const querySnapshot = await getDocs(checkNewName);
+
+                querySnapshot.docs.map((doc) => {
+                    return verif.push(doc.data().name)
+                });
+
+                if(verif.length > 0){
+                    console.log('The name already exist')
+                } else {
+                    console.log('The name is not already used')
+
+                    await updateDoc(userRef, {
+                        name: newName
+                    });
+
+                    await updateProfile(auth.currentUser, { displayName: newName})
+
+                    setEdit(false);
+                    setName('');
+                    setEmail('');
+                }
+
+            } else{
+                let verif = [];
+
+                const queryShot = await getDocs(checkBothInfo)
+
+                queryShot.docs.map((doc) => {
+                    return verif.push(doc.data())
+                });
+
+                if(verif.length > 0){
+                    console.log('This name/email already exist')
+                } else{
+                    console.log('Good profile mod')
+
+                    // update the name
+                    await updateDoc(userRef, {
+                        name: newName
+                    });
+                    //db
+                    //auth profile
+                    await updateProfile(auth.currentUser, { displayName: newName })
+
+                    //update the email
+                    const crednts = EmailAuthProvider.credential(auth.currentUser.email, credential)
+                    let reauth = await reauthenticateWithCredential(user, crednts)
+
+                    if(reauth){
+                        await updateDoc(userRef, {
+                            email: newEmail
+                        })
+
+                        await updateEmail(auth.currentUser, newEmail)
+                    }
+                    setEdit(false);
+                    setName('');
+                    setEmail('');
+                }
+
+            }
         } catch(error){
-
+            console.log(error)
         }
     }
 
@@ -85,6 +179,7 @@ const Settings = () => {
             animate={{ opacity: 1, width: "100%" }}
             exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
         >
+        <SignupModal />
             <div className="setting__container">
                 <div className="settingProfile__container ">
                     <form onSubmit={handleSaving} className="shadow-drop-2-center">
@@ -93,7 +188,7 @@ const Settings = () => {
                             <input 
                                 type="text" 
                                 className={edit? 'input__active' : 'input__disabled'}
-                                value={name} 
+                                value={newName} 
                                 placeholder={user.displayName} disabled={edit? "" : 'disabled'} 
                                 onChange={(e) => handleName(e.target.value)} 
                             />
@@ -102,7 +197,7 @@ const Settings = () => {
                             <input 
                                 type="email" 
                                 className={edit? 'input__active' : 'input__disabled'} 
-                                value={email}
+                                value={newEmail}
                                 placeholder={user.email} 
                                 disabled={edit? "" : 'disabled'}
                                 onChange={(e) => handleEmail(e.target.value)} 
