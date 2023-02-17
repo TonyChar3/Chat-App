@@ -1,4 +1,6 @@
 import './contacts.css';
+import { Outlet } from 'react-router-dom';
+import SearchContcts from '../Contact_add_form/SearchContcts';
 import ContctsScroll from '../Contact_scroll/ContctsScroll';
 import ContctsCard from '../contact_cards/ContctsCard';
 import {useState, useEffect} from 'react';
@@ -41,7 +43,9 @@ const Contacts = () => {
     },[])
 
     return(
-        <motion.div 
+        <>
+        <SearchContcts/>
+                <motion.div 
             className="contcts__firstContainer"
 
             initial={{ opacity: 0, width: 0 }}
@@ -61,6 +65,9 @@ const Contacts = () => {
                 </ContctsScroll>
             </div>
         </motion.div>
+        
+        </>
+
     )
 }
 

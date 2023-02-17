@@ -99,3 +99,39 @@
     border: 3px solid #8ecbf7;
     border-radius: 20px;
 }
+
+@media (min-width: 765px) {
+    .Modal__wrapper > form{
+        width: 45%;
+    }
+
+    .Modal__wrapper > form > h3{
+        font-size: 2rem;
+    }
+
+    .modalBtn__container > button{
+        font-size: 0.95rem;
+    }
+
+    #eye__password{
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .Modal__wrapper > form{
+        width: 20%;
+    }
+
+    .modalBtn__container{
+        margin-top: .2em;
+    }
+
+    .Modal__wrapper > form > h3{
+        font-size: 2.2rem;
+    }
+
+    .passwordInput__container > input{
+        padding: .2em;
+    }
+}

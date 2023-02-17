@@ -52,7 +52,7 @@ const ChatSect = ({ convo_name, room_id }) => {
                         <span className="profileName">{convo_name}</span>
                     </div>
                     <div className="exitConvo__container">
-                       <Link to="/navbar/contacts"><i className="bi bi-x-circle"></i></Link> 
+                       <Link to="/navbar/contacts/contct"><i className="bi bi-x-circle"></i></Link> 
                     </div>
                 </div> 
                 <Scroll>

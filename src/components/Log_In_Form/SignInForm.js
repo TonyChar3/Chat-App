@@ -39,7 +39,7 @@ function SignIn(){
 
     //[todo] Navigate to the menu if signed in
     if(auth.currentUser != null){
-      navigate("/navbar/welcome");
+      navigate("/navbar/contacts/contct");
     }
   }
 

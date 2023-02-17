@@ -61,7 +61,7 @@ const InviteSect = () => {
                 </ContctsScroll>
             </div>
         </motion.div>
-        <InviteFooter />
+        {/* <InviteFooter /> */}
     </>
     );
 }

@@ -5,7 +5,7 @@ import { UserAuth } from '../../../context/AuthContext';
 import { auth } from '../../../firebase_setup/firebase';
 
 
-const SignupModal = ({ active }) => {
+const SignupModal = ({ modal }) => {
 
     const { SignIn } = UserAuth();
 
@@ -36,21 +36,18 @@ const SignupModal = ({ active }) => {
         }
     }
 
-    const handleCancel = () => {
+    const handleCancel = (e) => {
+        e.preventDefault();
         setModals(showModal => !showModal)
     }
-    
-    // TODO:
-    // -> add function for the re-sign to modify
-    // -> an error message span
 
     useEffect(() => {
 
-        if(active){
+        if(modal){
             setModals(showModal => !showModal)
         }
         
-    },[active])
+    },[modal])
 
 
     return(

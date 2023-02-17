@@ -105,7 +105,7 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
             case 'true':
                 setConfirm(<i className="bi bi-chat-square-fill"></i>)
                 setDelete(<i className="bi bi-person-x-fill" onClick={() => handleDelete(contct_id, contct_name, contct_email, confirmed, chatroom_ID)}></i>)
-                setChat("/navbar/chatpage")
+                setChat("/navbar/contacts/chatpage")
                 break;
             case 'false':
                 setConfirm('rejected')

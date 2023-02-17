@@ -14,8 +14,6 @@ import { auth, db } from '../../firebase_setup/firebase';
 const Settings = () => {
 
     const { logOut, user, credential } = UserAuth();
-
-    console.log(credential.length)
     
     const [door, setDoor] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -51,12 +49,11 @@ const Settings = () => {
     const handleEdit = () => {
 
         if( credential.length === 0){
-            setTimeout(() => {
-                setModal(modal => !modal)
-            },10)
+            setModal(modal => !modal)
         } else {
             setEdit(true);
         }
+
     }
 
     const handleSaving = async(e) => {
@@ -179,18 +176,10 @@ const Settings = () => {
     }
 
     useEffect(() => {
-
-        const update = () => {
-            setName(newName)
-            setEmail(newEmail)
-        }
-
-        return () => update
-
- 
-    },[newName, newEmail])
-
-    let toggleModal = modal? true : false;
+        setName(newName)
+        setEmail(newEmail)
+        setModal(false)
+    },[newName, newEmail, modal])
 
     return(
         <>
@@ -201,7 +190,9 @@ const Settings = () => {
             animate={{ opacity: 1, width: "100%" }}
             exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
         >
-        <SignupModal active={toggleModal} />
+
+        <SignupModal modal={modal? true : false} />
+
             <div className="setting__container">
                 <div className="settingProfile__container ">
                     <form onSubmit={handleSaving} className="shadow-drop-2-center">
@@ -263,7 +254,7 @@ const Settings = () => {
                 </div>
             </div>
         </motion.div>
-        <InviteFooter />
+        {/* <InviteFooter /> */}
         </>
     );
 }

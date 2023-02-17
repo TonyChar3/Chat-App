@@ -5,12 +5,17 @@ ul{
 
     /*Layout*/
 .nav__container{
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
-    padding: 1em .5em .5em .5em;
-    border-bottom: 3px solid white;
+    justify-content: space-evenly;
+    padding: .5em;
+    border-top: 3px solid white;
     background-color: #c72b83;
     background-image: linear-gradient(249deg, #c72b83 0%, #784BA0 1%, #2B86C5 100%);
 }
@@ -18,13 +23,16 @@ ul{
 .nav__TitleNtabs{
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    width: 100%;
+    justify-content: space-around;
 }
 
 .nav__tabs{
     display: flex;
     align-items: center;
-    margin-left: 1.2em;
+    justify-content: space-around;
+    width: 100%;
+    padding: .5em;
 }
 
 .nav__tabs > a,
@@ -45,20 +53,14 @@ ul{
 }
 
     /*Typography*/
-.nav__title > a{
-    color:white;
-    font-size: 2rem;
-    margin-left: .1em;
-}
 
 .nav__tabs > i,
 .nav__tabs > a{
     margin-left: .3em;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
 }
 
-.nav__tabs > a:active,
-.nav__title >a:active{
+.nav__tabs > a:active{
     transform: scale(0.90);
     transition: all 0.2s;
 }
@@ -93,9 +95,6 @@ ul{
     }
 
     /*Typography*/
-    .nav__title > a{
-        font-size: 2.8rem;
-    }
 
     .nav__tabs > i,
     .nav__tabs > a{
@@ -117,17 +116,10 @@ ul{
     .nav__tabs > i{
         font-size: 1.3rem;
     }
-
-    .nav__title > a{
-        font-size: 3.3rem;
-    }
 }
 
 @media (min-width: 1281px){
         /*Typography*/
-    .nav__title{
-        font-size: 3.5rem;
-    }
 
     .nav__tabs > a,
     .nav__tabs > i{

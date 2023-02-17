@@ -56,7 +56,7 @@ const Register = () => {
     if(auth.currentUser !== null){
       setPersistence(auth, browserSessionPersistence)
       .then(() => {
-        navigate("/navbar/welcome");
+        navigate("/navbar/contacts/contct");
       })
     }
   }
