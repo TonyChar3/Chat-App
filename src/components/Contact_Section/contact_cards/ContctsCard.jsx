@@ -129,8 +129,6 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                 setChat("")
         }
     },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, contct_edit, deleteRoom])
-
-    console.log(contct_edit)
     
     return(
         <div className="contctsCard__container">  

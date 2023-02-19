@@ -2,15 +2,19 @@ import './contacts.css';
 import SearchContcts from '../Contact_add_form/SearchContcts';
 import ContctsScroll from '../Contact_scroll/ContctsScroll';
 import ContctsCard from '../contact_cards/ContctsCard';
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 import { motion } from 'framer-motion';
+import { UserAuth } from '../../../context/AuthContext';
 
 const Contacts = () => {
-
+    const { updateUserApp, updated_contact, contacts } = UserAuth();
     const [contact, setContact] = useState([]);
+    const [uptoDate, setUpToDate] = useState([]);
     const [edit, setEdit] = useState();
+
+    
 
     const handleclickEdit = (data) => {
         setEdit(data)
@@ -33,17 +37,15 @@ const Contacts = () => {
                         doc.data().contact.forEach(con => {
                             
                             contacte.push(con);
-                            console.log(con)
                         })
                         
                         setContact(contacte)
                     })
                 })
-                return () => unsubscribe
-                
+
+                return () => unsubscribe 
             }
         })
-    
     },[])
 
     return(

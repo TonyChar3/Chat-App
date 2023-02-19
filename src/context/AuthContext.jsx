@@ -9,7 +9,7 @@ export const AuthContextProvider = ({children}) => {
 
     const [user, setUser] = useState({})
     const [credential, setCredentials] = useState([])
-    const [contact, setContacts] = useState([])
+    const [contacts, setContacts] = useState([])
     const [updated_contact, setUpdate] = useState([])
 
     
@@ -26,86 +26,9 @@ export const AuthContextProvider = ({children}) => {
     }
 
     const logOut = () => {
+        setContacts([])
+        setUpdate([])
         return signOut(auth)
-    }
-
-    const updateUserApp = async(contact_array) => {
-
-        try{
-
-            const updtRef = doc(db, 'users', auth.currentUser.uid)
-
-            console.log(contact_array)
-            console.log(updated_contact)
-
-            for (let i = 0; i < contact_array.length; i++){
-
-                console.log(contact_array[i])
-                console.log(updated_contact[i])
-                // // remove the outdated
-                // await updateDoc(updtRef, {
-                //     contact: arrayRemove({
-                //         'chatroom_id': contact[i].chatroom_id,
-                //         'confirmed': contact[i].confirmed,
-                //         "email": contact[i].email,
-                //         "id": contact[i].id,
-                //         "name": contact[i].name
-                //     })
-                // })
-
-                // // add the updated
-                // await updateDoc(updtRef,{
-                //     contact: arrayUnion({
-                //         'chatroom_id': updated_contact[i].chatroom_id,
-                //         'confirmed': updated_contact[i].confirmed,
-                //         "email": updated_contact[i].email,
-                //         "id": updated_contact[i].id,
-                //         "name": updated_contact[i].name
-                //     })
-                // })
-
-            }
-        } catch(error){
-            console.log(error)
-        }
-    }
-
-    const getUpdatedData = () => {
-        auth.onAuthStateChanged(function(user) {
-
-            if(user){
-                if(contact.length > 0){
-
-                    const data_contact = [];
-    
-                    contact.forEach(cont => {
-    
-                        const q = query(collection(db,"users"), where("user_uid", "==", cont.id));
-            
-                        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    
-                            querySnapshot.forEach((doc) => {
-    
-                                const updated_data = {
-                                    chatroom_id: cont.chatroom_id,
-                                    confirmed: cont.confirmed,
-                                    email: doc.data().email,
-                                    id: cont.id,
-                                    name: doc.data().name
-                                }
-
-                                data_contact.push(updated_data)
-
-                                
-                            })
-                        })
-                        setUpdate(data_contact)
-
-                        return () => unsubscribe()
-                    })  
-                }
-            }
-        })
     }
 
     useEffect(() => {
@@ -125,17 +48,72 @@ export const AuthContextProvider = ({children}) => {
                         doc.data().contact.forEach(con => {
                             contacte.push(con)
                         })
-                        setContacts(contacte)   
+                         
                     })
+                    setContacts(contacte)
+                     
                 })
                 return () => unsubscribe
             }
         })
- 
-    })
+       
+    },[])
 
+    useEffect(() => {
+        console.log('second useffect')
+
+        if(contacts.length > 0){
+
+            contacts.forEach(each => {
+        
+                const q = query(collection(db,'users'), where("user_uid", "==", each.id))
+            
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            
+                    querySnapshot.forEach((docs) => {
+                
+                        const updated_data ={
+                            id: each.id,
+                            name: docs.data().name,
+                            email: docs.data().email,
+                            confirmed: each.confirmed,
+                            chatroom_id: each.chatroom_id
+                        };
+                        const updateUserApp = async()=> {
+
+                            if(each && updated_data){
+                    
+
+                                const updtRef = doc(db, 'users', auth.currentUser.uid)
+
+                                // remove the outdated
+                                updateDoc(updtRef, {
+                                    contact: arrayRemove(each)
+                                })
+                        
+                                // add the updated
+                                updateDoc(updtRef,{
+                                    contact: arrayUnion( updated_data )
+                                }) 
+                            }
+                        }
+                        updateUserApp();
+                    })
+                    setContacts([])
+                    setUpdate([])
+                })
+            
+            return () => unsubscribe;
+
+            })           
+        }   
+    },[])
+
+    console.log(updated_contact)
+    console.log(contacts)
+    
     return(
-        <UserContext.Provider value={{ registerUser, logOut, SignIn, user, credential, updateUserApp, getUpdatedData }}>
+        <UserContext.Provider value={{ registerUser, logOut, SignIn, user, credential, updated_contact, contacts }}>
             {children}
         </UserContext.Provider>
     );
