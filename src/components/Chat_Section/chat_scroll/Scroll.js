@@ -1,4 +1,5 @@
 import '../../Contact_Section/Contact_scroll/ContctsScroll.css';
+import './scroll.css';
 import { motion } from 'framer-motion';
  
 const Scroll = (props) => {

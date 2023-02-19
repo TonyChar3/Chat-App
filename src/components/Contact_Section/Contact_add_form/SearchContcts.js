@@ -1,17 +1,18 @@
 import './SearchContcts.css';
 import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
-import { doc, arrayUnion, updateDoc, getDoc, getDocs, collection, query, where, onSnapshot } from "firebase/firestore";
+import { doc, arrayUnion, updateDoc, getDoc, collection, query, where, onSnapshot } from "firebase/firestore";
 import { motion } from 'framer-motion';
 
 
-const SearchContcts = () => {
+const SearchContcts = (props) => {
 
     const [Active, setActive] = useState(false);
     const [name, setName ] = useState("");
     const [email, setEmail ] = useState("");
     const [u_uid, setU_uid] = useState("");
     const [errAlert, setErrAlert] = useState("");
+    const [editContcts, setEdit] = useState(false);
 
 
 
@@ -103,7 +104,16 @@ const SearchContcts = () => {
         setU_uid("")
     }
 
+    const handleEdit = (e) => {
+        e.preventDefault();
+        setEdit(editContcts => !editContcts)
+        props.func(editContcts => !editContcts)  
+    }
+
+    console.log(editContcts)
     useEffect(() => {
+
+        
         // query to get the soon to be added contact uid
         const q = query(collection(db, 'users'), where("name", "==", name))
                         
@@ -122,6 +132,7 @@ const SearchContcts = () => {
 
         return () => unsubscribe
 
+       
 
     },[name])
 
@@ -138,6 +149,7 @@ const SearchContcts = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 }}}
                 >
+                    <motion.span onClick={handleEdit}>{editContcts? <i className="bi bi-x-circle"></i> : 'Edit'}</motion.span>
                     <motion.i whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.96 }} className="bi bi-person-plus-fill" onClick={handleClick}></motion.i>
                 </motion.div>
             </div>

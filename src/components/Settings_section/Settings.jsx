@@ -1,6 +1,5 @@
 import './setting.css';
 import SignupModal from './modal/Modal';
-import InviteFooter from '../Invitation_Section/Invitation_Footer/InviteFooter';
 import ReactImg from "../../img/1174949_js_react js_logo_react_react native_icon.png";
 import FirebaseImg from "../../img/logo-built_white.png";
 import { motion } from 'framer-motion';
@@ -67,11 +66,10 @@ const Settings = () => {
         try{
 
             if(newName === "" && newEmail === ""){
+
                 setEdit(false);
                 setName('');
                 setEmail('');
-                console.log('Nothing was changed (save)')
-
             } else if(newName === "") {
 
                 let verif= [];
@@ -88,6 +86,7 @@ const Settings = () => {
                     console.log('Email is not taken')
                     const crednts = EmailAuthProvider.credential(auth.currentUser.email, credential)
                     let reauth = await reauthenticateWithCredential(user, crednts)
+
                     // update the users DB
                     if(reauth){
                         await updateDoc(userRef, {
@@ -254,7 +253,6 @@ const Settings = () => {
                 </div>
             </div>
         </motion.div>
-        {/* <InviteFooter /> */}
         </>
     );
 }

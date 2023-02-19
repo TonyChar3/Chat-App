@@ -1,25 +1,27 @@
 import './contacts.css';
-import { Outlet } from 'react-router-dom';
 import SearchContcts from '../Contact_add_form/SearchContcts';
 import ContctsScroll from '../Contact_scroll/ContctsScroll';
 import ContctsCard from '../contact_cards/ContctsCard';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 import { motion } from 'framer-motion';
 
-
-
 const Contacts = () => {
 
     const [contact, setContact] = useState([]);
+    const [edit, setEdit] = useState();
+
+    const handleclickEdit = (data) => {
+        setEdit(data)
+    }
 
     useEffect(() => {
 
         auth.onAuthStateChanged(function(user) {
             
             if(user){
-    
+
                 const q = query(collection(db,"users"), where("user_uid", "==", auth.currentUser.uid));
     
                 const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -30,13 +32,15 @@ const Contacts = () => {
     
                         doc.data().contact.forEach(con => {
                             
-                            contacte.push(con); 
+                            contacte.push(con);
+                            console.log(con)
                         })
                         
                         setContact(contacte)
                     })
                 })
                 return () => unsubscribe
+                
             }
         })
     
@@ -44,8 +48,8 @@ const Contacts = () => {
 
     return(
         <>
-        <SearchContcts/>
-                <motion.div 
+        <SearchContcts func={handleclickEdit} />
+        <motion.div 
             className="contcts__firstContainer"
 
             initial={{ opacity: 0, width: 0 }}
@@ -60,7 +64,15 @@ const Contacts = () => {
                     </div>
                      : 
                      contact?.map((contctz) => (
-                        <ContctsCard key={contctz.id} contct_name={contctz.name} contct_id={contctz.id} contct_email={contctz.email} confirmed={contctz.confirmed} chatroom_ID={contctz.chatroom_id} />
+                        <ContctsCard 
+                            key={contctz.id} 
+                            contct_name={contctz.name} 
+                            contct_id={contctz.id} 
+                            contct_email={contctz.email} 
+                            confirmed={contctz.confirmed} 
+                            chatroom_ID={contctz.chatroom_id}
+                            contct_edit={edit}
+                        />
                     ))}
                 </ContctsScroll>
             </div>

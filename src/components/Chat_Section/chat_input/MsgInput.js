@@ -71,7 +71,7 @@ const MsgInput = ({ chat_id }) => {
 
             initial={{ opacity: 0, width: 0, zIndex: 0 }}
             animate={{ opacity: 1, width: "100%", zIndex: 2 }}
-            exit={{ opacity: 0, x: window.innerWidth, zIndex: 0, transition: { duration: 0.1 } }}
+            exit={{ opacity: 0, x: window.innerWidth, zIndex: 0, transition: { duration: 0.2 } }}
         >
             <motion.form inital={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onSubmit={(event) => sendMessage(event)}>
                 <motion.input whileFocus={{ scale: 1.01 }}  type="text" id="send__message" placeholder="send a message..." value={message} onChange={(e) => setMessage(e.target.value)} />

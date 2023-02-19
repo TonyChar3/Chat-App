@@ -41,6 +41,7 @@ const InviteSect = () => {
     },[])
     return(
     <>
+        <InviteFooter />
         <motion.div 
             className="invites__firstContainer"
 
@@ -61,7 +62,7 @@ const InviteSect = () => {
                 </ContctsScroll>
             </div>
         </motion.div>
-        {/* <InviteFooter /> */}
+        
     </>
     );
 }

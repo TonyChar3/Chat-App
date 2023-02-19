@@ -1,0 +1,36 @@
+.Scroll__container{
+    margin-top: 4em;
+    overflow-y: auto;
+    height: 75%;
+    width: 100%;
+}
+
+@media (min-width: 390px){
+    .Scroll__container{
+        height: 85%;
+    }
+}
+
+@media (min-width: 765px){
+
+    .Scroll__container{
+        margin-top: 5em;
+        width: 100%;
+        height: 88%;
+    }
+}
+
+@media (min-width: 820px){
+    
+    .Scroll__container{
+        height: 90%;
+    }
+}
+
+@media (min-width: 1024px){
+
+    .Scroll__container{
+        width: 97%;
+        height: 100%;
+    }
+}

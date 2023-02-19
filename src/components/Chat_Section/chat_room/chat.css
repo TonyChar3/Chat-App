@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
     padding: .5em;
-    margin: .5em;
+    margin: .7em;
     border-radius: 15px;
     background-color: #c72b83;
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
@@ -116,7 +116,7 @@
     .chatRoom__container{
         justify-content: center;
         width: 50%;
-        margin-top: .5em;
+        margin-top: 3em;
         border-radius: 20px;
     }
 
@@ -136,6 +136,6 @@
 /*High resolution*/
 @media (min-width: 1281px){
     .chatRoom__container{
-        height: 78%;
+        height: 80%;
     }
 }

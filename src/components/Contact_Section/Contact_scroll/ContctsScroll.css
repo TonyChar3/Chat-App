@@ -4,35 +4,10 @@
     width:95%;
 }
 
-.Scroll__container{
-    margin-top: 4em;
-    overflow-y: auto;
-    height: 68%;
-    width: 100%;
-}
-
-@media (min-width: 390px){
-    .Scroll__container{
-        height: 75%;
-    }
-}
-
 /*Tablets*/
 @media (min-width: 765px){
     .ContctsScroll__container{
         width: 70%;
-    }
-
-    .Scroll__container{
-        margin-top: 5em;
-        width: 100%;
-        height: 79%;
-    }
-}
-
-@media (min-width: 820px){
-    .Scroll__container{
-        height: 81%;
     }
 }
 
@@ -40,10 +15,5 @@
 @media (min-width: 1024px){
     .ContctsScroll__container{
         width:60%;
-    }
-
-    .Scroll__container{
-        width: 97%;
-        height: 88%;
     }
 }

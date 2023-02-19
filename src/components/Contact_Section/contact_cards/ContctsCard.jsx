@@ -5,14 +5,20 @@ import { doc, updateDoc, arrayRemove, arrayUnion, deleteDoc, query, collection, 
 import { auth, db } from "../../../firebase_setup/firebase";
 import { motion } from 'framer-motion';
 
-const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom_ID }) => {
+const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom_ID, contct_edit }) => {
 
     const [deleteRoom, setDeleteRoom] = useState();
     const [confirmit, setConfirm] = useState();
     const [deletecont, setDelete] = useState();
     const [chat, setChat] = useState("");
+    const [edit, setEdit] = useState(false);
+    
     
     useEffect(() => {
+        if(contct_edit !== undefined){
+            setEdit(contct_edit)
+        }
+        
         // to delete the user 
         const handleDelete = async(idx, nom, email, confirm, roomID) => {
             try{
@@ -122,8 +128,9 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                 setDelete("")
                 setChat("")
         }
-    },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, deleteRoom])
+    },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, contct_edit, deleteRoom])
 
+    console.log(contct_edit)
     
     return(
         <div className="contctsCard__container">  
@@ -133,10 +140,15 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
             <motion.div whileHover={{ scale: 1.1 }} className="chatIcon__container">
                 <Link to={chat} state={{ room_name: contct_name, cntct_id: contct_id, chatroomID: chatroom_ID }}>{confirmit}</Link>
             </motion.div>
-                
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="deleteIcon__container">
-                {deletecont}
-            </motion.div>
+
+            {
+            edit? 
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="deleteIcon__container">
+                    {deletecont}
+                </motion.div>
+            :             
+                null
+            }
         </div>
     );
 }
