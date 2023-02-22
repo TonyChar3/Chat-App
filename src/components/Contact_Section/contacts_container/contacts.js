@@ -12,8 +12,6 @@ const Contacts = () => {
     const [fetch_data, setFetchData] = useState([]);
     const [edit, setEdit] = useState();
 
-    console.log(fetch_data.length)
-
     const handleclickEdit = (data) => {
         setEdit(data)
     }

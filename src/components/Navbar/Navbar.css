@@ -44,6 +44,12 @@ ul{
     cursor: pointer;
 }
 
+.nav__tabs > a:focus,
+.nav__tabs > a:active{
+    transform: scale(1.1);
+    transition: all 0.3s;
+}
+
 .show{
     display: none;
 }
@@ -60,30 +66,12 @@ ul{
     font-size: 1.6rem;
 }
 
-.nav__tabs > a:active{
-    transform: scale(0.90);
-    transition: all 0.2s;
-}
-
 .current__page{
     border-bottom: 1px solid white;
 }
 
-.nav__tabs > a:hover,
-.nav__tabs > a:active,
-.nav__tabs > a:focus{
-    transform: scale(1.1);
-    transition: all 0.3s  ease;
-}
-
-.nav__tabs > a:active{
-    transform: scale(0.90);
-    transition: all 0.3s ease;
-}
-
 .nav__tabs > a:nth-child(3):hover,
 .nav__tabs > a:nth-child(3):active{
-    transform: scale(1.1);
     transform: rotate(180deg);
     transition: all 0.3s ease;
 }
@@ -123,7 +111,7 @@ ul{
 
     .nav__tabs > a,
     .nav__tabs > i{
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 }
 

@@ -1,4 +1,4 @@
-import { Link, Outlet  } from 'react-router-dom';
+import { NavLink, Outlet  } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 import { auth, db } from "../../firebase_setup/firebase";
@@ -8,6 +8,21 @@ import {collection, query, where, onSnapshot} from 'firebase/firestore';
 const NavChatApp = () => {
   
   const [inviteNum, setNum] = useState(0);
+  const [contactPage, setContactPage] = useState();
+  const [invitePage, setInvitePage] = useState();
+  const [settingPage, setSettingPage] = useState();
+
+  const currentContactStyle = ({ isActive }) => {
+    isActive? setContactPage(true) : setContactPage(false)
+  }
+
+  const currentInviteStyle = ({ isActive }) => {
+    isActive? setInvitePage(true) : setInvitePage(false)
+  }
+
+  const currentSettingStyle = ({ isActive }) => {
+    isActive? setSettingPage(true) : setSettingPage(false)
+  }
 
   useEffect(() => {
 
@@ -29,19 +44,24 @@ const NavChatApp = () => {
 
   },[])
 
+  let toggleContact = contactPage ? '-fill' : '';
+  let toggleInvite = invitePage ? '-fill' : '';
+  let toggleSetting = settingPage ? '-fill' : '';
+
    return (
-    <>
-      <nav className="nav__container">
-        <div className="nav__TitleNtabs">
-          <ul className="nav__tabs">
-            <Link to="contacts/contct"><i className="bi bi-chat-square"></i></Link>
-            <Link to="invitations"><i className="bi bi-people-fill">{inviteNum}</i></Link>
-            <Link to="settings"><i className='bi bi-gear'></i></Link>
-          </ul>
-        </div>
-      </nav>
-      <Outlet />
-    </>
+            <>
+            <nav className="nav__container">
+              <div className="nav__TitleNtabs">
+                <ul className="nav__tabs">
+                  <NavLink style={currentContactStyle} to="contacts/contct" ><i className={`bi bi-chat-square${toggleContact}`}></i></NavLink>
+                  <NavLink style={currentInviteStyle} to="invitations"><i className={`bi bi-people${toggleInvite}`}>{inviteNum}</i></NavLink>
+                  <NavLink style={currentSettingStyle} to="settings"><i className={`bi bi-gear${toggleSetting}`}></i></NavLink>
+                </ul>
+              </div>
+            </nav>
+            <Outlet />
+          </>
+
     );
 };
 

@@ -35,8 +35,8 @@
     margin: .2em 1em;
 }
 
-.bi-x-circle{
-    font-size: 1.1rem;
+.bi-caret-left-fill{
+    font-size: 1.3rem;
     color: white;
 }
 
@@ -88,7 +88,7 @@
         font-size: 1.7rem;
     }
     
-    .bi-x-circle{
+    .bi-caret-left-fill{
         font-size: 1.3rem;
     }
 }
@@ -128,7 +128,7 @@
         font-size: 1.8rem;
     }
     
-    .bi-x-circle{
+    .bi-caret-left-fill{
         font-size: 1.4rem;
     }
 }
@@ -136,6 +136,6 @@
 /*High resolution*/
 @media (min-width: 1281px){
     .chatRoom__container{
-        height: 80%;
+        height: 82%;
     }
 }

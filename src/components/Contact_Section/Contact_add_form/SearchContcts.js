@@ -144,41 +144,42 @@ const SearchContcts = (props) => {
     },[name, email])
 
     let toggleActive = Active ? 'form_active' : '';
+    let toggleFill = Active ? '-fill' : '';
 
     return(
-        <>
-            <div className='searchContcts__container'>
-                <motion.div 
-                    className="plus__container"
+            <>
+                <div className='searchContcts__container'>
+                    <motion.div 
+                        className="plus__container"
 
-                    initial={ { opacity: 0, scale: 1.3 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 }}}
-                >
-                    <motion.span onClick={handleEdit}>{editContcts? <i className="bi bi-x-circle"></i> : 'Edit'}</motion.span>
-                    <motion.i whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.96 }} className="bi bi-person-plus-fill" onClick={handleClick}></motion.i>
-                </motion.div>
-            </div>
-            <div className="addContcts__container">
-                <div className={`addContcts__form ${toggleActive}`}>
-                    <form id="addForm" onSubmit={handleAddon}>
-                        <div className="closeBtn__container">
-                            <i className="bi bi-x-circle" onClick={handleClick}></i>
-                        </div>
-                        <h2>{errAlert}</h2>
-                        <div className="addContcts__Name">
-                            <motion.input whileFocus={{ scale: 1.01 }} type="text" id="addContctsName_input" placeholder="Name" value={name} onChange={(e) => handleName(e.target.value)} />
-                        </div>
-                        <div className="addContcts__Email">
-                            <motion.input whileFocus={{ scale: 1.01 }} type="email" id="addContctsEmail_input" placeholder="Email" value={email} onChange={(e) => handleEmail(e.target.value)} />
-                        </div>
-                        <div className="addContctsBtn__container">
-                            <motion.button whileTap={{ scale: 0.95 }} type="submit" id="addContctsBtn">Send</motion.button>
-                        </div>
-                    </form>
+                        initial={ { opacity: 0, scale: 1.3 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 }}}
+                    >
+                        <motion.span onClick={handleEdit}>{editContcts? <i className="bi bi-x-circle"></i> : 'Edit'}</motion.span>
+                        <motion.i whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.96 }} className={`bi bi-person-plus${toggleFill}`} onClick={handleClick}></motion.i>
+                    </motion.div>
                 </div>
-            </div>
-        </>
+                <div className="addContcts__container">
+                    <div className={`addContcts__form ${toggleActive}`}>
+                        <form id="addForm" onSubmit={handleAddon}>
+                            <div className="closeBtn__container">
+                                <i className="bi bi-x-circle" onClick={handleClick}></i>
+                            </div>
+                            <h2>{errAlert}</h2>
+                            <div className="addContcts__Name">
+                                <motion.input whileFocus={{ scale: 1.01 }} type="text" id="addContctsName_input" placeholder="Name" value={name} onChange={(e) => handleName(e.target.value)} />
+                            </div>
+                            <div className="addContcts__Email">
+                                <motion.input whileFocus={{ scale: 1.01 }} type="email" id="addContctsEmail_input" placeholder="Email" value={email} onChange={(e) => handleEmail(e.target.value)} />
+                            </div>
+                            <div className="addContctsBtn__container">
+                                <motion.button whileTap={{ scale: 0.95 }} type="submit" id="addContctsBtn">Send</motion.button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </>
 
     );
 }

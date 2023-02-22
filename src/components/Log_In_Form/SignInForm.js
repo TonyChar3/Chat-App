@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { UserAuth } from '../../context/AuthContext';
 
 function SignIn(){
-  const { SignIn, fetchContactsList } = UserAuth();
+  const { SignIn } = UserAuth();
   const navigate = useNavigate();
 
   const [showPasswrd, setShow ] = useState(false);
@@ -39,7 +39,12 @@ function SignIn(){
 
     //[todo] Navigate to the menu if signed in
     if(auth.currentUser != null){
-      navigate("/navbar/contacts/contct");
+      setLoading(true);
+      setTimeout(() => {
+        navigate("/navbar/contacts/contct");
+        setLoading(false);
+      },2000);
+      
     }
   }
 

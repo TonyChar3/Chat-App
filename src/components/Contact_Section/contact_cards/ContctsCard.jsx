@@ -138,10 +138,14 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
             <div className="name__container">
                 <span className="contcts__name">{contct_name}</span>
             </div>
-
-            <motion.div whileHover={{ scale: 1.1 }} className="chatIcon__container">
+            {
+            edit?
+                null
+            :
+                <motion.div whileHover={{ scale: 1.1 }} className="chatIcon__container">
                     <Link to={chat} state={{ room_name: contct_name, cntct_id: contct_id, chatroomID: chatroom_ID }}>{confirmit}</Link>
-            </motion.div>
+                </motion.div>
+            }
 
             {
             edit? 

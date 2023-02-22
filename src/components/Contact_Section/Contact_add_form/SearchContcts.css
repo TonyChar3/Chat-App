@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: .3em;
     border-bottom: 3px solid white;
     background-color: #c72b83;
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
@@ -33,7 +34,7 @@
     padding: .5em;
     border: 2px solid white;
     border-radius: 15px;
-    background-color: rgba(123, 123, 123, 0.49);
+    background-color: rgba(101, 101, 101, 0.169);
     -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
     box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.229);
     animation: shadow-drop-2-center;
@@ -65,18 +66,23 @@
     /*Typography*/
 #addContctsName_input,
 #addContctsEmail_input{
-    background-color: rgba(211, 211, 211, 1);
-    outline-color: #c72b83;
+    background-color: rgba(255, 255, 255, 0.073);
+    outline: none;
     border-radius: 10px;
-    border: 2px solid #c72b83;
+    border: 3px solid #6bbcf6;
     padding: .3em;
+}
+
+#addContctsName_input::placeholder,
+#addContctsEmail_input::placeholder{
+    color: white;
 }
 
 #addContctsName_input:active,
 #addContctsName_input:focus,
 #addContctsEmail_input:active,
 #addContctsEmail_input:focus{
-    background-color: #c72b837d;
+    background-color: #6bbcf686;
 }
 
 .plus__container > i{
@@ -84,7 +90,7 @@
     color:white;
 }
 
-.bi-person-plus-fill{
+.bi-person-plus{
     justify-self: flex-start;
 }
 
@@ -108,23 +114,24 @@
 
 #addContctsBtn{
     width: 100%;
-    font-weight: 450;
+    font-weight: 700;
     padding: .3em;
     border: none;
-    border-radius: 15px;
-    background-color:white;
-    color:rgba(5, 5, 5, 0.512);
+    border-radius: 20px;
+    background-color:rgba(255, 255, 255, 0.073);
+    color:white;
+    border: 3px solid #6fbef5;
     letter-spacing: 1px;
 }
 
-.bi-person-plus-fill:active{
+.bi-person-plus:active{
     transform: scale(0.95);
     transition: all 0.3s;
 }
 
 .closeBtn__container > i{
     margin-left: .5em;
-    color: white;
+    color: #52b1f5;
     font-size: 1.4rem;
 }
 
