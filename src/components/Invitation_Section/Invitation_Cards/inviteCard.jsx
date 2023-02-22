@@ -37,22 +37,19 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
             // remove the out-dated object from the array
             await updateDoc(senderRef, {
                 contact: arrayRemove({
+                    "chatroom_id": 0,
                     "confirmed": "",
-                    "email": auth.currentUser.email,
-                    "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName,
-                    "chatroom_id": 0
+                    "id": auth.currentUser.uid
+                    
                 })
             })
 
             // add a up-to-date object with confirmed set to false
             await updateDoc(senderRef,{
                 contact: arrayUnion({
+                    "chatroom_id": 0,
                     "confirmed": "false",
-                    "email": auth.currentUser.email,
-                    "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName,
-                    "chatroom_id": 0
+                    "id": auth.currentUser.uid
                 })
             })
    
@@ -74,11 +71,9 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
             // add the invite to the contact list
             await updateDoc(invitRef,{
                 contact:arrayUnion({
+                    "chatroom_id": chatR_id,
                     "confirmed": "true",
-                    "email": sender_email,
                     "id": sender_uid,
-                    "name": sender_name,
-                    "chatroom_id": chatR_id
                 })
             })
 
@@ -98,22 +93,18 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
             // remove the out-dated contact object
             await updateDoc(senderRef, {
                 contact:arrayRemove({
+                    "chatroom_id": 0,
                     "confirmed": "",
-                    "email": auth.currentUser.email,
-                    "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName,
-                    "chatroom_id": 0
+                    "id": auth.currentUser.uid,  
                 })
             })
 
             // add the new up-to-date object to the contact list
             await updateDoc(senderRef, {
                 contact: arrayUnion({
+                    "chatroom_id": chatR_id,
                     "confirmed": "true",
-                    "email": auth.currentUser.email,
                     "id": auth.currentUser.uid,
-                    "name": auth.currentUser.displayName,
-                    "chatroom_id": chatR_id
                 })
             })
 

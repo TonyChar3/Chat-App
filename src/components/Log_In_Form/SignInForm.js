@@ -39,9 +39,6 @@ function SignIn(){
 
     //[todo] Navigate to the menu if signed in
     if(auth.currentUser != null){
-
-      fetchContactsList();
-      
       navigate("/navbar/contacts/contct");
     }
   }

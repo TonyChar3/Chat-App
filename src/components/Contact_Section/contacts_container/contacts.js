@@ -6,18 +6,21 @@ import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 import { motion } from 'framer-motion';
-import { UserAuth } from '../../../context/AuthContext';
 
 const Contacts = () => {
-    const { updateUserApp, updated_contact, contacts } = UserAuth();
     const [contact, setContact] = useState([]);
-    const [uptoDate, setUpToDate] = useState([]);
+    const [fetch_data, setFetchData] = useState([]);
     const [edit, setEdit] = useState();
 
-    
+    console.log(fetch_data.length)
 
     const handleclickEdit = (data) => {
         setEdit(data)
+    }
+
+    const Deleted = (event) => {
+        setContact(event)
+        setFetchData(event)
     }
 
     useEffect(() => {
@@ -30,23 +33,62 @@ const Contacts = () => {
     
                 const unsubscribe = onSnapshot(q, (querySnapshot) => {
     
-                    const contacte = [];
+                    const data = [];
     
                     querySnapshot.forEach((doc) => {
-    
+                        console.log(querySnapshot.size)
                         doc.data().contact.forEach(con => {
-                            
-                            contacte.push(con);
-                        })
-                        
-                        setContact(contacte)
+                            data.push(con);
+                        }) 
                     })
+                    setFetchData(data)
+                    
                 })
-
+                
                 return () => unsubscribe 
             }
         })
     },[])
+
+    useEffect(() => {
+
+        if(fetch_data.length > 0){
+
+            fetch_data.forEach(each_u => {
+
+                const q = query(collection(db, 'users'), where("user_uid","==", each_u.id))
+    
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    
+                    let data = [];
+    
+                    querySnapshot.forEach((doc) => {
+                        console.log(querySnapshot.size)
+                        let contact_data = {
+                            id: doc.data().user_uid,
+                            name: doc.data().name,
+                            email: doc.data().email,
+                            chatroom_id: each_u.chatroom_id,
+                            confirmed: each_u.confirmed
+                        }
+                                    
+                        data.push(contact_data)
+                                    
+                    })
+                    setContact(data)
+                    
+                })
+                           
+                return () => unsubscribe
+            })
+            
+        } else {
+            setContact([])
+        }
+
+    },[fetch_data, contact.length])
+    
+    console.log(contact)
 
     return(
         <>
@@ -60,12 +102,9 @@ const Contacts = () => {
         >
             <div className="contcts__secndContainer">
                 <ContctsScroll>
-                    {!contact.length ? 
-                    <div className="emptyMessage__container">
-                        <h2 id="empty__message">Add a contact to chatt :)</h2>
-                    </div>
-                     : 
-                     contact?.map((contctz) => (
+                    {contact.length > 0 ? 
+
+                     contact.map((contctz) => (
                         <ContctsCard 
                             key={contctz.id} 
                             contct_name={contctz.name} 
@@ -74,8 +113,14 @@ const Contacts = () => {
                             confirmed={contctz.confirmed} 
                             chatroom_ID={contctz.chatroom_id}
                             contct_edit={edit}
+                            funct={Deleted}
                         />
-                    ))}
+                    ))
+                    :
+                    <div className="emptyMessage__container">
+                        <h2 id="empty__message">Add a contact to chatt :)</h2>
+                    </div>
+                    }
                 </ContctsScroll>
             </div>
         </motion.div>
