@@ -1,3 +1,4 @@
+/*Layout*/
 .messg__container{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -34,13 +35,13 @@
     justify-self: flex-start;
 }
 
-.right{
+.messg__right{
     justify-self: flex-end;
     background-color: #784BA0;
     border-bottom-left-radius: 15px;
 }
 
-.left{
+.messg__left{
     justify-self: flex-start;
     align-self: flex-start;
     background-color: rgb(176, 176, 176); 
@@ -56,7 +57,7 @@
     display: none;
 }
 
-.messDel__container{
+.chatDelete__container{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -86,7 +87,7 @@
     word-break: normal;
 }
 
-.messDel__container > i{
+.chatDelete__container > i{
     margin-top: .2em;
     margin-right: .3em;
     color: rgba(255, 255, 255, 0.926);
@@ -106,7 +107,7 @@
         font-size: 0.78rem;
     }
 
-    .messDel__container > i{
+    .chatDelete__container > i{
         font-size: 1.4rem;
     }
 }
@@ -126,7 +127,7 @@
         font-size: 0.80rem;
     }
 
-    .messDel__container > i{
+    .chatDelete__container > i{
         font-size: 1.2rem;
     }
 }

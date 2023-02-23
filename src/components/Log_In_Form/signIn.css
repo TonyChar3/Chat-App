@@ -1,5 +1,6 @@
     /*Layout*/
-.signIn__container > form{
+
+.signin-form__container > form{
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -15,37 +16,11 @@
     animation: shadow-drop-2-center;
 }
 
-.loader-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #c72b83;
-    background-image: linear-gradient(230deg, #c72b83 5%, #784BA0 25%, #2B86C5 70%);
-    height: 100%;
-}
-
-.square-loader{
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .5em;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.688);
-    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
-    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.295);
-    animation: shadow-drop-2-center;
-}
-
-.square-loader > i{
-    font-size: 3.5rem;
-}
-
-.signIn__container{
+.signin-form__container{
     width: 100%;
 }
 
-.SignIn__background{
+.signin-form__wrapper{
     width: 100%;
     height: 100%;
     display: flex;
@@ -56,34 +31,34 @@
     background-image: linear-gradient(230deg, #c72b83 5%, #784BA0 25%, #2B86C5 70%);
 }
 
-.userName__wrapper{
+.signin-email__container{
     display: flex;
     flex-direction: column;
 }
 
-.password__wrapper{
+.signin-password__container{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.buttons__wrapper{
+.button__container{
     display: flex;
     flex-direction: column;
 }
 
-.buttons__wrapper > input,
-.registr__btn{
+.button__container > input,
+.register-link__container{
     margin-top: .5em;
 }
 
-.userName__wrapper, 
-.password__wrapper, 
-.buttons__wrapper{
+.signin-email__container, 
+.signin-password__container, 
+.button__container{
     margin-top: 1em;
 }
 
-.showPasswrd{
+.show-password__span{
     width: 20px;
     text-align: center;
     font-size: 1.1rem;
@@ -91,8 +66,9 @@
 }
 
     /*Typography*/
-#userNameInput,
-#passWrdInput{
+
+#signin-email__input,
+#signin-password__input{
     background-color: rgba(255, 255, 255, 0);
     outline: none;
     border-radius: 15px;
@@ -101,30 +77,33 @@
     margin-bottom: .3em;
 }
 
-#userNameInput::placeholder,
-#passWrdInput::placeholder{
+#signin-email__input::placeholder,
+#signin-password__input::placeholder{
     color: white;
 }
 
     
-#userNameInput:active,#userNameInput:focus,
-#passWrdInput:active, #passWrdInput:focus{
+#signin-email__input:active,
+#signin-email__input:focus,
+#signin-password__input:active, 
+#signin-password__input:focus{
     background-color: #ef23977a;
     border: 3px solid white;
 }
 
-.signIn__container> form > h2{
+.signin-form__container > form > h2{
     font-size: 2.8rem;
     color: #8ecbf7;
 }
 
-.signIn__container > form > h2 > i{
+.signin-form__container > form > h2 > i{
     margin-left: .2em;
     color: white;
 }
 
     /*Buttons*/
-#signIn__btn{
+
+#signin__button{
     font-size: 1.2rem;
     font-weight: 700;
     padding: .5em;
@@ -134,35 +113,35 @@
     border-radius: 20px;
 }
 
-.registr__btn > a{
+.register-link__container > a{
     font-size: 1.1rem;
     color: white;
     cursor: pointer;
 }
 
-.registr__btn{
+.register-link__container{
     padding: .5em;
     text-decoration: underline;
     color: white;
 }
 
+/*Tablets*/
 @media (min-width: 765px){
-    .signIn__container{
+
+        /*Layout*/
+
+    .signin-form__container{
         width: 50%;
         align-self: center;
     }
-
-    .square-loader{
-        width: 15%;
-    }
 }
 
+/*Low resolution desktop*/
 @media (min-width: 1024px){
-    .signIn__container{
-        width: 30%;
-    }
 
-    .square-loader{
-        width: 8%;
+        /*Layout*/
+        
+    .signin-form__container{
+        width: 30%;
     }
 }

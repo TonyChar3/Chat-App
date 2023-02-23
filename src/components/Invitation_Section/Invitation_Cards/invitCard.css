@@ -1,18 +1,19 @@
-/*Layout*/
-.invitationCard__container{
+    /*Layout*/
+
+.invite-card__container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 1em 0 2em 0;
     padding: .2em;
 }
 
-.Info__wrapper{
+.invite-info__wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.requestBtn__container{
+.invite-button__container{
     width: 80%;
     align-self: center;
     justify-self: center;
@@ -21,7 +22,7 @@
     justify-content: space-around;
 }
 
-.senderInfo__container{
+.sender-info__container{
     position: absolute;
     width: 45%;
     z-index: 2;
@@ -44,14 +45,15 @@
     transition: all 0.6s ease;
 }
 
-.email__wrapper{
+.sender-email__wrapper{
     position: relative;
     z-index: 1;
     bottom: 6%;
     transition: all 0.3s;
 }
 
-/*Typography*/
+    /*Typography*/
+
 .sender__name{
     margin: 0 .3em 0 .4em;
     color: white;
@@ -62,25 +64,26 @@
     color: white;
 }
 
-.arrow_wrapper{
+.arrow-icon_wrapper{
     transition: all 0.3s ease;
 }
 
-.arrow_wrapper > i{
+.arrow-icon_wrapper > i{
     color: white;
     transition: all 0.3s;
 }
 
-.down{
+.arrow-down{
     -webkit-transform: rotate(-180deg);
     transform: rotate(-180deg);
     transition: all 0.3s ease;
 }
 
 
-/*Buttons*/
-.accept__btn,
-.decline__btn{
+    /*Buttons*/
+
+.accept__button,
+.decline__button{
     border-radius: 10px;
     border: 2px solid white;
     border-radius: 50px;
@@ -88,32 +91,34 @@
     font-size: 1.3rem;
 }
 
-.accept__btn{
+.accept__button{
     background-color: rgb(16, 202, 16);
 }
 
-.decline__btn{
+.decline__button{
     background-color: rgb(246, 41, 41);
 }
 
-.accept__btn:active,
-.decline__btn:active{
+.accept__button:active,
+.decline__button:active{
     transform:scale(0.85);
     transition: all 0.2s ease;
 }
 
-/*Tablets*/
+    /*Tablets*/
 @media (min-width: 765px){
-    /*Layout*/
-    .invitationCard__container{
+
+        /*Layout*/
+
+    .invite-card__container{
         margin: 1em 0 2.5em 0;
     }
 
-    .senderInfo__container{
+    .sender-info__container{
         width: 35%;
     }
 
-    .requestBtn__container{
+    .invite-button__container{
         width: 65%;
     }
 
@@ -122,7 +127,8 @@
         transform: translate(0px, 38px);
     }
 
-    /*Typography*/
+        /*Typography*/
+        
     .sender__name{
         font-size: 1.3rem;
     }
@@ -131,8 +137,8 @@
         font-size: 1.2rem;
     }
 
-    .accept__btn,
-    .decline__btn{
+    .accept__button,
+    .decline__button{
         font-size: 1.5rem;
     }
 }

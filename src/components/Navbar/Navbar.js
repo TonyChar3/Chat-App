@@ -5,40 +5,50 @@ import { auth, db } from "../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 
 
-const NavChatApp = () => {
+const NavBar = () => {
   
-  const [inviteNum, setNum] = useState(0);
-  const [contactPage, setContactPage] = useState();
-  const [invitePage, setInvitePage] = useState();
-  const [settingPage, setSettingPage] = useState();
+  const [inviteNum, setNum] = useState(0); // invitation counter
+  const [contactPage, setContactPage] = useState(); // Contact page is active
+  const [invitePage, setInvitePage] = useState(); // Invitation page is active
+  const [settingPage, setSettingPage] = useState(); // Setting page is active
 
+  // Contact page is active
   const currentContactStyle = ({ isActive }) => {
     isActive? setContactPage(true) : setContactPage(false)
   }
 
+  // Invitation page is active
   const currentInviteStyle = ({ isActive }) => {
     isActive? setInvitePage(true) : setInvitePage(false)
   }
 
+  // Setting page is active
   const currentSettingStyle = ({ isActive }) => {
     isActive? setSettingPage(true) : setSettingPage(false)
   }
 
   useEffect(() => {
 
+    // Keep the current logged in user state
     auth.onAuthStateChanged(function(user) {
             
       if(user){
-          const q = query(collection(db,"users"), where("user_uid", "==", auth.currentUser.uid));
 
-          const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        // query to get the current logged in user document
+        const q = query(collection(db,"users"), where("user_uid", "==", auth.currentUser.uid));
 
-              querySnapshot.forEach((doc) => {
-                setNum(doc.data().invitations.length)
-              })
+        // query Snapshot
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+
+          // Loop through the snapshot document
+          querySnapshot.forEach((doc) => {
+
+            // set the counter of invitation
+            setNum(doc.data().invitations.length)
+
           })
-
-          return () => unsubscribe
+        })
+        return () => unsubscribe
       } 
     })
 
@@ -49,20 +59,44 @@ const NavChatApp = () => {
   let toggleSetting = settingPage ? '-fill' : '';
 
    return (
-            <>
-            <nav className="nav__container">
-              <div className="nav__TitleNtabs">
-                <ul className="nav__tabs">
-                  <NavLink style={currentContactStyle} to="contacts/contct" ><i className={`bi bi-chat-square${toggleContact}`}></i></NavLink>
-                  <NavLink style={currentInviteStyle} to="invitations"><i className={`bi bi-people${toggleInvite}`}>{inviteNum}</i></NavLink>
-                  <NavLink style={currentSettingStyle} to="settings"><i className={`bi bi-gear${toggleSetting}`}></i></NavLink>
-                </ul>
-              </div>
-            </nav>
-            <Outlet />
-          </>
+      <>
+        <nav className="navbar__container">
+          <div className="tabs__container">
+
+            <ul className="navbar__tabs">
+
+              <NavLink 
+                style={currentContactStyle} 
+                to="contacts/contct" 
+              >
+                <i className={`bi bi-chat-square${toggleContact}`}></i>
+              </NavLink>
+
+              <NavLink 
+                style={currentInviteStyle} 
+                to="invitations"
+              >
+                <i className={`bi bi-people${toggleInvite}`}>
+                  {inviteNum}
+                </i>
+              </NavLink>
+
+              <NavLink 
+                style={currentSettingStyle} 
+                to="settings"
+              >
+                <i className={`bi bi-gear${toggleSetting}`}></i>
+              </NavLink>
+
+            </ul>
+
+          </div>
+        </nav>
+
+        <Outlet />
+      </>
 
     );
 };
 
-export default NavChatApp;
+export default NavBar;

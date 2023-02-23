@@ -1,6 +1,64 @@
 .App {
   text-align: center;
 }
+        /*No content message*/
+
+.no-contact__container,
+.no-invitation__container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+}
+
+#no-contact__message,
+#no-invitation__message{
+        text-align: center;
+        margin: 3em;
+        color: white;
+}
+
+        /*Loading sequence*/
+.loader__container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #c72b83;
+        background-image: linear-gradient(230deg, #c72b83 5%, #784BA0 25%, #2B86C5 70%);
+        height: 100%;
+}
+
+.square-icon__container{
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: .5em;
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.688);
+        -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+        box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.295);
+        animation: shadow-drop-2-center;
+}
+    
+.square-icon__container > i{
+        font-size: 3.5rem;
+}
+
+@media (min-width: 765px){
+
+        .square-icon__container{
+                width: 15%;
+        }
+}
+
+@media (min-width: 1024px){
+        
+        .square-icon__container{
+                width: 8%;
+            }
+}
+
 
 /*Animation*/
 .shadow-drop-2-center {

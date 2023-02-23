@@ -1,5 +1,5 @@
     /*Layout*/
-.msgInput__container > form{
+.chatinput__container > form{
     z-index: 2;
     position: absolute;
     left: 0;
@@ -20,13 +20,13 @@
     color: white;
 }
 
-.sendBtn__container:active,
-.sendBtn__container:focus{
+.send_btn__container:active,
+.send_btn__container:focus{
     transform: scale(0.93);
     transition: all 0.2s;
 }
 
-#send__message{
+#chat__input{
     background-color: rgba(255, 255, 255, 0.536);
     outline: none;
     border-radius: 10px;
@@ -35,35 +35,35 @@
     padding: .5em;
 }
 
-#send__message:active,
-#send__message:focus{
+#chat__input:active,
+#chat__input:focus{
     background-color: #c72b8395;
     outline: none;
     color: white;
 }
 
     /*Buttons*/
-.sendBtn__container > button{
+.send_btn__container > button{
     border: none;
     background-color: transparent;
 }
 
 @media (min-width: 410px){
-    #send__message{
+    #chat__input{
         width: 75%;
     }
 }
 
 @media (min-width: 765px){
-    .msgInput__container > form{
+    .chatinput__container > form{
         justify-content: center;
     }
 
-    .sendBtn__container{
+    .send_btn__container{
         margin-left: 3em;
     }
 
-    #send__message{
+    #chat__input{
         width: 65%;
         padding: 1em;
     }
@@ -76,7 +76,7 @@
 }
 
 @media (min-width: 1024px){
-    #send__message{
+    #chat__input{
         width: 50%;
         padding: 1.1em;
     }

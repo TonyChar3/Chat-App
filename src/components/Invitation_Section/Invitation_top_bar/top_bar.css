@@ -9,7 +9,7 @@
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
 
-.footerIcon__container{
+.icon__container{
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -18,11 +18,11 @@
     padding: .3em .5em;
 }
 
-.footerIcon__container > i{
+.icon__container > i{
     font-size: 2rem;
     color:white;
 }
 
-.bi-chat-square-heart{
+.square-chat-bubble-icon{
     justify-self: flex-start;
 }

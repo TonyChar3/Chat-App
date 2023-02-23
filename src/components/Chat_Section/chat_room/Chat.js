@@ -9,26 +9,35 @@ import { motion } from 'framer-motion';
 
 const ChatSect = ({ convo_name, room_id }) => {
 
-    const [messages, setMessages] = useState([]);
+    const [chats, setChats] = useState([]); // chat array state
 
     useEffect(() => {
+
+        // To keep the current logged in user state
         auth.onAuthStateChanged(function(user){
 
             if(user){
 
+                // query to get the right chatroom from the DB
                 const q = query(collection(db, "chatrooms"), where("room_id", "==", room_id));
 
+                // query Snapshot
                 const unsubscribe = onSnapshot(q, (querySnapshot) => {
 
-                    let messagez = [];
+                    // array for the chat data from the snapshot
+                    let chat_data = [];
 
                     querySnapshot.forEach((doc) => {
 
-                        doc.data().messages.forEach(mess => {
-                            messagez.push(mess)
+                        // loop through the messages array
+                        doc.data().messages.forEach(chatt => {
+
+                            // push each separate chat into the array
+                            chat_data.push(chatt)
                         })
 
-                        setMessages(messagez)
+                        // set the state
+                        setChats(chat_data)
                     })
                 })
 
@@ -39,29 +48,41 @@ const ChatSect = ({ convo_name, room_id }) => {
     });
 
     return(
-        <motion.div 
-            className="main-content"
+        <>
+            <motion.div 
+                className="chat-room__wrapper"
 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.1 } }}
-        >
-            <div className="chatRoom__container">
-                <div className="userProfile__container">
-                    <div className="exitConvo__container">
-                       <Link to="/navbar/contacts/contct"><i className="bi bi-caret-left-fill"></i></Link> 
-                    </div>
-                    <div className="img-name__container">
-                        <span className="profileName">{convo_name}</span>
-                    </div>
-                </div> 
-                <Scroll>
-                    {messages?.map((message) => (
-                        <Messgs key={message.id} mess={message} chatroomID={room_id} />
-                    ))}
-                </Scroll>
-            </div>
-        </motion.div>
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.1 } }}
+            >
+                <div className="chat-room__container">
+                    <div className="user-profile__container">
+
+                        <Link to="/navbar/contacts/contct">
+                            <i className="bi bi-caret-left-fill exit-arrow"></i>
+                        </Link> 
+                        
+                        <span className="name__span">
+                            {convo_name}
+                        </span>
+
+                    </div> 
+
+                    <Scroll>
+                        {chats?.map((message) => (
+                            <Messgs 
+                                key={message.id} 
+                                mess={message} 
+                                chatroomID={room_id} 
+                            />
+                        ))}
+                    </Scroll>
+
+                </div>
+            </motion.div>
+        </>
+
     );
 }
 

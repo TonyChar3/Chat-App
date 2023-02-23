@@ -1,11 +1,11 @@
     /*Layout*/
-.main-content{
+.chat-room__wrapper{
     height: 100%;
     background-color: #c72b83;
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
 
-.chatRoom__container{
+.chat-room__container{
     height: 100%;
     display: flex;
     flex-direction: column; 
@@ -14,7 +14,7 @@
     background-color: rgba(228, 228, 228, 0.316);
 }
 
-.userProfile__container{
+.user-profile__container{
     position: absolute; 
     width: 80%;
     display: flex;
@@ -29,46 +29,43 @@
 }
 
     /*Typography*/
-.profileName{
+.name__span{
     font-size: 1.4rem;
     color: white;
     margin: .2em 1em;
 }
 
-.bi-caret-left-fill{
+.exit-arrow{
     font-size: 1.3rem;
     color: white;
 }
 
 @media (min-width: 390px){
-    .chatRoom__container{
+    .chat-room__container{
         height: 100%;
     }
 }
 
 /*Large mobile screens*/
 @media (min-width: 410px){
-    .main-content{
+    .chat-room__wrapper{
         height: 100%;
     }
 
-    .chatRoom__container{
+    .chat-room__container{
         height: 95%;
     }
 }
 
 /*Tablets*/
 @media (min-width: 765px){
-    .main-content{
+    .chat-room__wrapper{
         height: 100%;
-    }
-
-    .main-content{
         display: flex;
         justify-content: center;
     }
 
-    .chatRoom__container{
+    .chat-room__container{
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -78,29 +75,29 @@
         animation: shadow-drop-2-center;
     }
 
-    .userProfile__container{
+    .user-profile__container{
         width: 70%;
         border-radius: 15px;
         border: 2px solid white;
     }
 
-    .profileName{
+    .name__span{
         font-size: 1.7rem;
     }
     
-    .bi-caret-left-fill{
+    .exit-arrow{
         font-size: 1.3rem;
     }
 }
 
 @media (min-width: 768px){
-    .chatRoom__container{
+    .chat-room__container{
         height: 95%;
     }
 }
 
 @media (min-width: 820px){
-    .chatRoom__container{
+    .chat-room__container{
         height: 95%;
     }
 }
@@ -108,34 +105,34 @@
 /*Low resolution desktop*/
 @media (min-width: 1024px){
         /*Layout*/
-    .main-content{
+    .chat-room__wrapper{
         background-color: #c72b83;
         background-image: linear-gradient(245deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
     }
 
-    .chatRoom__container{
+    .chat-room__container{
         justify-content: center;
         width: 50%;
         margin-top: 3em;
         border-radius: 20px;
     }
 
-    .userProfile__container{
+    .user-profile__container{
         top: 0%;
     }
 
-    .profileName{
+    .name__span{
         font-size: 1.8rem;
     }
     
-    .bi-caret-left-fill{
+    .exit-arrow{
         font-size: 1.4rem;
     }
 }
 
 /*High resolution*/
 @media (min-width: 1281px){
-    .chatRoom__container{
+    .chat-room__container{
         height: 82%;
     }
 }

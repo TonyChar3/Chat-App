@@ -6,27 +6,31 @@ import { auth, db } from "../../../firebase_setup/firebase";
 
 const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
 
-    const [arrow, setArrow] = useState(false);
+    const [arrow, setArrow] = useState(false); // arrow-icon state
 
     // ref to access the current user document
-    const invitRef = doc(db, 'users', auth.currentUser.uid)
+    const current_user_Ref = doc(db, 'users', auth.currentUser.uid)
 
     // ref to access the request sender document
-    const senderRef = doc(db, 'users', sender_uid)
+    const sender_Ref = doc(db, 'users', sender_uid)
 
-
+    // handle the arrow-icon state
     const handleArrowClick = (e) =>{
+
         e.preventDefault();
+
+        // set state
         setArrow(arrow => !arrow);
     }
 
-    // Decline X
+    // If the invitation is declined
     const handleDecline = async() => {
         
         try{
 
-            //remove the received invitation
-            await updateDoc(invitRef, {
+            //update the document of the current logged in user
+            await updateDoc(current_user_Ref, {
+                // remove the invitation from his 'invitations' array
                 invitations:arrayRemove({
                     "id": sender_uid,
                     "sender_email": sender_email,
@@ -34,8 +38,9 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                 })
             })
 
-            // remove the out-dated object from the array
-            await updateDoc(senderRef, {
+            // update the document of the sender of the invite 
+            await updateDoc(sender_Ref, {
+                // remove the current user from his contact list
                 contact: arrayRemove({
                     "chatroom_id": 0,
                     "confirmed": "",
@@ -44,32 +49,35 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                 })
             })
 
-            // add a up-to-date object with confirmed set to false
-            await updateDoc(senderRef,{
+            // update the document of the sender of the invite
+            await updateDoc(sender_Ref,{
+                // add again the current user with 'confirmed' set to false
+                // -> let the other user know the invite he sent was declined
                 contact: arrayUnion({
                     "chatroom_id": 0,
                     "confirmed": "false",
                     "id": auth.currentUser.uid
                 })
             })
-   
+
+        // catch error
         } catch(error){
             console.log(error)
         }
 
     }
 
-    // Accept
-    // class to handle the acceptation of the request
+    // If the invitation is accepted
     const handleAccept = async() => {
 
-        //variable for the random chatroom ID
+        // variable for the random chatroom ID
         let chatR_id = Math.floor(Math.random()*1000)
 
         try{
 
-            // add the invite to the contact list
-            await updateDoc(invitRef,{
+            // update the current logged in user document
+            await updateDoc(current_user_Ref,{
+                // add the sender to his contact list
                 contact:arrayUnion({
                     "chatroom_id": chatR_id,
                     "confirmed": "true",
@@ -77,8 +85,9 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                 })
             })
 
-            // remove it from the invitations list
-            await updateDoc(invitRef,{
+            // update the current logged in user document
+            await updateDoc(current_user_Ref,{
+                // remove the invite from his 'invitations' array
                 invitations:arrayRemove({
                     "id": sender_uid,
                     "sender_email": sender_email,
@@ -90,8 +99,9 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                 Modify the sender contact 'confirmed' field to 'true'
             */
 
-            // remove the out-dated contact object
-            await updateDoc(senderRef, {
+            // update the sender document
+            await updateDoc(sender_Ref, {
+                // remove the current user from his contact list
                 contact:arrayRemove({
                     "chatroom_id": 0,
                     "confirmed": "",
@@ -99,8 +109,10 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                 })
             })
 
-            // add the new up-to-date object to the contact list
-            await updateDoc(senderRef, {
+            // update the sender document
+            await updateDoc(sender_Ref, {
+                // add the current user to his contact list
+                // -> confirmed set to true to be able to chat with him
                 contact: arrayUnion({
                     "chatroom_id": chatR_id,
                     "confirmed": "true",
@@ -127,31 +139,54 @@ const InviteCard = ({ sender_name, sender_email, sender_uid }) => {
                     }
                 }
             })
-
+        
+        // catch error
         } catch(error){
             console.log(error)
         }
     }
 
     return(
-        <div className="invitationCard__container">
-            <div className="Info__wrapper">
-                <div className="senderInfo__container">
-                    <span className="sender__name">{sender_name}</span>
-                    <div className={`arrow_wrapper ${arrow? "" : "down"}`}>
-                        <i onClick={(e) => handleArrowClick(e)} className={`bi bi-caret-up `}></i>
+        <>
+            <div className="invite-card__container">
+                <div className="invite-info__wrapper">
+
+                    <div className="sender-info__container">
+                        <span className="sender__name">
+                            {sender_name}
+                        </span>
+
+                        <div className={`arrow-icon_wrapper ${arrow? "" : "arrow-down"}`}>
+                            <i onClick={(e) => handleArrowClick(e)} className={`bi bi-caret-up `}></i>
+                        </div>
                     </div>
+
+                    <div className={`sender-email__wrapper ${arrow? "show-email" : ""}`}>
+                        <span className="sender__email">
+                            {sender_email}
+                        </span>
+                    </div>
+                    
                 </div>
-                <div className={`email__wrapper ${arrow? "show-email" : ""}`}>
-                    <span className="sender__email">{sender_email}</span>
+
+                <div className="invite-button__container">
+                    <button 
+                        className="accept__button" 
+                        onClick={handleAccept}
+                    >
+                        <i className="bi bi-check"></i>
+                    </button>
+
+                    <button 
+                        className="decline__button" 
+                        onClick={handleDecline}
+                    >
+                        <i className="bi bi-x"></i>
+                    </button>
                 </div>
-                
+
             </div>
-            <div className="requestBtn__container">
-                <button className="accept__btn" onClick={handleAccept}><i className="bi bi-check"></i></button>
-                <button className="decline__btn" onClick={handleDecline}><i className="bi bi-x"></i></button>
-            </div>
-        </div>
+        </>
     );
 }
 

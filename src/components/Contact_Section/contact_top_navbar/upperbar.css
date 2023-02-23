@@ -1,5 +1,6 @@
     /*Layout*/
-.searchContcts__container{
+
+.upper-navbar__container{
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -11,7 +12,7 @@
     transition: 0.6s ease;
 }
 
-.plus__container{
+.add-contact-icon__container{
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -20,7 +21,7 @@
     padding: .3em .5em;
 }
 
-.addContcts__form > form{
+.add-a-contact__container > form{
     position: absolute;
     z-index: 1;
     display: flex;
@@ -46,16 +47,16 @@
     transition: all 0.4s;
 }
 
-.addContcts__Name{
+.name-input__container{
     margin: 1em 0;
 }
 
-.addContctsBtn__container{
+.add-btn__container{
     width: 40%;
     margin: .6em 0;
 }
 
-.closeBtn__container{
+.close-btn__container{
     width: 100%;
     display:flex;
     flex-direction: row;
@@ -63,9 +64,14 @@
     align-items: center;
 }
 
+.person-plus__icon{
+    justify-self: flex-start;
+}
+
     /*Typography*/
-#addContctsName_input,
-#addContctsEmail_input{
+
+#contact-name__input,
+#contact-email__input{
     background-color: rgba(255, 255, 255, 0.073);
     outline: none;
     border-radius: 10px;
@@ -73,46 +79,42 @@
     padding: .3em;
 }
 
-#addContctsName_input::placeholder,
-#addContctsEmail_input::placeholder{
+#contact-name__input::placeholder,
+#contact-email__input::placeholder{
     color: white;
 }
 
-#addContctsName_input:active,
-#addContctsName_input:focus,
-#addContctsEmail_input:active,
-#addContctsEmail_input:focus{
+#contact-name__input:active,
+#contact-name__input:focus,
+#contact-email__input:active,
+#contact-email__input:focus{
     background-color: #6bbcf686;
 }
 
-.plus__container > i{
+.add-contact-icon__container > i{
     font-size: 2rem;
     color:white;
 }
 
-.bi-person-plus{
-    justify-self: flex-start;
-}
-
-.addContcts__form > form > h2{
+.add-a-contact__container > form > h2{
     color: rgb(239, 101, 101);
     text-align: center;
 }
 
-.plus__container > span{
+.add-contact-icon__container > span{
     font-size: 1.2rem;
     color:white;
     text-decoration: underline;
     cursor: pointer;
 }
 
-.plus__container > span > i{
+.add-contact-icon__container > span > i{
     font-size: 1.45rem;
 }
 
     /*Buttons*/
 
-#addContctsBtn{
+#form-add-button{
     width: 100%;
     font-weight: 700;
     padding: .3em;
@@ -124,42 +126,48 @@
     letter-spacing: 1px;
 }
 
-.bi-person-plus:active{
+.person-plus__icon:active{
     transform: scale(0.95);
     transition: all 0.3s;
 }
 
-.closeBtn__container > i{
+.close-btn__container > i{
     margin-left: .5em;
     color: #52b1f5;
     font-size: 1.4rem;
 }
 
+    /*Media queries*/
+
+/*Tablets screens*/
 @media (min-width: 765px){
-    /*Layout*/
-    .addContcts__form > form{
+
+        /*Layout*/
+
+    .add-a-contact__container > form{
         width: 50%;
         left: 25%;
     }
 
-    .addContctsBtn__container{
+    .add-btn__container{
         width: 20%;
     }
 
-    /*Typography*/
-    .plus__container > i{
+        /*Typography*/
+
+    .add-contact-icon__container > i{
         font-size: 2rem;
     }
 
-    .closeBtn__container > i{
+    .close-btn__container > i{
         font-size: 1.4rem;
     }
 
-    .addContcts__form > form > h2{
+    .add-a-contact__container > form > h2{
         font-size: 2.5rem;
     }
 
-    #addContctsBtn{
+    #form-add-button{
         width: 100%;
         padding: .5em;
         margin: .2em 0;
@@ -167,31 +175,34 @@
     }
 }
 
+/*Low resolution desktop*/
 @media (min-width: 1024px){
-    /*Layout*/
-    .addContcts__form > form{
+        /*Layout*/
+
+    .add-a-contact__container > form{
         width: 25%;
         left: 38%;
     }
 
-    .addContctsBtn__container{
+    .add-btn__container{
         width: 18%;
     }
 
-    .plus__container{
+    .add-contact-icon__container{
         padding: .3em 3em;
     }
 
-    /*Typography*/
-    .plus__container > i{
+        /*Typography*/
+
+    .add-contact-icon__container > i{
         font-size: 2.1rem;
     }
     
-    .closeBtn__container > i{
+    .close-btn__container > i{
         font-size: 1.6rem;
     }
     
-    .addContcts__form > form > h2{
+    .add-a-contact__container > form > h2{
         font-size: 2rem;
     }
 }

@@ -1,5 +1,6 @@
     /*Layout*/
-.registr__container > form{
+
+.register-form__container > form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +14,7 @@
     animation: shadow-drop-2-center;
 }
 
-.Registr__background{
+.register-form__wrapper{
     width: 100%;
     height: 100%;
     display: flex;
@@ -24,7 +25,7 @@
     background-image: linear-gradient(230deg, #c72b83 5%, #784BA0 25%, #2B86C5 70%);
 }
 
-.registr__container{
+.register-form__container{
     width: 100%;
 }
 
@@ -40,38 +41,26 @@
     color:rgb(20, 180, 233);
 }
 
-.fullname__wrapper{
+.register-email__container{
     display: flex;
     flex-direction: column;
 }
 
-#EmailInput{
-    background-color: rgba(255, 255, 255, 0);
-    outline: none;
-    border-radius: 15px;
-    border: 3px solid #8ecbf7;
-    padding: .5em;
-    margin-bottom: .3em;
-}
-
-#EmailInput::placeholder{
-    color: white;
-}
-
-#EmailInput:active,
-#EmailInput:focus{
-    background-color: #c72b83ae;
-    border: 3px solid white;
+.register-email__container,
+.register-name__container,
+.register-password__container{
+    margin-top: .5em;
 }
 
     /*Typography*/
-.registr__container > form > h2{
+
+.register-form__container > form > h2{
     color: #8ecbf7;
     font-size: 2.5rem;
     margin-bottom: .5em;
 }
 
-.registr__container > form > h2 > i{
+.register-form__container > form > h2 > i{
     margin-left: .2em;
     color: white;
 }
@@ -85,31 +74,71 @@
     color: red;
 }
 
-.buttons__wrapper > a{
+#register-email__input,
+#register-name__input,
+#register-password__input{
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border-radius: 15px;
+    border: 3px solid #8ecbf7;
+    padding: .5em;
+    margin-bottom: .3em;
+}
+
+#register-email__input::placeholder,
+#register-name__input::placeholder,
+#register-password__input::placeholder{
+    color: white;
+}
+
+#register-email__input:active,
+#register-email__input:focus,
+#register-name__input:active,
+#register-name__input:focus,
+#register-password__input:active,
+#register-password__input:focus{
+    background-color: #c72b83ae;
+    border: 3px solid white;
+}
+
+    /*Button*/
+#register__button{
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: .5em;
+    background-color: rgba(255, 255, 255, 0.073);
+    color: white;
+    border: 3px solid #8ecbf7;
+    border-radius: 20px;
+}
+
+.button__container > a{
     color: white;
     font-size: 1.1rem;
     text-decoration: underline;
     
 }
 
-.buttons__wrapper > button{
+.button__container > button{
     margin-bottom: .3em;
 }
 
-.buttons__wrapper{
+.button__container{
     padding: .2em;
     text-align: center;
 }
 
+/*Tablets*/
 @media (min-width: 765px){
-    .registr__container{
+    .register-form__container{
         width: 50%;
         align-self: center;
     }
 }
 
+/*Low resolution desktop*/
 @media (min-width: 1024px){
-    .registr__container{
+    .register-form__container{
         width: 30%;
     }
 

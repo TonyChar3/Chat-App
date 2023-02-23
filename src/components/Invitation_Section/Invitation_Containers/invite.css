@@ -1,5 +1,6 @@
-/*Layout*/
-.invites__secndContainer{
+    /*Layout*/
+
+.invitation-section__container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +9,7 @@
     background-color: rgba(228, 228, 228, 0.316);
 }
 
-.invites__firstContainer{
+.invitation-section__wrapper{
     background-color: #c72b83;
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
@@ -16,32 +17,37 @@
 
 /*Large mobile screens*/
 @media (min-width: 360px){
-    /*Layout*/
-    .invites__firstContainer,
-    .invites__secndContainer{
+
+        /*Layout*/
+
+    .invitation-section__wrapper,
+    .invitation-section__container{
         height: 100%;
     }
 }
 
 /*Tablets*/
 @media (min-width: 765px){
-    /*Layout*/
-    .invites__firstContainer,
-    .invites__secndContainer{
+        /*Layout*/
+
+    .invitation-section__wrapper,
+    .invitation-section__container{
         height: 100%;
     }
 }
 
 /*Low-resolution desktops*/
 @media (min-width: 1024px){
-    .invites__firstContainer{
+        /*Layout*/
+
+    .invitation-section__wrapper{
         display: flex;
         justify-content: center;
         background-color: #c72b83;
         background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
     }
 
-    .invites__secndContainer{
+    .invitation-section__container{
         width: 45%;
         align-items: center;
         margin: 1em;
@@ -54,7 +60,9 @@
 
 /*High resolution*/
 @media (min-width: 1281px){
-    .invites__secndContainer{
+        /*Layout*/
+        
+    .invitation-section__container{
         height: 86%;
     }
 }
