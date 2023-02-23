@@ -2,7 +2,8 @@ import './ContctsScroll.css';
 
 const ContctsScroll = (props) => {
     return (
-        <div className="ContctsScroll__container">
+        // scroll to activate when the contact card overflow its height or width
+        <div className="contact-card-scroll__container">
             {props.children}
         </div>
     );

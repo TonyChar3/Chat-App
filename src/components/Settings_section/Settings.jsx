@@ -67,6 +67,11 @@ const Settings = () => {
 
     }
 
+    // handle the door icon open or not
+    const handleClick = () => {
+        setDoor(door => !door);
+    }
+
     // handle the save of the edited name or email or both
     const handleSaving = async(e) => {
 
@@ -175,78 +180,97 @@ const Settings = () => {
                     setName('');
                     setEmail('');
                 }
-
+            
+            // Otherwise if both name & email are changed
             } else{
+
+                // verify array
                 let verif = [];
 
+                // query to check both name & email
                 const queryShot = await getDocs(checkBothInfo)
 
+                // Loop through the Snapshot
                 queryShot.docs.map((doc) => {
+                    // push the document data inside the verif array
                     return verif.push(doc.data())
                 });
 
+                // if the verif array isn't empty
                 if(verif.length > 0){
                     console.log('This name/email already exist')
+                
+                // Else if the array is empty
                 } else{
-                    console.log('Good profile mod')
 
-                    // update the name
+                    // update the current user document
                     await updateDoc(userRef, {
+                        // update his name
                         name: newName
                     });
-                    //db
-                    //auth profile
+                    
+                    // update the user auth profile name with the new name
                     await updateProfile(auth.currentUser, { displayName: newName })
 
-                    //update the email
+                    // get his credentials
                     const crednts = EmailAuthProvider.credential(auth.currentUser.email, credential)
+
+                    // re-authenticate the user with the credentials
                     let reauth = await reauthenticateWithCredential(user, crednts)
 
+                    // the re-authentication is successful
                     if(reauth){
+
+                        // update the current user document
                         await updateDoc(userRef, {
+                            // update his email
                             email: newEmail
                         })
 
+                        // update the user auth profile email
                         await updateEmail(auth.currentUser, newEmail)
                     }
+
+                    // reset all the state
                     setEdit(false);
                     setName('');
                     setEmail('');
                 }
-
             }
+        
+        // catch error
         } catch(error){
             console.log(error)
         }
     }
 
-    const handleClick = () => {
-        setDoor(door => !door);
-    }
-
     useEffect(() => {
-        setName(newName)
-        setEmail(newEmail)
-        setModal(false)
+        setName(newName)// set the new name
+
+        setEmail(newEmail)// set the new email
+
+        setModal(false)// set the modal
     },[newName, newEmail, modal])
 
     return(
         <>
-        <motion.div 
-            className="settings__background"
+            <motion.div 
+                className="setting__wrapper"
 
-            initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: "100%" }}
-            exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
-        >
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "100%" }}
+                exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
+            >
 
-        <SignupModal modal={modal? true : false} />
+            <SignupModal modal={modal? true : false} />
 
-            <div className="setting__container">
-                <div className="settingProfile__container ">
+                <div className="setting-profile__container">
+
                     <form onSubmit={handleSaving} className="shadow-drop-2-center">
-                        <i className="bi bi-person-circle"></i>
-                        <div className="welcomeProfile_Name_container">
+
+                        <i className="bi bi-person-circle profile-icon"></i>
+
+                        <div className="profile-name__container">
                             <input 
                                 type="text" 
                                 className={edit? 'input__active' : 'input__disabled'}
@@ -255,7 +279,8 @@ const Settings = () => {
                                 onChange={(e) => handleName(e.target.value)} 
                             />
                         </div>
-                        <div className="welcomeProfile_Email_container">
+
+                        <div className="profile-email__container">
                             <input 
                                 type="email" 
                                 className={edit? 'input__active' : 'input__disabled'} 
@@ -265,44 +290,69 @@ const Settings = () => {
                                 onChange={(e) => handleEmail(e.target.value)} 
                             />
                         </div>
-                        <div className="logout__container">
-                            <motion.h2 whileTap={{ scale: 0.90 }} whileHover={{ scale: 1.1 }} onMouseOver={handleClick} onMouseLeave={handleClick} onClick={SignOut}>
-                                Log out <i className={`bi bi-door-${door? "open" : "closed"}-fill`}></i>
+
+                        <div className="profile-logout__container">
+
+                            <motion.h2 
+                                whileTap={{ scale: 0.90 }} 
+                                whileHover={{ scale: 1.1 }} 
+                                onMouseOver={handleClick} 
+                                onMouseLeave={handleClick} 
+                                onClick={SignOut}
+                            >
+                                Log out 
+                                <i className={`bi bi-door-${door? "open" : "closed"}-fill`}></i>
                             </motion.h2>
-                            <div className="settingEdit__container">
-                                {edit ? 
-                                <div className="saveOrLeave__container">
-                                    <motion.button 
-                                        whileHover={{ scale: 1.1 }} 
-                                        whileTap={{ scale: 0.90 }} 
-                                        id="save__btn"
-                                        type="submit"
-                                    > save </motion.button> 
+
+                            <div className="profile-edit__container">
+                                { edit ? 
+                                    <div className="edit-save-cancel__container">
+                                        <motion.button 
+                                            whileHover={{ scale: 1.1 }} 
+                                            whileTap={{ scale: 0.90 }} 
+                                            id="save__btn"
+                                            type="submit"
+                                        > save </motion.button> 
+                                        <motion.span 
+                                            whileHover={{ scale: 1.1 }} 
+                                            whileTap={{ scale: 0.90 }} 
+                                            id="exit__btn" 
+                                            onClick={handleCancelEdit}> cancel </motion.span>
+                                    </div> 
+
+                                :
+
                                     <motion.span 
                                         whileHover={{ scale: 1.1 }} 
                                         whileTap={{ scale: 0.90 }} 
-                                        id="exit__btn" 
-                                        onClick={handleCancelEdit}> cancel </motion.span>
-                                </div> 
-                                :
-                                <motion.span 
-                                    whileHover={{ scale: 1.1 }} 
-                                    whileTap={{ scale: 0.90 }} 
-                                    onClick={handleEdit}> edit profile </motion.span>
+                                        onClick={handleEdit}
+                                    > 
+                                        edit profile 
+                                    </motion.span>
                                 }
                             </div>
                         </div>
                     </form>
                 </div>
-                
+                    
+                <div className="setting-made-with__container shadow-drop-2-center">
+                    <img 
+                        src={ReactImg} 
+                        alt="react logo" 
+                        width="60" 
+                        height="60" 
+                    />
 
-                <div className="madeWith__container shadow-drop-2-center">
-                    <img src={ReactImg} alt="react logo" width="60" height="60" />
                     <span>X</span>
-                    <img src={FirebaseImg} alt="firebase logo" width="160" height="60" />
+
+                    <img 
+                        src={FirebaseImg} 
+                        alt="firebase logo" 
+                        width="160" 
+                        height="60" 
+                    />
                 </div>
-            </div>
-        </motion.div>
+            </motion.div>
         </>
     );
 }

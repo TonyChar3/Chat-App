@@ -7,15 +7,21 @@ import { motion } from 'framer-motion';
 
 const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom_ID, contct_edit, funct}) => {
 
-    const [deleteRoom, setDeleteRoom] = useState();
-    const [confirmit, setConfirm] = useState();
-    const [deletecont, setDelete] = useState();
-    const [chat, setChat] = useState("");
-    const [edit, setEdit] = useState(false);
+    const [chatroom, setChatroom] = useState();// set the chatroom
+    const [confirm, setConfirm] = useState();// confirmed value
+    const [delete_contact, setDelete] = useState();// delete
+    const [chat, setChat] = useState("");// access to the chat room
+    const [edit, setEdit] = useState(false);// turn on/off the edit mode
     
     
     useEffect(() => {
+
+        // current user document ref
+        const current_user_Ref = doc(db, 'users', auth.currentUser.uid) 
+
+        // if the edit value isn't undefined
         if(contct_edit !== undefined){
+            // set the state
             setEdit(contct_edit)
         }
         
@@ -23,17 +29,12 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
         const handleDelete = async(idx, confirm, roomID) => {
             
             try{
-                console.log(idx)
-                console.log(confirm)
-                console.log(roomID)
-                // Ref for the query
-                const contactRef = doc(db, 'users', auth.currentUser.uid) //tony
+                // contact document ref
+                const contact_Ref = doc(db, 'users', idx)
 
-                //Ref for the query
-                const InviteRef = doc(db, 'users', idx) // yvan
-
-                // remove the contact from his contact list
-                await updateDoc(contactRef, {
+                // update the current user document
+                await updateDoc(current_user_Ref, {
+                    // remove the contact object from the array
                     contact:arrayRemove({
                         "chatroom_id": roomID,
                         "confirmed": confirm,
@@ -41,8 +42,9 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                     })      
                 })
 
-                //remove the out-dated component
-                await updateDoc(InviteRef,{
+                // update the contact user document
+                await updateDoc(contact_Ref,{
+                    // remove the current user from his array
                     contact: arrayRemove({
                         'chatroom_id': roomID,
                         'confirmed': confirm,
@@ -50,80 +52,89 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                     })
                 })
 
-                //add the up-to-date component
-                await updateDoc(InviteRef,{
+                // update the contact user document
+                await updateDoc(contact_Ref,{
+                    // add a new contact object of the current user
+                    // -> to show the other user he's been removed from the current user list
+                    // -> 'confirmed' is set to deleted && 'chatroom_id' to 0
                     contact: arrayUnion({
                         'chatroom_id': 0,
                         'confirmed': 'deleted',
                         "id": auth.currentUser.uid,
                     })
                 })
-                // delete the chatroom
-                await deleteDoc(doc(db, 'chatrooms', deleteRoom));
 
+                // delete the chatroom from the 'chatrooms' DB
+                await deleteDoc(doc(db, 'chatrooms', chatroom));
+
+                // empty the contact list sent from the parent
                 funct([])
+            
+            // catch error
             } catch(error){
                 console.log(error)
             }
         }
 
-        // to clean up anyone who refused or deleted you from their contact list
+        // to clean-up your contact list if the current user has been removed by another user
+        // OR if his invitation that he sent was declined
         const handleCleanUp = async(idx, confirmz) => {
             
             try{
-                
-                // Ref for the query
-                const contactdRef = doc(db, 'users', auth.currentUser.uid)
-
-                //remove the contact from the list
-                await updateDoc(contactdRef, {
+                // update the current user document
+                await updateDoc(current_user_Ref, {
+                    // remove the contact from his contact list
                     contact: arrayRemove({
                         "chatroom_id": 0,
                         "confirmed": confirmz,
                         "id": idx
                     })
                 })
-                
+
+                // reset the contact array sent from the parent
                 funct([])
-                
+
+            // catch error    
             } catch(error){
                 console.log(error)
             }
         }
 
-        // get the id of the chatroom document
+        // Keep the current logged in user state
         auth.onAuthStateChanged(function(user){
             if(user){
 
+                // query the chatroom id
                 const q = query(collection(db, "chatrooms"), where("room_id", "==", chatroom_ID));
 
-                
+                // query Snapshot
                 const unsubscribe = onSnapshot(q , (querySnapshot) => {
 
+                    // Loop through the snapshot document
                     querySnapshot.forEach((doc) => {
-
-                        setDeleteRoom(doc.id)
+                        // set the chatroom state with the id
+                        setChatroom(doc.id)
                     })
                 })
                 return () => unsubscribe
             }
         })
 
-        // set the state of the contact card
+        // a switch to decide what will the state of the contact card
         switch(confirmed){
             case 'true':
-                setConfirm(<i className="bi bi-chat-square-fill"></i>)
-                setDelete(<i className="bi bi-person-x-fill" onClick={() => handleDelete(contct_id, confirmed, chatroom_ID)}></i>)
+                setConfirm(<i className="bi bi-chat-square-fill square-chat-icon"></i>)
+                setDelete(<i className="bi bi-person-x-fill person-x-icon" onClick={() => handleDelete(contct_id, confirmed, chatroom_ID)}></i>)
                 setChat("/navbar/contacts/chatpage")
                 break;
             case 'false':
                 setConfirm('rejected')
-                setDelete(<i className="bi bi-x-circle" onClick={() => handleCleanUp(contct_id, confirmed)}></i>)
+                setDelete(<i className="bi bi-x-circle x-icon" onClick={() => handleCleanUp(contct_id, confirmed)}></i>)
                 setChat("")
                 break;
             case 'deleted':
                 setConfirm('removed')
-                setDelete(<i className="bi bi-x-circle" onClick={() => handleCleanUp(contct_id, confirmed)}></i>)
+                setDelete(<i className="bi bi-x-circle x-icon" onClick={() => handleCleanUp(contct_id, confirmed)}></i>)
                 setChat("")
                 break;
             default:
@@ -131,31 +142,44 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                 setDelete("")
                 setChat("")
         }
-    },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, contct_edit, deleteRoom, funct])
+
+    },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, contct_edit, chatroom, funct])
     
     return(
-        <div className="contctsCard__container">  
-            <div className="name__container">
-                <span className="contcts__name">{contct_name}</span>
-            </div>
-            {
-            edit?
-                null
-            :
-                <motion.div whileHover={{ scale: 1.1 }} className="chatIcon__container">
-                    <Link to={chat} state={{ room_name: contct_name, cntct_id: contct_id, chatroomID: chatroom_ID }}>{confirmit}</Link>
-                </motion.div>
-            }
+        <>
+            <div className="contact-card__container"> 
 
-            {
-            edit? 
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="deleteIcon__container">
-                    {deletecont}
-                </motion.div>
-            :             
-                null
-            }
-        </div>
+                <div className="contact-card-name__container">
+                    <span className="contact-card__name">
+                        {contct_name}
+                    </span>
+                </div>
+
+                {
+                edit ?
+
+                    null
+                :
+                    <motion.div whileHover={{ scale: 1.1 }} className="card-chat-icon__container">
+                        <Link to={chat} state={{ room_name: contct_name, cntct_id: contct_id, chatroomID: chatroom_ID }}>
+                            {confirm}
+                        </Link>
+                    </motion.div>
+                }
+
+                {
+                edit ? 
+
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="card-delete-icon__container">
+                        {delete_contact}
+                    </motion.div>
+                :             
+                    null
+                }
+
+            </div>
+        </>
+
     );
 }
 

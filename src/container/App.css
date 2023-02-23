@@ -19,6 +19,7 @@
 }
 
         /*Loading sequence*/
+
 .loader__container{
         display: flex;
         justify-content: center;
@@ -45,6 +46,7 @@
         font-size: 3.5rem;
 }
 
+/*Tablets*/
 @media (min-width: 765px){
 
         .square-icon__container{
@@ -52,6 +54,7 @@
         }
 }
 
+/*Low resolution desktop*/
 @media (min-width: 1024px){
         
         .square-icon__container{
@@ -60,7 +63,8 @@
 }
 
 
-/*Animation*/
+        /*Animations*/
+        
 .shadow-drop-2-center {
 	-webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

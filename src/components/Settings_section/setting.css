@@ -1,14 +1,16 @@
-.settings__background{
+    /*Layout*/
+
+.setting__wrapper{
     height: 100%;
     background-color: #c72b83;
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
 
-.settingProfile__container{
+.setting-profile__container{
     margin: 4em auto;
 }
 
-.settingProfile__container > form{
+.setting-profile__container > form{
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -25,7 +27,7 @@
     animation: shadow-drop-2-center;
 }
 
-.madeWith__container{
+.setting-made-with__container{
     width: 80%;
     display: flex;
     flex-direction: row;
@@ -42,8 +44,8 @@
     animation: shadow-drop-2-center;
 }
 
-.welcomeProfile_Name_container,
-.welcomeProfile_Email_container{
+.profile-name__container,
+.profile-email__container{
     display: flex;
     width: 80%;
     padding: .3em;
@@ -53,7 +55,7 @@
     
 }
 
-.logout__container{
+.profile-logout__container{
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -64,7 +66,7 @@
     border-top: 1px solid white;
 }
 
-.settingEdit__container{
+.profile-edit__container{
     width: 100%;
     text-align: center;
     text-decoration: underline;
@@ -73,46 +75,46 @@
     cursor: pointer;
 }
 
-.saveOrLeave__container{
+.edit-save-cancel__container{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-/*Typography*/
+    /*Typography*/
 
-.bi-person-circle{
+.profile-icon,
+.setting-made-with__container > span,
+.profile-logout__container > h2{
     color: white;
+}
+
+.profile-icon{
     font-size: 2rem;
 }
 
-.madeWith__container > span{
-    color: white;
-}
-
-.logout__container > h2{
+.profile-logout__container > h2{
     font-size: 1.3rem;
-    color: white;
     transition: 0.3s ease;
 }
 
-.logout__container> h2:hover{
+.profile-logout__container > h2:hover{
     cursor: pointer;
     color: rgb(243, 148, 148);
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
-.welcomeProfile_Email_container > input,
-.welcomeProfile_Name_container > input{
+.profile-email__container > input,
+.profile-name__container > input{
     border: none;
     color: white;
     font-weight: 700;
 }
 
-.welcomeProfile_Email_container > input::placeholder,
-.welcomeProfile_Name_container > input::placeholder{
+.profile-email__container > input::placeholder,
+.profile-name__container > input::placeholder{
     color: white;
     font-size: 1.1rem;
     font-weight: 700;
@@ -134,7 +136,8 @@
     border: 2px solid white;
 }
 
-/*Buttons*/
+    /*Buttons*/
+
 #save__btn{
     margin-right: 1.2em;
     border: none;
@@ -142,36 +145,52 @@
     color: white;
 }
 
+/*Tablets*/
 @media(min-width: 765px){
-    .settingProfile__container{
+
+        /*Layout*/
+
+    .setting-profile__container{
         width: 60%;
     }
 
-    .madeWith__container{
+    .setting-made-with__container{
         width: 50%;
     }
 
-    .settingProfile__container > h2{
+        /*Typography*/
+
+    .setting-profile__container > h2{
         font-size: 2.2rem;
     }
 }
 
+/*Low resolution desktop*/
 @media(min-width: 1024px){
-    .settingProfile__container{
+
+        /*Layout*/
+
+    .setting-profile__container{
         width: 30%;
     }
 
-    .madeWith__container{
+    .setting-made-with__container{
         width: 20%;
     }
 
-    .settingProfile__container > h2{
+        /*Typography*/
+
+    .setting-profile__container > h2{
         font-size: 2.6rem;
     }
 }
 
+/*High resolution desktop*/
 @media(min-width: 1281px){
-    .madeWith__container{
+
+        /*Layout*/
+        
+    .setting-made-with__container{
         margin: 3.5em auto;
     }
 }

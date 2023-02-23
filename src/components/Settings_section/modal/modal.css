@@ -1,5 +1,6 @@
-/*Layout*/
-.Modal__wrapper{
+    /*Layout*/
+
+.auth-modal__container{
     position: absolute;
     z-index: 1;
     display: none;
@@ -10,7 +11,7 @@
     background-color: rgba(0, 0, 0, 0.35);
 }
 
-.Modal__wrapper > form{
+.auth-modal__container > form{
     position: absolute;
     top: 100%;
     z-index: 2;
@@ -30,39 +31,40 @@
     transition: all 0.4s ease;
 }
 
-.passwordInput__container{
+.modal-password-input__container{
     display: flex;
     flex-direction: column;
 }
 
-.modalBtn__container{
+.modal-button__container{
     width: 80%;
     display: flex;
     justify-content: space-around;
 }
 
-.modal_Active{
+.auth-modal_active{
     display: flex;
 }
 
-.modal_Active > form{
+.auth-modal_active > form{
     top: 0;
     transition: all 0.4s ease;
 }
 
-.error__container{
+.modal-error__container{
     position: absolute;
     z-index: 3;
     top: 25%;
 }
 
-/*Typography*/
-.Modal__wrapper > form > h3{
+    /*Typography*/
+
+.auth-modal__container > form > h3{
     font-size: 1.8rem;
     color: #8ecbf7;
 }
 
-.passwordInput__container > input{
+#modal-password__input{
     background-color: rgba(255, 255, 255, 0);
     outline: none;
     border-radius: 15px;
@@ -70,18 +72,18 @@
     border: 3px solid #8ecbf7;
 }
 
-.passwordInput__container > input:active,
-.passwordInput__container > input:focus{
+#modal-password__input:active,
+#modal-password__input:focus{
     background-color: #ef23977a;
     border: 3px solid white;
 }
 
-#eye__password{
+#eye-icon__password{
     color: white;
     margin-left: .7em;
 }
 
-#error__messg{
+#modal-error__messg{
     color: rgb(249, 247, 247);
     font-size: 1.4rem;
     font-weight: 600;
@@ -89,8 +91,9 @@
     text-decoration: underline rgb(244, 84, 84);
 }
 
-/*Buttons*/
-.modalBtn__container > button{
+    /*Buttons*/
+
+.modal-button__container > button{
     font-size: 0.90rem;
     font-weight: 700;
     padding: .5em;
@@ -100,38 +103,40 @@
     border-radius: 20px;
 }
 
+/*Tablets*/
 @media (min-width: 765px) {
-    .Modal__wrapper > form{
+    .auth-modal__container > form{
         width: 45%;
     }
 
-    .Modal__wrapper > form > h3{
+    .auth-modal__container > form > h3{
         font-size: 2rem;
     }
 
-    .modalBtn__container > button{
+    .modal-button__container > button{
         font-size: 0.95rem;
     }
 
-    #eye__password{
+    #eye-icon__password{
         font-size: 1.1rem;
     }
 }
 
+/*Low resolution desktop*/
 @media (min-width: 1024px) {
-    .Modal__wrapper > form{
+    .auth-modal__container > form{
         width: 20%;
     }
 
-    .modalBtn__container{
+    .modal-button__container{
         margin-top: .2em;
     }
 
-    .Modal__wrapper > form > h3{
+    .auth-modal__container > form > h3{
         font-size: 2.2rem;
     }
 
-    .passwordInput__container > input{
+    #modal-password__input{
         padding: .2em;
     }
 }

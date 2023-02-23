@@ -32,8 +32,3 @@ ul{
   flex-direction: column;
   height: calc(100vh - calc(100vh - 100%));
 }
-
-/*-Fonts: Ubuntu -> font-family: 'Ubuntu', sans-serif;*/
-/*-Colors: Blue/Light-blue - White - purple*/
-/*Light Blue: rgba(122, 212, 242, 0.485)*/
-/*Blue: rgb(20, 180, 233)*/

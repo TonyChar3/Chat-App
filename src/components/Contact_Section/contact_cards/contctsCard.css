@@ -1,5 +1,6 @@
-/*Layout*/
-.contctsCard__container{
+    /*Layout*/
+
+.contact-card__container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0px;
@@ -12,85 +13,89 @@
     background-image: linear-gradient(249deg, #c72b83 0%, #784BA0 1%, #2B86C5 100%);
 }
 
-.deleteIcon__container{
+.card-delete-icon__container{
     justify-self: center;
     align-self: center;
     border-radius: 5px;
     background-color: transparent;
 }
 
-.chatIcon__container{
+.card-chat-icon__container{
     justify-self: center;
     align-self: center;
 }
 
-.name__container{
+.contact-card-name__container{
     justify-self: flex-start;
     align-self: center;
     margin: 0 0 0 .5em;
 }
 
-/*Typography*/
-.bi-person-x-fill,
-.bi-x-circle{
+    /*Typography*/
+
+.person-x-icon,
+.x-icon{
     color: white;
     font-size: 1.2rem;
 }
     
-.deleteIcon__container:active{
+.card-delete-icon__container:active{
     transform:scale(0.93);
     transition: all 0.3s;
 }
 
-.chatIcon__container > a > i{
+.square-chat-icon{
     color: white;
     margin: 0 auto;
     font-size: 1.8rem;
 }
 
-.chatIcon__container > a{
+.card-chat-icon__container > a{
     color: white;
 }
 
-.name__container > span{
+.contact-card__name{
     color: white;
     font-size: 1.2rem;
     font-weight: 550;
     letter-spacing: 1px;
 }
 
-.deleteIcon__container > i{
+.card-delete-icon__container > i{
     color: rgb(243, 184, 184);
     font-size: 1.8rem;
 }
 
 /*Tablets*/
 @media (min-width: 765px){
-    /*Typography*/
-    .name__container > span{
+        /*Typography*/
+
+    .contact-card__name{
         font-size: 1.6rem;
     }
 
-    .chatIcon__container > a > i,
-    .deleteIcon__container > i{
+    .square-chat-icon,
+    .card-delete-icon__container > i{
         font-size: 2.2rem;
     }
 }
 
 /*Low resolution desktop*/
 @media (min-width: 1024px){
-    /*Layout*/
-    .contctsCard__container{
+        /*Layout*/
+
+    .contact-card__container{
         width: 95%;
     }
 
-    /*Typography*/
-    .name__container > span{
+        /*Typography*/
+        
+    .contact-card__name{
         font-size: 1.7rem;
     }
 
-    .chatIcon__container > a > i,
-    .deleteIcon__container > i{
+    .square-chat-icon,
+    .card-delete-icon__container > i{
         font-size: 2.4rem;
     }
 }

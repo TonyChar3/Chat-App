@@ -92,14 +92,14 @@ const Register = () => {
       <>
         {loading ?         
           <motion.div 
-            className="loader-container"
+            className="loader__container"
           
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 1 } }}
           >
             <motion.div 
-              className="square-loader" 
+              className="square-icon__container" 
               animate={{ scale: [0.99, 1.05, 0.99, 0.99] }} 
               transition={{ duration: 3, ease: 'easeIn', repeat: Infinity, times:[0.4, 0.8, 1] }}
             >

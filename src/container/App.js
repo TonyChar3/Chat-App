@@ -14,11 +14,13 @@ import { AuthContextProvider } from '../context/AuthContext';
 
 function App(){
   
-  const location = useLocation();
+  const location = useLocation();// react-route location
 
   return(
     <AuthContextProvider>
+
       <AnimatePresence mode='wait'>
+
         <Routes location={location} key={location.pathname} >
           <Route path="/" element={<SignIn/>}  />
           <Route path="/register" element={<Register />} />
@@ -31,7 +33,9 @@ function App(){
                   <Route path="settings" element={<Settings />} />
             </Route>
         </Routes>
+
       </AnimatePresence> 
+      
     </AuthContextProvider>
   );
 }
