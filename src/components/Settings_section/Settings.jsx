@@ -20,6 +20,8 @@ const Settings = () => {
     const [newName, setName] = useState('');// edited name
     const [newEmail, setEmail] = useState('');// edited email
     const [modal, setModal] = useState(false);// activate the modal
+    const [errorDiv, setErrorDiv] = useState(false);// error alert div
+    const [errorAlert, setErrorAlert] = useState('');// error message for the div
 
     // navigate with react-router-dom
     const navigate = useNavigate();
@@ -54,6 +56,7 @@ const Settings = () => {
         setEdit(false);
         setName('')
         setEmail('')
+        setErrorDiv(false)
     }
 
     // handle the edit mode
@@ -63,6 +66,7 @@ const Settings = () => {
             setModal(modal => !modal)
         } else {
             setEdit(true);
+            setErrorDiv(false)
         }
 
     }
@@ -94,6 +98,10 @@ const Settings = () => {
                 setEdit(false);
                 setName('');
                 setEmail('');
+
+                // throw an error 
+                setErrorDiv(errorDiv => !errorDiv)
+                setErrorAlert('Please enter new info...')
             
             // only the email is edited
             } else if(newName === "") {
@@ -113,7 +121,9 @@ const Settings = () => {
                 // if the array contains an email
                 if(verif.length > 0){
 
-                    console.log('Email is taken')
+                    // throw an error
+                    setErrorDiv(errorDiv => !errorDiv)
+                    setErrorAlert('This Email is taken...')
 
                 // if the array is empty
                 } else{
@@ -161,7 +171,9 @@ const Settings = () => {
                 // if the verif array isn't empty
                 if(verif.length > 0){
 
-                    console.log('The name already exist')
+                    // throw an error
+                    setErrorDiv(errorDiv => !errorDiv)
+                    setErrorAlert('This name already exist...')
                 
                 // if the verif array is empty
                 } else {
@@ -198,7 +210,10 @@ const Settings = () => {
 
                 // if the verif array isn't empty
                 if(verif.length > 0){
-                    console.log('This name/email already exist')
+
+                    // throw an error
+                    setErrorDiv(errorDiv => !errorDiv)
+                    setErrorAlert('This name/email already exist...')
                 
                 // Else if the array is empty
                 } else{
@@ -240,7 +255,9 @@ const Settings = () => {
         
         // catch error
         } catch(error){
-            console.log(error)
+            // throw the system error
+            setErrorDiv(errorDiv => !errorDiv)
+            setErrorAlert(error.code)
         }
     }
 
@@ -251,6 +268,8 @@ const Settings = () => {
 
         setModal(false)// set the modal
     },[newName, newEmail, modal])
+
+    let toggleError = errorDiv? 'error__container-active' : '';
 
     return(
         <>
@@ -263,6 +282,12 @@ const Settings = () => {
             >
 
             <SignupModal modal={modal? true : false} />
+
+                <div className={`setting-edit-error__container ${toggleError}`}>
+
+                    <span id="setting-edit-error__span">{errorAlert}</span>
+                
+                </div>
 
                 <div className="setting-profile__container">
 

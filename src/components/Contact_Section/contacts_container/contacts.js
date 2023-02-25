@@ -9,8 +9,9 @@ import { motion } from 'framer-motion';
 
 const Contacts = () => {
     const [contact, setContact] = useState([]); // contacts array
-    const [fetch_data, setFetchData] = useState([]); // contact data array
-    const [edit, setEdit] = useState(); // Edit clicked or not
+    const [edit, setEdit] = useState(false); // Edit clicked or not
+    const [alertDiv, setAlertDiv] = useState(false);// Alert message DIV
+    const [alert, setAlert] = useState('');// Alert message
 
     // handle when 'Edit' is clicked
     const handleclickEdit = (data) => {
@@ -18,11 +19,17 @@ const Contacts = () => {
         setEdit(data)
     }
 
-    // Reset contacts and contact data array if the contact gets removed
-    const Deleted = (event) => {
-        // set state
-        setContact(event)
-        setFetchData(event)
+    // handle the Alert DIV
+    const handleAlertDiv = (event) => {
+        setAlertDiv(event)
+        setTimeout(() => {
+            setAlertDiv(event => !event)
+        },8000)
+    }
+
+    // handle the Alert message
+    const handleAlertMess = (event) => {
+        setAlert(event)
     }
 
     useEffect(() => {
@@ -48,7 +55,7 @@ const Contacts = () => {
                         }) 
                     })
                     // set the state of the contact data array
-                    setFetchData(data)
+                    setContact(data)
                     
                 })
                 return () => unsubscribe 
@@ -56,54 +63,8 @@ const Contacts = () => {
         })
     },[])
 
-    useEffect(() => {
-        // if there's contacts objects inside the contact data array
-        if(fetch_data.length > 0){
-
-            // loop through the array
-            fetch_data.forEach(each_u => {
-
-                // query each contact with their user uid
-                const q = query(collection(db, 'users'), where("user_uid","==", each_u.id))
-                
-                // query Snapshot
-                const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                    
-                    // array for the data
-                    let data = [];
-
-                    // loop through the snapshot document
-                    querySnapshot.forEach((doc) => {
-                        
-                        // create a contact object to be rendered in the DOM
-                        let contact_data = {
-                            id: doc.data().user_uid,
-                            name: doc.data().name,
-                            email: doc.data().email,
-                            chatroom_id: each_u.chatroom_id,
-                            confirmed: each_u.confirmed
-                        }
-
-                        // push the object         
-                        data.push(contact_data)
-                                    
-                    })
-
-                    //set the state of the contact array
-                    setContact(data)
-                    
-                })         
-                return () => unsubscribe
-            })
-
-         // if the contact data array was empty   
-        } else {
-            // set the contact array to empty
-            setContact([])
-        }
-
-    },[fetch_data, contact.length])
-
+    let toggleAlertDiv = alertDiv? 'contact-alert__active' : '';
+   
     return(
         <>
             <ContctsNav func={handleclickEdit} />
@@ -121,31 +82,31 @@ const Contacts = () => {
                         {contact.length > 0 ? 
 
                             contact.map((contctz) => (
-
                                 <ContctsCard 
-                                    key={contctz.id} 
-                                    contct_name={contctz.name} 
-                                    contct_id={contctz.id} 
-                                    contct_email={contctz.email} 
+                                    key={contctz.id}  
+                                    contct_id={contctz.id}  
                                     confirmed={contctz.confirmed} 
                                     chatroom_ID={contctz.chatroom_id}
                                     contct_edit={edit}
-                                    funct={Deleted}
-                                />
-                                
+                                    alert_mess={handleAlertMess}
+                                    alert_div={handleAlertDiv}
+                                />   
                             ))
                         :
                             <div className="no-contact__container">
-
                                 <h2 id="no-contact__message">
                                     Add a contact to chatt :)
                                 </h2>
-                                
                             </div>
                         }
                     </ContctsScroll>
 
+                    <div className={`contact-alert__container ${toggleAlertDiv}`}>
+                        <span id="contact-alert__span">{alert}</span>
+                    </div>
+
                 </div>
+
             </motion.div>
         </>
     )

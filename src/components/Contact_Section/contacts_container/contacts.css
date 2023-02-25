@@ -12,6 +12,34 @@
     background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
 }
 
+.contact-alert__container{
+    z-index: 2;
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    padding: .5em;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(204, 204, 204, 0.109);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.295);
+    animation: shadow-drop-2-center;
+    transition: all 0.6s;
+}
+
+.contact-alert__active{
+    bottom: 15%;
+    transition: 0.3s;
+}
+
+    /*Typography*/
+
+#contact-alert__span{
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+}
+
 /*Large mobile screens*/
 @media (min-width: 360px){
 

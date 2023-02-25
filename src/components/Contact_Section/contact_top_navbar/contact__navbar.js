@@ -186,7 +186,7 @@ const ContctsNav = (props) => {
                     >
                         {
                         editContcts ? 
-                            <i className="bi bi-x-circle"></i> 
+                            'Cancel'
                             : 
                             'Edit'
                         }
@@ -195,7 +195,7 @@ const ContctsNav = (props) => {
                     <motion.i 
                         whileHover={{ scale: 1.2 }} 
                         whileTap={{ scale: 0.96 }} 
-                        className={`bi bi-person-plus${toggleFill} person-plus__icon`} 
+                        className={`bi bi-plus-circle${toggleFill} person-plus__icon`} 
                         onClick={handleClick}
                     ></motion.i>
 

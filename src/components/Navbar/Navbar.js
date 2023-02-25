@@ -8,23 +8,23 @@ import {collection, query, where, onSnapshot} from 'firebase/firestore';
 const NavBar = () => {
   
   const [inviteNum, setNum] = useState(0); // invitation counter
-  const [contactPage, setContactPage] = useState(); // Contact page is active
-  const [invitePage, setInvitePage] = useState(); // Invitation page is active
-  const [settingPage, setSettingPage] = useState(); // Setting page is active
+  const [contactPage, setContactPage] = useState(false); // Contact page is active
+  const [invitePage, setInvitePage] = useState(false); // Invitation page is active
+  const [settingPage, setSettingPage] = useState(false); // Setting page is active
 
   // Contact page is active
-  const currentContactStyle = ({ isActive }) => {
-    isActive? setContactPage(true) : setContactPage(false)
+  const currentContactStyle = (e) => {
+    setContactPage(e)
   }
 
   // Invitation page is active
-  const currentInviteStyle = ({ isActive }) => {
-    isActive? setInvitePage(true) : setInvitePage(false)
+  const currentInviteStyle = (e) => {
+    setInvitePage(e)
   }
 
   // Setting page is active
-  const currentSettingStyle = ({ isActive }) => {
-    isActive? setSettingPage(true) : setSettingPage(false)
+  const currentSettingStyle = (e) => {
+    setSettingPage(e)
   }
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const NavBar = () => {
   let toggleInvite = invitePage ? '-fill' : '';
   let toggleSetting = settingPage ? '-fill' : '';
 
+
    return (
       <>
         <nav className="navbar__container">
@@ -66,14 +67,14 @@ const NavBar = () => {
             <ul className="navbar__tabs">
 
               <NavLink 
-                style={currentContactStyle} 
+
                 to="contacts/contct" 
               >
                 <i className={`bi bi-chat-square${toggleContact}`}></i>
               </NavLink>
 
               <NavLink 
-                style={currentInviteStyle} 
+
                 to="invitations"
               >
                 <i className={`bi bi-people${toggleInvite}`}>
@@ -82,7 +83,7 @@ const NavBar = () => {
               </NavLink>
 
               <NavLink 
-                style={currentSettingStyle} 
+ 
                 to="settings"
               >
                 <i className={`bi bi-gear${toggleSetting}`}></i>

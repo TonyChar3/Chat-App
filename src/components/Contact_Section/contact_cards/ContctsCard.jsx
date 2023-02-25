@@ -5,14 +5,30 @@ import { doc, updateDoc, arrayRemove, arrayUnion, deleteDoc, query, collection, 
 import { auth, db } from "../../../firebase_setup/firebase";
 import { motion } from 'framer-motion';
 
-const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom_ID, contct_edit, funct}) => {
+const ContctsCard = ({ contct_id, confirmed, chatroom_ID, contct_edit, alert_mess, alert_div}) => {
 
     const [chatroom, setChatroom] = useState();// set the chatroom
     const [confirm, setConfirm] = useState();// confirmed value
     const [delete_contact, setDelete] = useState();// delete
     const [chat, setChat] = useState("");// access to the chat room
     const [edit, setEdit] = useState(false);// turn on/off the edit mode
+    const [contct_name, setContactName] = useState('')// contact name
+    const [contct_email, setContactEmail] = useState('')// contact name
     
+    useEffect(() => {
+
+        const q = query(collection(db, 'users'), where('user_uid', "==", contct_id))
+
+        const unsubscribe = onSnapshot(q,(querySnapshot) => {
+
+            querySnapshot.forEach(doc => {
+                setContactEmail(doc.data().email)
+                setContactName(doc.data().name)
+            })
+        })
+
+        return () => unsubscribe
+    },[])
     
     useEffect(() => {
 
@@ -68,7 +84,8 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                 await deleteDoc(doc(db, 'chatrooms', chatroom));
 
                 // empty the contact list sent from the parent
-                funct([])
+                alert_div(true)
+                alert_mess('Contact deleted...')
             
             // catch error
             } catch(error){
@@ -91,8 +108,7 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                     })
                 })
 
-                // reset the contact array sent from the parent
-                funct([])
+
 
             // catch error    
             } catch(error){
@@ -143,7 +159,7 @@ const ContctsCard = ({ contct_name, contct_id, contct_email, confirmed, chatroom
                 setChat("")
         }
 
-    },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, contct_edit, chatroom, funct])
+    },[contct_id, contct_name, contct_email, confirmed, chatroom_ID, contct_edit, chatroom])
     
     return(
         <>
