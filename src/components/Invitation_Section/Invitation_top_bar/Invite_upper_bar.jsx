@@ -5,13 +5,7 @@ const InviteTopBar = () => {
 
     return(
         <>
-            <motion.div 
-                className='footer__container'
-
-                initial={{ width: 0 }}
-                animate={{ width: "100%"}}
-                exit={{ x: window.innerWidth, transition: {duration: 0.2 }}}
-            >
+            <div className='footer__container'>
                 <motion.div 
                     className="icon__container"
                     
@@ -21,7 +15,7 @@ const InviteTopBar = () => {
                 >
                     <i className="bi bi-chat-square-heart square-chat-bubble-icon"></i>
                 </motion.div>
-            </motion.div>
+            </div>
         </>
 
     );

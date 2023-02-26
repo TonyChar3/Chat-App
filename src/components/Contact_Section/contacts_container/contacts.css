@@ -1,4 +1,6 @@
+    
     /*Layout*/
+
 .contact-section__container{
     display: flex;
     flex-direction: column;
@@ -31,6 +33,22 @@
 .contact-alert__active{
     bottom: 15%;
     transition: 0.3s;
+}
+
+.contact-section__black-screen{
+    position: absolute;
+    z-index: 3;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);  
+}
+
+.contact-black-screen__active{
+    display: flex;
+    transition: 0.4s;
 }
 
     /*Typography*/
@@ -84,5 +102,17 @@
         -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
         box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
         animation: shadow-drop-2-center;
+    }
+
+    .contact-section__black-screen{
+        border-radius: 15px;
+    }
+
+    .contact-alert__container{
+        bottom: -20%;
+    }
+
+    .contact-alert__active{
+        bottom: 10%;
     }
 }

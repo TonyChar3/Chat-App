@@ -6,12 +6,20 @@ import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 
 const Contacts = () => {
     const [contact, setContact] = useState([]); // contacts array
     const [edit, setEdit] = useState(false); // Edit clicked or not
     const [alertDiv, setAlertDiv] = useState(false);// Alert message DIV
     const [alert, setAlert] = useState('');// Alert message
+    const [black_screen, setBlackScreen] = useState(false);// black screen for the modal
+
+    // handle the black screen to activate or not
+    const handleBlackScreen = (event) => {
+        // activate or turn off
+        setBlackScreen(event)
+    }
 
     // handle when 'Edit' is clicked
     const handleclickEdit = (data) => {
@@ -21,16 +29,24 @@ const Contacts = () => {
 
     // handle the Alert DIV
     const handleAlertDiv = (event) => {
+        // show the alert div
         setAlertDiv(event)
+
+        // turn off after 3 seconds
         setTimeout(() => {
+            // turn off
             setAlertDiv(event => !event)
-        },8000)
+        },3000)
     }
 
     // handle the Alert message
     const handleAlertMess = (event) => {
+        // set the alert message state
         setAlert(event)
     }
+
+    // JS media query for framer motion inline animation style
+    const isDesktop = useMediaQuery({ query: '(min-width: 1024px)'})
 
     useEffect(() => {
         // Keep the current logged in user state
@@ -64,19 +80,25 @@ const Contacts = () => {
     },[])
 
     let toggleAlertDiv = alertDiv? 'contact-alert__active' : '';
+    let toggleBlckScreen = black_screen? 'contact-black-screen__active' : '';
    
     return(
         <>
-            <ContctsNav func={handleclickEdit} />
+            <ContctsNav func={handleclickEdit} alert_message={handleAlertMess} alert_DIV={handleAlertDiv} />
 
-            <motion.div 
-                className="contact-section__wrapper"
+            <div className="contact-section__wrapper">
+           
+                <motion.div 
+                className="contact-section__container"
 
                 initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "100%" }}
+                animate={{ opacity: 1, width: isDesktop? "45%" : "100%" }}
                 exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
-            >
-                <div className="contact-section__container">
+                >
+
+                    <div className={`contact-section__black-screen ${toggleBlckScreen}`}>
+
+                    </div>
 
                     <ContctsScroll>
                         {contact.length > 0 ? 
@@ -90,6 +112,7 @@ const Contacts = () => {
                                     contct_edit={edit}
                                     alert_mess={handleAlertMess}
                                     alert_div={handleAlertDiv}
+                                    blck_screen={handleBlackScreen}
                                 />   
                             ))
                         :
@@ -105,9 +128,9 @@ const Contacts = () => {
                         <span id="contact-alert__span">{alert}</span>
                     </div>
 
-                </div>
-
-            </motion.div>
+                </motion.div>
+            
+            </div>
         </>
     )
 }

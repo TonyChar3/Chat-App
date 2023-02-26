@@ -9,6 +9,7 @@ import { UserAuth } from '../../context/AuthContext';
 import { updateProfile, updateEmail, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import { doc, updateDoc, getDocs, collection, query, where } from "firebase/firestore";
 import { auth, db } from '../../firebase_setup/firebase';
+import { useMediaQuery } from 'react-responsive';
 
 const Settings = () => {
 
@@ -261,6 +262,10 @@ const Settings = () => {
         }
     }
 
+    // JS media query for the inline framer motion animation style
+    const isDesktop = useMediaQuery({ query: '(min-width: 1024px)'})
+    const isTablets = useMediaQuery({ query: '(min-width: 765px)'})
+
     useEffect(() => {
         setName(newName)// set the new name
 
@@ -273,15 +278,9 @@ const Settings = () => {
 
     return(
         <>
-            <motion.div 
-                className="setting__wrapper"
+            <div className="setting__wrapper">
 
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "100%" }}
-                exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
-            >
-
-            <SignupModal modal={modal? true : false} />
+                <SignupModal modal={modal? true : false} />
 
                 <div className={`setting-edit-error__container ${toggleError}`}>
 
@@ -289,7 +288,13 @@ const Settings = () => {
                 
                 </div>
 
-                <div className="setting-profile__container">
+                <motion.div 
+                    className="setting-profile__container"
+
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{ opacity: 1, width: isDesktop? "30%" : isTablets? "60%" : "100%"}}
+                    exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
+                >
 
                     <form onSubmit={handleSaving} className="shadow-drop-2-center">
 
@@ -329,7 +334,11 @@ const Settings = () => {
                                 <i className={`bi bi-door-${door? "open" : "closed"}-fill`}></i>
                             </motion.h2>
 
-                            <div className="profile-edit__container">
+                            <div 
+                                className="profile-edit__container"
+                            
+                               
+                            >
                                 { edit ? 
                                     <div className="edit-save-cancel__container">
                                         <motion.button 
@@ -358,14 +367,24 @@ const Settings = () => {
                             </div>
                         </div>
                     </form>
-                </div>
+                </motion.div>
                     
-                <div className="setting-made-with__container shadow-drop-2-center">
+                <motion.div 
+                    className="setting-made-with__container shadow-drop-2-center"
+
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
                     <img 
                         src={ReactImg} 
                         alt="react logo" 
                         width="60" 
-                        height="60" 
+                        height="60"
+                        
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                     />
 
                     <span>X</span>
@@ -376,8 +395,8 @@ const Settings = () => {
                         width="160" 
                         height="60" 
                     />
-                </div>
-            </motion.div>
+                </motion.div>
+            </div>
         </>
     );
 }

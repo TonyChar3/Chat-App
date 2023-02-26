@@ -4,28 +4,10 @@ import './Navbar.css';
 import { auth, db } from "../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 
-
 const NavBar = () => {
   
   const [inviteNum, setNum] = useState(0); // invitation counter
-  const [contactPage, setContactPage] = useState(false); // Contact page is active
-  const [invitePage, setInvitePage] = useState(false); // Invitation page is active
-  const [settingPage, setSettingPage] = useState(false); // Setting page is active
 
-  // Contact page is active
-  const currentContactStyle = (e) => {
-    setContactPage(e)
-  }
-
-  // Invitation page is active
-  const currentInviteStyle = (e) => {
-    setInvitePage(e)
-  }
-
-  // Setting page is active
-  const currentSettingStyle = (e) => {
-    setSettingPage(e)
-  }
 
   useEffect(() => {
 
@@ -54,10 +36,6 @@ const NavBar = () => {
 
   },[])
 
-  let toggleContact = contactPage ? '-fill' : '';
-  let toggleInvite = invitePage ? '-fill' : '';
-  let toggleSetting = settingPage ? '-fill' : '';
-
 
    return (
       <>
@@ -66,27 +44,30 @@ const NavBar = () => {
 
             <ul className="navbar__tabs">
 
-              <NavLink 
+              <NavLink to="contacts/contct">
 
-                to="contacts/contct" 
-              >
-                <i className={`bi bi-chat-square${toggleContact}`}></i>
+                {({isActive}) => (
+                  <i className={`bi bi-chat-square${isActive? '-fill' : ''}`}></i>
+                )}
+
               </NavLink>
 
-              <NavLink 
+              <NavLink to="invitations">
 
-                to="invitations"
-              >
-                <i className={`bi bi-people${toggleInvite}`}>
-                  {inviteNum}
-                </i>
+                {({isActive}) => (
+                  <i className={`bi bi-people${isActive? '-fill' : ''}`}>
+                    {inviteNum}
+                  </i>
+                )}
+
               </NavLink>
 
-              <NavLink 
- 
-                to="settings"
-              >
-                <i className={`bi bi-gear${toggleSetting}`}></i>
+              <NavLink to="settings">
+
+                {({isActive}) => (
+                  <i className={`bi bi-gear${isActive? '-fill' : ''}`}></i>
+                )}
+
               </NavLink>
 
             </ul>

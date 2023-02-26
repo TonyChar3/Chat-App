@@ -46,11 +46,102 @@
         font-size: 3.5rem;
 }
 
+        /*Delete Modals*/
+
+    /*Layout*/
+
+    .delete-contact-modal__container,
+    .delete-chat-modal__container{
+        position: absolute;
+        top: 110%;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1em;
+        margin: 0 auto;
+        border-radius: 15px;
+        backdrop-filter: blur(15px);
+        background-color: rgba(255, 255, 255, 0.382);
+        -webkit-box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.819); 
+        box-shadow: 5px 1px 29px 1px rgba(255, 255, 255, 0.523);
+        animation: shadow-drop-2-center;
+        transition: all 0.4s ease;   
+    }
+    
+    .delete-contact-modal-button__container,
+    .delete-chat-modal-button__container{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin-top: .5em;
+    }
+    
+    .delete-contact-modal_active,
+    .delete-chat-modal_active{
+        display: flex;
+        transition: all 0.4s ease;
+    }
+    
+    .delete-contact-modal__container-active,
+    .delete-chat-modal__container-active{
+        top: 15%;
+        transition: all 0.4s ease;
+    }
+    
+        /*Typography*/
+    
+    .delete-contact-modal__container > h2,
+    .delete-chat-modal__container > h2{
+        color: white;
+    }
+    
+        /*Buttons*/
+    #delete-contact-modal__delete-button,
+    #delete-contact-modal__cancel-button,
+    #delete-chat-modal__delete-button,
+    #delete-chat-modal__cancel-button{
+        font-size: 0.90rem;
+        font-weight: 700;
+        padding: .5em;
+        background-color: rgba(255, 255, 255, 0.073);
+        color: white;
+        border: 3px solid #8ecbf7;
+        border-radius: 20px;
+    }
+
+    
+
 /*Tablets*/
 @media (min-width: 765px){
 
         .square-icon__container{
                 width: 15%;
+        }
+
+        /*Layout*/
+    
+        .delete-contact-modal__container,
+        .delete-chat-modal__container{
+                width: 50%;
+        }
+                
+        /*Typography*/
+                
+        .delete-contact-modal__container > h2,
+        .delete-chat-modal__container > h2{
+                font-size: 1.9rem;
+        }
+                
+        #delete-contact-modal__delete-button,
+        #delete-contact-modal__cancel-button,
+        #delete-chat-modal__delete-button,
+        #delete-chat-modal__cancel-button{
+                font-size: 1.1rem;
         }
 }
 

@@ -2,7 +2,7 @@
 
 .contact-card__container{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0px;
     margin: 1em auto;
     width: 80%;
@@ -14,20 +14,25 @@
 }
 
 .card-delete-icon__container{
-    justify-self: center;
+    justify-self: flex-end;
     align-self: center;
+    margin-right: 1em;
     border-radius: 5px;
     background-color: transparent;
 }
 
 .card-chat-icon__container{
-    justify-self: center;
+    justify-self: flex-end;
     align-self: center;
+    margin-right: 1em;
 }
 
 .contact-card-name__container{
     justify-self: flex-start;
     align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin: 0 0 0 .5em;
 }
 
@@ -37,6 +42,12 @@
 .x-icon{
     color: white;
     font-size: 1.2rem;
+}
+
+.profile-i-icon{
+    font-size: 1.2rem;
+    color: white;
+    margin-left: .5em;
 }
     
 .card-delete-icon__container:active{
@@ -68,6 +79,21 @@
 
 /*Tablets*/
 @media (min-width: 765px){
+
+        /*Layout*/
+    .card-delete-icon__container{
+        justify-self: center;
+    }
+        
+    .card-chat-icon__container{
+        justify-self: center;
+        align-self: center;
+        margin-right: .3em;
+    }
+        
+    .contact-card__container{
+        width: 60%;
+    }
         /*Typography*/
 
     .contact-card__name{
@@ -85,7 +111,7 @@
         /*Layout*/
 
     .contact-card__container{
-        width: 95%;
+        width: 65%;
     }
 
         /*Typography*/

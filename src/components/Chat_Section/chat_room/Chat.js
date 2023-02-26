@@ -10,6 +10,13 @@ import { motion } from 'framer-motion';
 const ChatSect = ({ convo_name, room_id }) => {
 
     const [chats, setChats] = useState([]); // chat array state
+    const [black_screen, setBlckScreen] = useState(false);// black screen state
+
+    // handle the black screen
+    const handleBlackScreen = (event) =>{
+        // set the black screen
+        setBlckScreen(event)
+    }
 
     useEffect(() => {
 
@@ -47,16 +54,21 @@ const ChatSect = ({ convo_name, room_id }) => {
         })
     });
 
+    let toggleBlackScreen = black_screen ? 'chat-room-black-screen__active' : '';
+
     return(
         <>
-            <motion.div 
-                className="chat-room__wrapper"
+            <div className="chat-room__wrapper">
+                <motion.div 
+                    className="chat-room__container"
+                    
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                >
+                    <div className={`chat-room__black-screen ${toggleBlackScreen}`}>
 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.1 } }}
-            >
-                <div className="chat-room__container">
+                    </div>
                     <div className="user-profile__container">
 
                         <Link to="/navbar/contacts/contct">
@@ -74,13 +86,14 @@ const ChatSect = ({ convo_name, room_id }) => {
                             <Messgs 
                                 key={message.id} 
                                 mess={message} 
-                                chatroomID={room_id} 
+                                chatroomID={room_id}
+                                blck_screen={handleBlackScreen} 
                             />
                         ))}
                     </Scroll>
 
-                </div>
-            </motion.div>
+                </motion.div>
+            </div>
         </>
 
     );

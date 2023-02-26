@@ -28,7 +28,24 @@
     border: 1px solid white;
 }
 
+.chat-room__black-screen{
+    position: absolute;
+    z-index: 3;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);  
+}
+
+.chat-room-black-screen__active{
+    display: flex;
+    transition: 0.4s;
+}
+
     /*Typography*/
+
 .name__span{
     font-size: 1.4rem;
     color: white;
@@ -127,6 +144,10 @@
     
     .exit-arrow{
         font-size: 1.4rem;
+    }
+
+    .chat-room__black-screen{
+        border-radius: 15px;
     }
 }
 

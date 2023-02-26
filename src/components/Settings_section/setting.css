@@ -199,10 +199,12 @@
 
     .setting-profile__container{
         width: 30%;
+        transition: 0.4s;
     }
 
     .setting-made-with__container{
         width: 20%;
+        transition: 0.4s;
     }
 
         /*Typography*/

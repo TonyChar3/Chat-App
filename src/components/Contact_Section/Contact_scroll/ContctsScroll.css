@@ -1,19 +1,5 @@
 .contact-card-scroll__container{
     overflow-y: auto ; 
     height: 100%; 
-    width:95%;
-}
-
-/*Tablets*/
-@media (min-width: 765px){
-    .contact-card-scroll__container{
-        width: 70%;
-    }
-}
-
-/*Low resolution desktop*/
-@media (min-width: 1024px){
-    .contact-card-scroll__container{
-        width:60%;
-    }
+    width:100%;
 }

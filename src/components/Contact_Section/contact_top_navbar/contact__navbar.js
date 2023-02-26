@@ -112,6 +112,13 @@ const ContctsNav = (props) => {
                         // add an invitation to his invitations array
                         invitations: arrayUnion(invite)
                     })
+
+                    // turn off the form
+                    setActive(Active => !Active)
+                    // turn on the alert div
+                    props.alert_DIV(true)
+                    // with the message
+                    props.alert_message('New contact added')
                 }
 
             } else{

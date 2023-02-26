@@ -6,12 +6,16 @@ import {useState, useEffect} from 'react';
 import { auth, db } from "../../../firebase_setup/firebase";
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 
 
 
 const InviteSect = () => {
 
     const [invite, setInvite] = useState([]); // Invitation array
+
+    //JS media query for the framer motion animation inline style
+    const isDesktop = useMediaQuery({ query: '(min-width: 1024px)'})
 
     useEffect(() => {
         // Keep the current logged in user state
@@ -48,14 +52,14 @@ const InviteSect = () => {
         <>
             <InviteTopBar />
 
-            <motion.div 
-                className="invitation-section__wrapper"
+            <div className="invitation-section__wrapper">
+                <motion.div 
+                    className="invitation-section__container"
 
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "100%" }}
-                exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
-            >
-                <div className="invitation-section__container">
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{ opacity: 1, width: isDesktop? "45%" : "100%" }}
+                    exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.1 } }}
+                >
 
                     <ContctsScroll>
                         {
@@ -83,8 +87,8 @@ const InviteSect = () => {
                         }
                     </ContctsScroll>
 
-                </div>
-            </motion.div> 
+                </motion.div>
+            </div> 
         </>
     );
 }

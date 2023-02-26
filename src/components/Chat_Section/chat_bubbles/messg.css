@@ -1,5 +1,7 @@
-/*Layout*/
-.messg__container{
+   
+    /*Layout*/
+
+.chat__container{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     max-width: 38%;
@@ -11,14 +13,14 @@
     scroll-padding: 0;
 }
 
-.messg__wrapper{
+.chat__wrapper{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     padding: 0 .5em .5em 0;
     margin-bottom: .5em;
 }
 
-.messDateTime__container{
+.chat-date-time__container{
     justify-self: center;
     padding: .5em;
     margin: .8em 0 .5em 0;
@@ -27,21 +29,21 @@
     color: white;
 }
 
-.Date__right{
-    justify-self: flex-end;
+.chat-date__right{
+    justify-self: center;
 }
 
-.Date__left{
+.chat-date__left{
     justify-self: flex-start;
 }
 
-.messg__right{
+.chat__right{
     justify-self: flex-end;
     background-color: #784BA0;
     border-bottom-left-radius: 15px;
 }
 
-.messg__left{
+.chat__left{
     justify-self: flex-start;
     align-self: flex-start;
     background-color: rgb(176, 176, 176); 
@@ -49,30 +51,31 @@
     margin-left: .5em;
 }
 
-.Tcan__right{
+.chat-delete__right{
     justify-self: flex-end;
 }
 
-.Tcan__left{
+.chat-delete__left{
     display: none;
 }
 
-.chatDelete__container{
+.chat-delete__container{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
 }
 
-/*Typography*/
-.sentBy__right{
+    /*Typography*/
+    
+.chat-sent-by__right{
     align-self: flex-start;
 }
 
-.sentBy__left{
+.chat-sent-by__left{
     align-self: flex-end;
 }
 
-.sentby__container{
+.chat-sent-by__container{
     display: flex;
     width: 50%;
     padding: .2em;
@@ -81,13 +84,13 @@
     color: black;
 }
 
-.sentText__container{
+.chat-text__container{
     display: inline-block;
     max-width: 100%;
     word-break: normal;
 }
 
-.chatDelete__container > i{
+.chat-delete__container > i{
     margin-top: .2em;
     margin-right: .3em;
     color: rgba(255, 255, 255, 0.926);
@@ -95,39 +98,41 @@
 
 /*Tablets*/
 @media (min-width: 765px){
-    /*Typography*/
-    .sentby__container{
+        /*Typography*/
+
+    .chat-sent-by__container{
         font-size: 1.4rem;
     }
-    .messg__container{
+    .chat__container{
         font-size: 1.3rem;
     }
 
-    .messDateTime__container{
+    .chat-date-time__container{
         font-size: 0.78rem;
     }
 
-    .chatDelete__container > i{
+    .chat-delete__container > i{
         font-size: 1.4rem;
     }
 }
 
 /*Low resolution desktop*/
 @media (min-width: 1024px){
-    /*Typography*/
-    .sentby__container{
+        /*Typography*/
+
+    .chat-sent-by__container{
         font-size: 1.3rem;
     }
 
-    .messg__container{
+    .chat__container{
         font-size: 1.2rem;
     }
     
-    .messDateTime__container{
+    .chat-date-time__container{
         font-size: 0.80rem;
     }
 
-    .chatDelete__container > i{
+    .chat-delete__container > i{
         font-size: 1.2rem;
     }
 }

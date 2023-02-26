@@ -7,10 +7,9 @@ import { motion } from 'framer-motion';
 
 const MsgInput = ({ chat_id }) => {
     
-   
     const [chatroom_id, setID] = useState(); // chatroom ID
-
     const [ message, setMessage ] = useState(""); // for each chat
+    const [ btndisabled, setDisabled] = useState(false);// prevent send button double click
 
     useEffect(() => {
         
@@ -48,31 +47,34 @@ const MsgInput = ({ chat_id }) => {
                 return;
 
             } else {
-                // Ref for the chatroom document
-                const docRef = doc(db, "chatrooms", chatroom_id);
-                
-                // Create the timestamp at which the chat was sent
-                const created_at = Timestamp.fromDate(new Date())
-                
-                // the sent message object
-                const sent_message ={
-                    id: Math.floor(Math.random()*1000),
-                    text: message,
-                    name: auth.currentUser.displayName,
-                    createdAt: created_at,
-                    uid: auth.currentUser.uid,
-                };
-                
-                // update the chatroom document 'messages' array
-                await updateDoc(docRef, {
 
-                    // add the new chat to the array
-                    messages: arrayUnion(sent_message)
-                });
-                
-                // reset the state of the message
-                setMessage("")
-                
+                if(!btndisabled){
+                    // Ref for the chatroom document
+                    const docRef = doc(db, "chatrooms", chatroom_id);
+                    
+                    // Create the timestamp at which the chat was sent
+                    const created_at = Timestamp.fromDate(new Date())
+                    
+                    // the sent message object
+                    const sent_message ={
+                        id: Math.floor(Math.random()*1000),
+                        text: message,
+                        name: auth.currentUser.displayName,
+                        createdAt: created_at,
+                        uid: auth.currentUser.uid,
+                    };
+                    
+                    // update the chatroom document 'messages' array
+                    await updateDoc(docRef, {
+
+                        // add the new chat to the array
+                        messages: arrayUnion(sent_message)
+                    });
+                    
+                    // reset the state of the message
+                    setMessage("")
+                    setDisabled(false)
+                }
             }
         
             // catch error
@@ -81,7 +83,10 @@ const MsgInput = ({ chat_id }) => {
         }  
     }
 
-
+    // send button on click event
+    const handleSendClick = () => {
+        setDisabled(true)
+    }
 
     return(
         <>
@@ -115,6 +120,8 @@ const MsgInput = ({ chat_id }) => {
                             whileTap={{ scale: 0.95 }} 
                             whileHover={{ scale: 1.1 }} 
                             type="submit"
+                            onClick={() => handleSendClick}
+                            disabled={btndisabled}
                         >
                             <i className="bi bi-send"></i>
 
