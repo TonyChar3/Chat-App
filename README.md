@@ -1,1 +1,1 @@
-Chat App Front-end made with React Js 
+Chat App made with React Js and Firebase for back-end
