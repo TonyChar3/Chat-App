@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { UserAuth } from '../../context/AuthContext';
 import { updateProfile, updateEmail, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import { doc, updateDoc, getDocs, collection, query, where } from "firebase/firestore";
-import { auth, db } from '../../firebase_setup/firebase';
+import  { auth,db } from '../../firebase_setup/firebase';
 import { useMediaQuery } from 'react-responsive';
 
 const Settings = () => {
@@ -328,17 +328,13 @@ const Settings = () => {
                                 whileHover={{ scale: 1.1 }} 
                                 onMouseOver={handleClick} 
                                 onMouseLeave={handleClick} 
-                                onClick={SignOut}
+                                onClick={() => SignOut()}
                             >
                                 Log out 
                                 <i className={`bi bi-door-${door? "open" : "closed"}-fill`}></i>
                             </motion.h2>
 
-                            <div 
-                                className="profile-edit__container"
-                            
-                               
-                            >
+                            <div className="profile-edit__container">
                                 { edit ? 
                                     <div className="edit-save-cancel__container">
                                         <motion.button 

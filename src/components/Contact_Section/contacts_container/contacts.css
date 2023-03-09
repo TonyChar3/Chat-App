@@ -94,7 +94,6 @@
     }
 
     .contact-section__container{
-        height: 86%;
         width: 45%;
         align-items: center;
         margin: 1em;
@@ -114,5 +113,14 @@
 
     .contact-alert__active{
         bottom: 10%;
+    }
+}
+
+/*Retina screen*/
+@media (min-width: 1200px){
+    /*Layout*/
+    .contact-section__container{
+        height: 85%;
+        margin: .5em;
     }
 }

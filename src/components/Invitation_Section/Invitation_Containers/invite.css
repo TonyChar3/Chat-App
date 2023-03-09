@@ -58,6 +58,14 @@
     }
 }
 
+/*Retina screen*/
+@media (min-width: 1200px){
+    /*Layout*/
+    .invitation-section__container{
+        height: 84%;
+    }
+}
+
 /*High resolution*/
 @media (min-width: 1281px){
         /*Layout*/

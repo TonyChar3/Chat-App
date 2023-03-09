@@ -154,6 +154,6 @@
 /*High resolution*/
 @media (min-width: 1281px){
     .chat-room__container{
-        height: 82%;
+        height: 80%;
     }
 }

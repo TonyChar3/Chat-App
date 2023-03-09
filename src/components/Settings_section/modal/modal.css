@@ -140,3 +140,15 @@
         padding: .2em;
     }
 }
+
+/*Retina screens*/
+@media (min-width: 1200px){
+    /*Layout*/
+    .auth-modal__container > form{
+        width: 30%;
+    }
+
+    #modal-password__input{
+        padding: .3em;
+    }
+}
