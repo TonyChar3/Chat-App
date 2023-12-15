@@ -2,7 +2,7 @@ import './contactnavbar.css';
 import {useState, useEffect} from 'react';
 import { doc, arrayUnion, updateDoc, getDoc, collection, query, where, onSnapshot } from "firebase/firestore";
 import { motion } from 'framer-motion';
-import { auth, firebase_db } from '../../../../firebase_setup/firebase';
+import { auth, firebase_db } from '../../../../../firebase_setup/firebase_setup';
 
 
 const ContactNavbar = (props) => {

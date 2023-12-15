@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react';
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
-import { auth, firebase_db} from '../../../../firebase_setup/firebase.js';
+import { auth, firebase_db } from '../../../../../firebase_setup/firebase_setup';
 
 const InvitationContainer = () => {
 

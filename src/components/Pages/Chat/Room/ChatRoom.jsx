@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { query, collection, onSnapshot, where } from "firebase/firestore";
 import { motion } from 'framer-motion';
-import { auth, firebase_db } from '../../../../firebase_setup/firebase';
 import ChatBubbles from '../Text_bubbles/ChatBubbles';
+import { auth, firebase_db } from '../../../../../firebase_setup/firebase_setup';
 
 const ChatRoom = ({ convo_name, room_id }) => {
 

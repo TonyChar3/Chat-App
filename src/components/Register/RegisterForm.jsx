@@ -3,9 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import { updateProfile, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { auth, firebase_db } from "../../firebase_setup/firebase.js";
 import { motion } from 'framer-motion';
 import { UserAuth } from '../../context/AuthContext';
+import { auth } from '../../../firebase_setup/firebase_setup';
 
 
 const RegisterForm = () => {
@@ -22,34 +22,14 @@ const RegisterForm = () => {
   // register function from Context
   const {registerUser} = UserAuth();
 
-  // handle the email state
-  const handleEmailChange = (e) => {
-    setEmail(e.trim())
-  }
-
-  // handle the password state
-  const handlePasswrdChange = (e) => {
-    setPasswrd(e.trim())
-  }
-
-  // handle the name state
-  const handleNameChange = (e) => {
-    setNom(e.trim())
-  }
-
   // when the user click register button
   const signUp = async(e) => {
-
     e.preventDefault();
-
     try{
-
       // register the new with the Context function
       await registerUser(email, passwrd) 
-
       // update the profile display name to the current given name
       await updateProfile(auth.currentUser, { displayName: nom})
-
       // set this new user document in the 'users' DB
       await setDoc(doc(firebase_db, "users", auth.currentUser.uid), {
         user_uid: auth.currentUser.uid,
@@ -122,7 +102,7 @@ const RegisterForm = () => {
                       type="email" 
                       name="email" 
                       id="register-email__input" 
-                      onChange={(e) => handleEmailChange(e.target.value)}  
+                      onChange={(e) => setEmail(e.target.value.trim())}  
                       placeholder="email@random.com" 
                     />
                 </div>
@@ -133,7 +113,7 @@ const RegisterForm = () => {
                     type="text" 
                     name="username" 
                     id="register-name__input" 
-                    onChange={(e) => handleNameChange(e.target.value)} 
+                    onChange={(e) => setNom(e.target.value.trim())} 
                     placeholder="User name" 
                   />
                 </div>
@@ -143,7 +123,7 @@ const RegisterForm = () => {
                     whileFocus={{ scale: 1.03 }} 
                     type="text" 
                     id="register-password__input" 
-                    onChange={(e) => handlePasswrdChange(e.target.value)} 
+                    onChange={(e) => setPasswrd(e.target.value.trim())} 
                     placeholder="Password" 
                   />
                 </div>

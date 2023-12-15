@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import { doc, updateDoc, arrayRemove, arrayUnion, deleteDoc, query, collection, where, onSnapshot } from 'firebase/firestore';
 import { motion } from 'framer-motion';
-import { auth, firebase_db } from '../../../../firebase_setup/firebase';
 import DeleteModal from './delete_modal/DeleteModal';
+import { auth,firebase_db } from '../../../../../firebase_setup/firebase_setup';
 
 const ContactCard = ({ contct_id, confirmed, chatroom_ID, contct_edit, alert_mess, alert_div, blck_screen }) => {
 

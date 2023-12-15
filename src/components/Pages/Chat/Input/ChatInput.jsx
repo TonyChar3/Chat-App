@@ -2,7 +2,7 @@ import './chatinput.css';
 import { useState, useEffect } from "react";
 import {query, collection, where, onSnapshot, Timestamp, updateDoc, arrayUnion, doc} from "firebase/firestore";
 import { motion } from 'framer-motion';
-import { auth, firebase_db } from '../../../../firebase_setup/firebase';
+import { auth, firebase_db } from '../../../../../firebase_setup/firebase_setup';
 
 
 const ChatInput = ({ chat_id }) => {

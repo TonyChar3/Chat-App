@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './login.css';
-import { auth } from '../../firebase_setup/firebase';
 import { motion } from 'framer-motion';
 import { UserAuth } from '../../context/AuthContext';
+import { auth } from '../../../firebase_setup/firebase_setup';
 
 function LoginForm(){
 

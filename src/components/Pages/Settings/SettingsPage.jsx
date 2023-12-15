@@ -9,7 +9,7 @@ import { updateProfile, updateEmail, reauthenticateWithCredential, EmailAuthProv
 import { doc, updateDoc, getDocs, collection, query, where } from "firebase/firestore";
 import { useMediaQuery } from 'react-responsive';
 import SettingModal from './Settings_modal/SettingsModal';
-import { auth,firebase_db } from '../../../firebase_setup/firebase';
+import { auth, firebase_db } from '../../../../firebase_setup/firebase_setup';
 
 const SettingsPage = () => {
 

@@ -1,10 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from '../firebase_setup/firebase.js';
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, browserSessionPersistence, setPersistence } from 'firebase/auth';
+import { auth } from '../../firebase_setup/firebase_setup';
+
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
+
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({})
     const [credential, setCredentials] = useState([])
@@ -40,7 +44,19 @@ export const AuthContextProvider = ({children}) => {
                 setUser(auth.currentUser)
             }
         })
-    })
+    },[auth])
+
+    useEffect(() => {
+        // Navigate to the menu if signed in
+        if(user !== null){
+            // set the session to persist until the user logs out
+            setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+                // navigate to the first/main page of the app
+                navigate("/navbar/contacts/contct");
+            });
+        }
+    },[auth])
 
     return(
         <UserContext.Provider value={{ 

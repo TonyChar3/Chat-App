@@ -2,7 +2,7 @@ import './settingsmodal.css';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { UserAuth } from "../../../../context/AuthContext";
-import { auth } from '../../../../firebase_setup/firebase';
+import { auth } from '../../../../../firebase_setup/firebase_setup';
 
 const SettingModal = ({ modal }) => {
 

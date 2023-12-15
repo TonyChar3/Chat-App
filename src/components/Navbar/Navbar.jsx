@@ -2,7 +2,7 @@ import { NavLink, Outlet  } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
-import { auth, firebase_db } from '../../firebase_setup/firebase';
+import { auth, firebase_db } from '../../../firebase_setup/firebase_setup';
 
 const NavBar = () => {
   

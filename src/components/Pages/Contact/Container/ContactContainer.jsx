@@ -3,10 +3,10 @@ import {useState, useEffect} from 'react';
 import {collection, query, where, onSnapshot} from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
-import { auth, firebase_db } from '../../../../firebase_setup/firebase';
 import ContactScroll from '../../../../container/scroll/contact_scroll/ContactScroll';
 import ContactNavbar from '../Contact_navbar/ContactNavbar';
 import ContactCard from '../Card/ContactCard';
+import { auth, firebase_db } from '../../../../../firebase_setup/firebase_setup';
 
 const ContactSectionContainer = () => {
     const [contact, setContact] = useState([]); // contacts array

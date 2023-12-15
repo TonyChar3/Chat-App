@@ -1,9 +1,9 @@
 import './chatbubble.css';
 import ChatDeleteModal from './delete_chat_modal/ChatDeleteModal';
-import { auth, firebase_db } from '../../../../firebase_setup/firebase';
 import { doc, updateDoc, arrayRemove, query, collection, onSnapshot, where } from 'firebase/firestore';
 import {useEffect, useState, useRef} from 'react';
 import { motion } from 'framer-motion';
+import { auth, firebase_db } from '../../../../../firebase_setup/firebase_setup';
 
 const ChatBubble = ({ mess, chatroomID, blck_screen }) => {
 
