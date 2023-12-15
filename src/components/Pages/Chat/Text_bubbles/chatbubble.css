@@ -1,0 +1,138 @@
+   
+    /*Layout*/
+
+.chat__container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 38%;
+    padding: .5em;
+    margin: 0;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    scroll-padding: 0;
+}
+
+.chat__wrapper{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 .5em .5em 0;
+    margin-bottom: .5em;
+}
+
+.chat-date-time__container{
+    justify-self: center;
+    padding: .5em;
+    margin: .8em 0 .5em 0;
+    font-size: 0.70rem;
+    font-weight: 600;
+    color: white;
+}
+
+.chat-date__right{
+    justify-self: center;
+}
+
+.chat-date__left{
+    justify-self: flex-start;
+}
+
+.chat__right{
+    justify-self: flex-end;
+    background-color: #784BA0;
+    border-bottom-left-radius: 15px;
+}
+
+.chat__left{
+    justify-self: flex-start;
+    align-self: flex-start;
+    background-color: rgb(176, 176, 176); 
+    border-bottom-right-radius: 15px;
+    margin-left: .5em;
+}
+
+.chat-delete__right{
+    justify-self: flex-end;
+}
+
+.chat-delete__left{
+    display: none;
+}
+
+.chat-delete__container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+    /*Typography*/
+    
+.chat-sent-by__right{
+    align-self: flex-start;
+}
+
+.chat-sent-by__left{
+    align-self: flex-end;
+}
+
+.chat-sent-by__container{
+    display: flex;
+    width: 50%;
+    padding: .2em;
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: black;
+}
+
+.chat-text__container{
+    display: inline-block;
+    max-width: 100%;
+    word-break: normal;
+}
+
+.chat-delete__container > i{
+    margin-top: .2em;
+    margin-right: .3em;
+    color: rgba(255, 255, 255, 0.926);
+}
+
+/*Tablets*/
+@media (min-width: 765px){
+        /*Typography*/
+
+    .chat-sent-by__container{
+        font-size: 1.4rem;
+    }
+    .chat__container{
+        font-size: 1.3rem;
+    }
+
+    .chat-date-time__container{
+        font-size: 0.78rem;
+    }
+
+    .chat-delete__container > i{
+        font-size: 1.4rem;
+    }
+}
+
+/*Low resolution desktop*/
+@media (min-width: 1024px){
+        /*Typography*/
+
+    .chat-sent-by__container{
+        font-size: 1.3rem;
+    }
+
+    .chat__container{
+        font-size: 1.2rem;
+    }
+    
+    .chat-date-time__container{
+        font-size: 0.80rem;
+    }
+
+    .chat-delete__container > i{
+        font-size: 1.2rem;
+    }
+}

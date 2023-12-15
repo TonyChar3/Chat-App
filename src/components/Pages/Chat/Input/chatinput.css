@@ -1,0 +1,89 @@
+    /*Layout*/
+.chatinput__container > form{
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.2em;
+    border-top: 3px solid white;
+    background-color: #c72b83;
+    background-image: linear-gradient(220deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+}
+
+    /*Typography*/
+.bi-send{
+    font-size: 1.6rem;
+    color: white;
+}
+
+.send_btn__container:active,
+.send_btn__container:focus{
+    transform: scale(0.93);
+    transition: all 0.2s;
+}
+
+#chat__input{
+    background-color: rgba(255, 255, 255, 0.536);
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid white;
+    color: white;
+    padding: .5em;
+}
+
+#chat__input:active,
+#chat__input:focus{
+    background-color: #c72b8395;
+    outline: none;
+    color: white;
+}
+
+    /*Buttons*/
+.send_btn__container > button{
+    border: none;
+    background-color: transparent;
+}
+
+@media (min-width: 410px){
+    #chat__input{
+        width: 75%;
+    }
+}
+
+@media (min-width: 765px){
+    .chatinput__container > form{
+        justify-content: center;
+    }
+
+    .send_btn__container{
+        margin-left: 3em;
+    }
+
+    #chat__input{
+        width: 65%;
+        padding: 1em;
+    }
+
+
+        /*Typography*/
+    .bi-send{
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 1024px){
+    #chat__input{
+        width: 50%;
+        padding: 1.1em;
+    }
+
+    /*Typography*/
+    .bi-send{
+        font-size: 2rem;
+    }
+}
+@media (min-width: 1281px){}

@@ -1,0 +1,28 @@
+.footer__container{
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+    border-bottom: 3px solid white;
+    background-color: #c72b83;
+    background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+}
+
+.icon__container{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: .3em .5em;
+}
+
+.icon__container > i{
+    font-size: 2rem;
+    color:white;
+}
+
+.square-chat-bubble-icon{
+    justify-self: flex-start;
+}

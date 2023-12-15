@@ -1,0 +1,225 @@
+    /*Layout*/
+
+.setting__wrapper{
+    height: 100%;
+    background-color: #c72b83;
+    background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+}
+
+.setting-profile__container{
+    margin: 4em auto;
+}
+
+.setting-profile__container > form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    margin: 2em auto;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+    animation: shadow-drop-2-center;
+}
+
+.setting-made-with__container{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    margin: 2em auto;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+    animation: shadow-drop-2-center;
+}
+
+.profile-name__container,
+.profile-email__container{
+    display: flex;
+    width: 80%;
+    padding: .3em;
+    margin: .5em 0;
+    border-radius: 15px;
+    background-color: rgba(228, 228, 228, 0.316);
+    
+}
+
+.profile-logout__container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+    margin-top: .3em;
+    border-top: 1px solid white;
+}
+
+.profile-edit__container{
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    align-self: flex-start;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-save-cancel__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting-edit-error__container{
+    width: 80%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: .3em;
+    margin: 1em auto 0 auto;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+    animation: shadow-drop-2-center;
+}
+
+.error__container-active{
+    display: flex;
+}
+
+    /*Typography*/
+
+.profile-icon,
+.setting-made-with__container > span,
+.profile-logout__container > h2{
+    color: white;
+}
+
+.profile-icon{
+    font-size: 2rem;
+}
+
+.profile-logout__container > h2{
+    font-size: 1.3rem;
+    transition: 0.3s ease;
+}
+
+.profile-logout__container > h2:hover{
+    cursor: pointer;
+    color: rgb(243, 148, 148);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.profile-email__container > input,
+.profile-name__container > input{
+    border: none;
+    color: white;
+    font-weight: 700;
+}
+
+.profile-email__container > input::placeholder,
+.profile-name__container > input::placeholder{
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.input__disabled{
+    background-color: transparent;
+}
+
+.input__active{
+    padding: .2em 0 0 .5em;
+    border-radius: 15px;
+    outline: none;
+    background-color: rgba(235, 235, 235, 0.399);
+}
+
+.input__active:focus{
+    border: 2px solid white;
+}
+
+#setting-edit-error__span{
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: underline;
+    color: rgb(239, 147, 124);
+}
+
+    /*Buttons*/
+
+#save__btn{
+    margin-right: 1.2em;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+
+/*Tablets*/
+@media(min-width: 765px){
+
+        /*Layout*/
+
+    .setting-profile__container{
+        width: 60%;
+    }
+
+    .setting-made-with__container{
+        width: 50%;
+    }
+
+        /*Typography*/
+
+    .setting-profile__container > h2{
+        font-size: 2.2rem;
+    }
+}
+
+/*Low resolution desktop*/
+@media(min-width: 1024px){
+
+        /*Layout*/
+
+    .setting-profile__container{
+        width: 30%;
+        transition: 0.4s;
+    }
+
+    .setting-made-with__container{
+        width: 20%;
+        transition: 0.4s;
+    }
+
+        /*Typography*/
+
+    .setting-profile__container > h2{
+        font-size: 2.6rem;
+    }
+}
+
+/*High resolution desktop*/
+@media(min-width: 1281px){
+
+        /*Layout*/
+        
+    .setting-made-with__container{
+        margin: 3.5em auto;
+    }
+}

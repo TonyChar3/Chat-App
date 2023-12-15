@@ -1,0 +1,95 @@
+/*Layout*/
+.navbar__container{
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: .5em;
+    border-top: 3px solid white;
+    background-color: #c72b83;
+    background-image: linear-gradient(249deg, #c72b83 0%, #784BA0 1%, #2B86C5 100%);
+}
+    
+.tabs__container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+    
+.navbar__tabs{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: .5em;
+}
+    
+/*Typography*/
+.navbar__tabs > i,
+.navbar__tabs > a{
+    margin-left: .3em;
+    font-size: 1.6rem;
+}
+    
+.navbar__tabs > a:nth-child(3):hover,
+.navbar__tabs > a:nth-child(3):active{
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+}
+    
+.navbar__tabs > a,
+.navbar__tabs > i {
+    padding: .2em .5em;
+    list-style: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+    
+.navbar__tabs > a:focus,
+.navbar__tabs > a:active{
+    transform: scale(1.1);
+    transition: all 0.3s;
+}
+    
+/*Tablets*/
+@media (min-width: 765px){
+    /*Layout*/
+    .tabs__container{
+        margin: 0 0 0 1em;
+    }
+    
+    /*Typography*/
+    .navbar__tabs > i,
+    .navbar__tabs > a{
+        font-size: 1.6rem;
+    }
+}
+    
+/*Low resolution desktop*/
+@media (min-width: 1024px){
+    /*Layout*/
+    .navbar__container{
+        background-image: linear-gradient(230deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+    }
+    /*Typography*/
+    .navbar__tabs > li,
+    .navbar__tabs > i{
+        font-size: 1.3rem;
+    }
+}
+    
+/*High resolution desktop*/
+@media (min-width: 1281px){
+    /*Typography*/
+    .navbar__tabs > a,
+    .navbar__tabs > i{
+        font-size: 1.7rem;
+    }
+}

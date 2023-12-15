@@ -1,0 +1,126 @@
+    
+    /*Layout*/
+
+.contact-section__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background-color: rgba(228, 228, 228, 0.316);
+}
+
+.contact-section__wrapper{
+    background-color: #c72b83;
+    background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+}
+
+.contact-alert__container{
+    z-index: 2;
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    padding: .5em;
+    border-radius: 15px;
+    border: 1px solid rgba(186, 185, 185, 0.654);
+    backdrop-filter: blur(5px);
+    background-color: rgba(204, 204, 204, 0.109);
+    -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+    box-shadow: 5px 2px 29px 1px rgba(255, 255, 255, 0.295);
+    animation: shadow-drop-2-center;
+    transition: all 0.6s;
+}
+
+.contact-alert__active{
+    bottom: 15%;
+    transition: 0.3s;
+}
+
+.contact-section__black-screen{
+    position: absolute;
+    z-index: 3;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);  
+}
+
+.contact-black-screen__active{
+    display: flex;
+    transition: 0.4s;
+}
+
+    /*Typography*/
+
+#contact-alert__span{
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+}
+
+/*Large mobile screens*/
+@media (min-width: 360px){
+
+        /*Layout*/
+
+    .contact-section__wrapper,
+    .contact-section__container{
+        height: 100%;
+    }
+}
+
+/*Tablets*/
+@media (min-width: 765px){
+
+        /*Layout*/
+
+    .contact-section__wrapper,
+    .contact-section__container{
+        height: 100%;
+    }
+}
+
+/*Low-resolution desktops*/
+@media (min-width: 1024px){
+
+        /*Layout*/
+
+    .contact-section__wrapper{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: #c72b83;
+        background-image: linear-gradient(270deg, #c72b83 0%, #784BA0 0%, #2B86C5 100%);
+    }
+
+    .contact-section__container{
+        width: 45%;
+        align-items: center;
+        margin: 1em;
+        border-radius: 15px;
+        -webkit-box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40); 
+        box-shadow: 5px 2px 29px 1px rgba(255,255,255,0.40);
+        animation: shadow-drop-2-center;
+    }
+
+    .contact-section__black-screen{
+        border-radius: 15px;
+    }
+
+    .contact-alert__container{
+        bottom: -20%;
+    }
+
+    .contact-alert__active{
+        bottom: 10%;
+    }
+}
+
+/*Retina screen*/
+@media (min-width: 1200px){
+    /*Layout*/
+    .contact-section__container{
+        height: 85%;
+        margin: .5em;
+    }
+}
