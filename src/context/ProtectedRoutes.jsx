@@ -7,7 +7,7 @@ const ProtectedRoutes = ({ children }) => {
     const {user} = UserAuth();
 
     // if there isn't a logged in user
-    if(!user){
+    if(!user || user === null){
         // Navigate back to the Sign In form page
         return <Navigate to="/"/>
     }
