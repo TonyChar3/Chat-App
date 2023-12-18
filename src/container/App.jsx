@@ -12,6 +12,7 @@ import ContactSectionContainer from '../components/Pages/Contact/Container/Conta
 import SettingsPage from '../components/Pages/Settings/SettingsPage';
 import ContactProfile from '../components/Pages/Contact/Card/profile/ContactProfile';
 import ChatPage from '../components/Pages/Chat/ChatPage';
+import ErrorPage from '../components/Pages/Error/404Page';
 
 function App(){
   
@@ -30,10 +31,13 @@ function App(){
                     <Route path="contct" element={<ContactSectionContainer />} />
                     <Route path="chatpage" element={<ChatPage />} />
                     <Route path="profilepage" element={<ContactProfile />} />
+                    <Route path="*" element={<ErrorPage/>} />
                   </Route>
                   <Route path="invitations" element={<InvitationContainer />} />
                   <Route path="settings" element={<SettingsPage />} />
+                  <Route path="*" element={<ErrorPage/>} />
             </Route>
+            <Route path="*" element={<ErrorPage/>} />
         </Routes>
 
       </AnimatePresence> 
