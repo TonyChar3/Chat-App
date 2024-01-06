@@ -1,6 +1,12 @@
-# React + Vite
+Welcome to the Chatting-App repo.!
+-
 
-This chat app was made using Firebase w/ React along with Vite tooling.
--- made by TonyChar3 --
+made with React and Firebase for a backend.
 
-This app is only a personnal project to learn the basics of react!
+This app uses Authentication and the Firestore to store user data and manage app access.
+
+The user can chat with other users of the app ONLY! 
+-
+It also provide basic CRUD functionnalities to manage contacts and their chats.
+
+Visit at: https://chatting-app.tony-char3.com
