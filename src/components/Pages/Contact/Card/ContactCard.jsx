@@ -27,7 +27,6 @@ const ContactCard = ({ contct_id, confirmed, chatroom_ID, contct_edit, alert_mes
 
     // to delete the user 
     const handleDelete = async(idx, confirm, roomID) => {
-
         // the current user firebase doc ref
         const current_user_Ref = doc(firebase_db, 'users', auth.currentUser.uid)
 
