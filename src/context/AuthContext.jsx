@@ -39,7 +39,6 @@ export const AuthContextProvider = ({children}) => {
                 setUser(null)
             }
             setUser(user) 
-            console.log('authcontext: ', user)
         });
         return () => unsubscribe();
     },[auth]);

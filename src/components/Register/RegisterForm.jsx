@@ -5,7 +5,7 @@ import { updateProfile, setPersistence, browserSessionPersistence } from "fireba
 import { doc, setDoc } from "firebase/firestore";
 import { motion } from 'framer-motion';
 import { UserAuth } from '../../context/AuthContext';
-import { auth } from '../../../firebase_setup/firebase_setup';
+import { auth, firebase_db } from '../../../firebase_setup/firebase_setup';
 
 
 const RegisterForm = () => {
@@ -31,14 +31,14 @@ const RegisterForm = () => {
       // update the profile display name to the current given name
       await updateProfile(auth.currentUser, { displayName: nom})
       // set this new user document in the 'users' DB
-      await setDoc(doc(firebase_db, "users", auth.currentUser.uid), {
+      const setting_db = await setDoc(doc(firebase_db, "users", auth.currentUser.uid), {
         user_uid: auth.currentUser.uid,
         name: auth.currentUser.displayName,
         email: auth.currentUser.email,
         contact: [],
         invitations: []
       });
-    
+      console.log(setting_db)
     // catch error
     }catch(error){
       // set error message
