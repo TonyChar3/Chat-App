@@ -15,17 +15,18 @@ Test it!
 -
 Use the following accounts to chat and discover the app:
 
-username: Robert
-email: robertvisitor@email.com
-password: 123456
+username: Robert - 
+email: robertvisitor@email.com - 
+password: 123456 - 
 
-username: Claudia
-email: claudiavisitor@email.com
-password: 123456
 
-username: Jeff
-email: jeffvisitor@email.com
-password: 123456
+username: Claudia - 
+email: claudiavisitor@email.com - 
+password: 123456 - 
+
+username: Jeff - 
+email: jeffvisitor@email.com - 
+password: 123456 - 
 
 For any questions about the app please contact me using this email: tonyc6731@gmail.com
 - 
